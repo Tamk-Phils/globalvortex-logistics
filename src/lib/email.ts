@@ -1,4 +1,7 @@
-import nodemailer from "nodemailer";
+import { Resend } from 'resend';
+
+// Initialize the Resend SDK
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 interface BaseEmailParams {
     to: string;
@@ -19,16 +22,6 @@ interface UpdateShipmentParams extends BaseEmailParams {
     description: string;
 }
 
-const createTransporter = () => nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.spaceship.com",
-    port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: process.env.SMTP_SECURE === "true",
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-});
-
 const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://nexustrack.com"}/tracking`;
 
 export async function sendShipmentCreatedEmail({
@@ -40,7 +33,6 @@ export async function sendShipmentCreatedEmail({
     origin,
     destination
 }: NewShipmentParams) {
-    const transporter = createTransporter();
     const trackingLink = getTrackingLink();
 
     const htmlContent = `
@@ -89,15 +81,19 @@ export async function sendShipmentCreatedEmail({
     `;
 
     try {
-        await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Global Nexus Tracker"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@globalnexustracker.com"}>`,
-            to,
+        const { error } = await resend.emails.send({
+            from: `"${process.env.FROM_NAME || "Global Nexus Tracker"}" <${process.env.FROM_EMAIL || "support@globalnexustracker.com"}>`,
+            to: [to],
             subject,
             html: htmlContent,
         });
+        if (error) {
+            console.error("Resend API Error:", error);
+            return { success: false, error };
+        }
         return { success: true };
     } catch (error) {
-        console.error("Email Error:", error);
+        console.error("Critical Email Error:", error);
         return { success: false, error };
     }
 }
@@ -111,7 +107,6 @@ export async function sendShipmentUpdateEmail({
     location,
     description
 }: UpdateShipmentParams) {
-    const transporter = createTransporter();
     const trackingLink = getTrackingLink();
 
     const htmlContent = `
@@ -155,15 +150,19 @@ export async function sendShipmentUpdateEmail({
     `;
 
     try {
-        await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Global Nexus Tracker"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@globalnexustracker.com"}>`,
-            to,
+        const { error } = await resend.emails.send({
+            from: `"${process.env.FROM_NAME || "Global Nexus Tracker"}" <${process.env.FROM_EMAIL || "support@globalnexustracker.com"}>`,
+            to: [to],
             subject,
             html: htmlContent,
         });
+        if (error) {
+            console.error("Resend API Error:", error);
+            return { success: false, error };
+        }
         return { success: true };
     } catch (error) {
-        console.error("Email Error:", error);
+        console.error("Critical Email Error:", error);
         return { success: false, error };
     }
 }
