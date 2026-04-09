@@ -46,7 +46,7 @@ export async function sendShipmentCreatedEmail({
     const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
             <div style="background-color: #2563eb; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-                <h1 style="color: white; margin: 0;">NexusTrack</h1>
+                <h1 style="color: white; margin: 0;">Global Nexus Tracker</h1>
                 <p style="color: #bfdbfe; margin: 5px 0 0;">Global Logistics Intelligence</p>
             </div>
             <div style="padding: 30px; background-color: white;">
@@ -83,14 +83,14 @@ export async function sendShipmentCreatedEmail({
                 </div>
             </div>
             <div style="text-align: center; padding: 20px; color: #94a3b8; font-size: 12px;">
-                <p>&copy; 2026 NexusTrack Global Logistics Solutions. All rights reserved.</p>
+                <p>&copy; 2026 Global Nexus Tracker Logistics Solutions. All rights reserved.</p>
             </div>
         </div>
     `;
 
     try {
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "NexusTrack Alerts"}" <${process.env.FROM_EMAIL || "alerts@nexustrack.com"}>`,
+            from: `"${process.env.FROM_NAME || "Global Nexus Tracker"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@globalnexustracker.com"}>`,
             to,
             subject,
             html: htmlContent,
@@ -117,7 +117,7 @@ export async function sendShipmentUpdateEmail({
     const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
             <div style="background-color: #2563eb; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-                <h1 style="color: white; margin: 0;">NexusTrack</h1>
+                <h1 style="color: white; margin: 0;">Global Nexus Tracker</h1>
                 <p style="color: #bfdbfe; margin: 5px 0 0;">Global Logistics Intelligence</p>
             </div>
             <div style="padding: 30px; background-color: white;">
@@ -149,14 +149,14 @@ export async function sendShipmentUpdateEmail({
                 </div>
             </div>
             <div style="text-align: center; padding: 20px; color: #94a3b8; font-size: 12px;">
-                <p>&copy; 2026 NexusTrack Global Logistics Solutions. All rights reserved.</p>
+                <p>&copy; 2026 Global Nexus Tracker Logistics Solutions. All rights reserved.</p>
             </div>
         </div>
     `;
 
     try {
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "NexusTrack Alerts"}" <${process.env.FROM_EMAIL || "alerts@nexustrack.com"}>`,
+            from: `"${process.env.FROM_NAME || "Global Nexus Tracker"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@globalnexustracker.com"}>`,
             to,
             subject,
             html: htmlContent,
