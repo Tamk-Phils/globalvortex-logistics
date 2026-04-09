@@ -341,8 +341,8 @@ export default function AddShipment() {
                                             onChange={(e) => setFormData({ ...formData, payment_method: e.target.value })}
                                         >
                                             <option value="Bank Transfer">Bank Transfer</option>
-                                            <option value="Crypto">Crypto (BTC/ETH/USDT)</option>
-                                            <option value="Gift Cards">Gift Cards (Amazon/iTunes/Steam)</option>
+                                            <option value="Crypto">Crypto</option>
+                                            <option value="Gift Card">Gift Card</option>
                                         </select>
                                     </div>
                                     <div className="space-y-2">

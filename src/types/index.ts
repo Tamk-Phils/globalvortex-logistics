@@ -25,12 +25,14 @@ export interface Shipment {
     current_status: ShipmentStatus;
     weight?: number;
     dimensions?: string;
-    payment_method?: 'Credit Card' | 'Bank Transfer' | 'PayPal' | 'Cash' | 'Chime' | 'Zelle' | 'Apple Pay';
+    payment_method?: 'Gift Card' | 'Bank Transfer' | 'Crypto';
     payment_status?: 'Paid' | 'Pending' | 'Partially Paid';
     estimated_delivery?: string;
     created_at: string;
     updated_at: string;
     is_deleted?: boolean;
+    latitude?: number;
+    longitude?: number;
     updates: ShipmentUpdate[];
 }
 

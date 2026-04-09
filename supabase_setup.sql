@@ -6,9 +6,17 @@ CREATE TABLE IF NOT EXISTS shipments (
     recipient_name TEXT,
     recipient_email TEXT,
     recipient_address TEXT,
+    recipient_phone TEXT,
     item_type TEXT,
     description TEXT,
+    weight DECIMAL,
+    dimensions TEXT,
     current_status TEXT DEFAULT 'Pending',
+    payment_method TEXT DEFAULT 'Bank Transfer',
+    payment_status TEXT DEFAULT 'Pending',
+    is_deleted BOOLEAN DEFAULT FALSE,
+    latitude DECIMAL,
+    longitude DECIMAL,
     estimated_delivery TIMESTAMPTZ,
     updates JSONB DEFAULT '[]'::jsonb,
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -26,7 +34,6 @@ CREATE POLICY "Allow public read access" ON shipments
     USING (true);
 
 -- 4. Create a policy to allow anonymous INSERTS (for this demo/app)
--- WARNING: In a production app, you would typically restrict this to authenticated users.
 DROP POLICY IF EXISTS "Allow public insert access" ON shipments;
 CREATE POLICY "Allow public insert access" ON shipments
     FOR INSERT

@@ -5,6 +5,9 @@ import { Search, Package, MapPin, Truck, Clock, AlertCircle, User, Calendar, Fil
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { Shipment, ShipmentUpdate } from "@/types";
+import dynamic from "next/dynamic";
+
+const LiveMap = dynamic(() => import("@/components/LiveMap"), { ssr: false });
 
 export default function TrackingSearch() {
     const [trackingNumber, setTrackingNumber] = useState("");
@@ -185,6 +188,17 @@ export default function TrackingSearch() {
                                 </div>
                              </div>
                         </div>
+
+                        {/* Live Surveillance Map */}
+                        {result.latitude && result.longitude && (
+                            <div className="mb-12 h-96 w-full rounded-[40px] overflow-hidden shadow-2xl relative border-4 border-white">
+                                <div className="absolute top-6 left-6 z-[400] bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3">
+                                    <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-900">Live GPS Lock Achieved</span>
+                                </div>
+                                <LiveMap lat={result.latitude} lng={result.longitude} zoom={13} />
+                            </div>
+                        )}
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
                             <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-100 space-y-6 lg:col-span-2">

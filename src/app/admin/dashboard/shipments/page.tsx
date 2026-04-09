@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import { Search, Plus, Filter, Edit2, Trash2, ArrowUpRight, Package, RefreshCw, X, Save, MapPin, Clock, Copy, Check } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { supabase } from "@/lib/supabase";
+
+const MapPicker = dynamic(() => import("@/components/MapPicker"), { ssr: false });
 import { notifyShipmentUpdate } from "@/app/actions/email";
 import { Shipment, ShipmentUpdate } from "@/types";
 
@@ -20,7 +23,9 @@ export default function ShipmentsList() {
     const [newUpdate, setNewUpdate] = useState({
         status: "Pending",
         location: "",
-        description: ""
+        description: "",
+        lat: 52.5200,
+        lng: 13.4050
     });
 
     const handleCopy = (id: string) => {
@@ -130,7 +135,9 @@ export default function ShipmentsList() {
         setNewUpdate({
             status: shipment.current_status || "Pending",
             location: "",
-            description: ""
+            description: "",
+            lat: shipment.latitude || 52.5200,
+            lng: shipment.longitude || 13.4050
         });
         setIsModalOpen(true);
     };
@@ -156,6 +163,8 @@ export default function ShipmentsList() {
                 .update({
                     current_status: newUpdate.status,
                     updates: updatedUpdates,
+                    latitude: newUpdate.lat,
+                    longitude: newUpdate.lng,
                     updated_at: new Date().toISOString()
                 })
                 .eq('tracking_number', editingShipment.tracking_number);
@@ -167,6 +176,8 @@ export default function ShipmentsList() {
                     return {
                         ...s,
                         current_status: newUpdate.status as any,
+                        latitude: newUpdate.lat,
+                        longitude: newUpdate.lng,
                         updates: updatedUpdates,
                         updated_at: new Date().toISOString()
                     };
@@ -415,6 +426,12 @@ export default function ShipmentsList() {
                                     <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
                                 </div>
                             </div>
+
+                            <MapPicker 
+                                initialLat={newUpdate.lat} 
+                                initialLng={newUpdate.lng} 
+                                onChange={(lat, lng) => setNewUpdate({ ...newUpdate, lat, lng })} 
+                            />
 
                             <div className="space-y-2">
                                 <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Logistics Note</label>
