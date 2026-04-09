@@ -1,14 +1,35 @@
 import nodemailer from "nodemailer";
 
-interface SendEmailParams {
+interface BaseEmailParams {
     to: string;
     subject: string;
     trackingNumber: string;
-    senderName: string;
     recipientName: string;
+}
+
+interface NewShipmentParams extends BaseEmailParams {
+    senderName: string;
     origin: string;
     destination: string;
 }
+
+interface UpdateShipmentParams extends BaseEmailParams {
+    newStatus: string;
+    location: string;
+    description: string;
+}
+
+const createTransporter = () => nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.spaceship.com",
+    port: parseInt(process.env.SMTP_PORT || "587"),
+    secure: process.env.SMTP_SECURE === "true",
+    auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+    },
+});
+
+const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://nexustrack.com"}/tracking`;
 
 export async function sendShipmentCreatedEmail({
     to,
@@ -18,21 +39,12 @@ export async function sendShipmentCreatedEmail({
     recipientName,
     origin,
     destination
-}: SendEmailParams) {
-    const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || "smtp.spaceship.com",
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: process.env.SMTP_SECURE === "true",
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-        },
-    });
-
-    const trackingLink = `${process.env.NEXT_PUBLIC_APP_URL || "https://nexustrack.com"}/tracking`;
+}: NewShipmentParams) {
+    const transporter = createTransporter();
+    const trackingLink = getTrackingLink();
 
     const htmlContent = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; rounded: 12px;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
             <div style="background-color: #2563eb; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
                 <h1 style="color: white; margin: 0;">NexusTrack</h1>
                 <p style="color: #bfdbfe; margin: 5px 0 0;">Global Logistics Intelligence</p>
@@ -43,7 +55,7 @@ export async function sendShipmentCreatedEmail({
                     Hello <strong>${recipientName}</strong>,
                 </p>
                 <p style="color: #64748b; font-size: 16px; line-height: 1.6;">
-                    A new shipment has been registered for you by <strong>${senderName}</strong>. You can now track your parcel in real-time using the credentials below.
+                    A new shipment has been registered for you by <strong>${senderName}</strong>. You can now track your parcel in real-time.
                 </p>
                 
                 <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 25px 0;">
@@ -72,7 +84,72 @@ export async function sendShipmentCreatedEmail({
             </div>
             <div style="text-align: center; padding: 20px; color: #94a3b8; font-size: 12px;">
                 <p>&copy; 2026 NexusTrack Global Logistics Solutions. All rights reserved.</p>
-                <p>This is an automated notification. Please do not reply to this email.</p>
+            </div>
+        </div>
+    `;
+
+    try {
+        await transporter.sendMail({
+            from: `"${process.env.FROM_NAME || "NexusTrack Alerts"}" <${process.env.FROM_EMAIL || "alerts@nexustrack.com"}>`,
+            to,
+            subject,
+            html: htmlContent,
+        });
+        return { success: true };
+    } catch (error) {
+        console.error("Email Error:", error);
+        return { success: false, error };
+    }
+}
+
+export async function sendShipmentUpdateEmail({
+    to,
+    subject,
+    trackingNumber,
+    recipientName,
+    newStatus,
+    location,
+    description
+}: UpdateShipmentParams) {
+    const transporter = createTransporter();
+    const trackingLink = getTrackingLink();
+
+    const htmlContent = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
+            <div style="background-color: #2563eb; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+                <h1 style="color: white; margin: 0;">NexusTrack</h1>
+                <p style="color: #bfdbfe; margin: 5px 0 0;">Global Logistics Intelligence</p>
+            </div>
+            <div style="padding: 30px; background-color: white;">
+                <h2 style="color: #1e293b;">Shipment Status Update</h2>
+                <p style="color: #64748b; font-size: 16px; line-height: 1.6;">
+                    Hello <strong>${recipientName}</strong>,
+                </p>
+                <p style="color: #64748b; font-size: 16px; line-height: 1.6;">
+                    Your shipment <strong>${trackingNumber}</strong> has been updated.
+                </p>
+                
+                <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 25px 0;">
+                    <div style="margin-bottom: 15px;">
+                        <p style="color: #94a3b8; font-size: 12px; margin: 0 0 5px; text-transform: uppercase; font-weight: bold;">New Status</p>
+                        <p style="color: #2563eb; font-size: 18px; font-weight: bold; margin: 0;">${newStatus}</p>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <p style="color: #94a3b8; font-size: 12px; margin: 0 0 5px; text-transform: uppercase; font-weight: bold;">Current Location</p>
+                        <p style="color: #1e293b; font-size: 16px; margin: 0;">${location || "In Transit"}</p>
+                    </div>
+                    <div>
+                        <p style="color: #94a3b8; font-size: 12px; margin: 0 0 5px; text-transform: uppercase; font-weight: bold;">Details</p>
+                        <p style="color: #64748b; font-size: 14px; margin: 0;">${description || "No additional details provided."}</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="${trackingLink}" style="background-color: #2563eb; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px;">Track Your Shipment</a>
+                </div>
+            </div>
+            <div style="text-align: center; padding: 20px; color: #94a3b8; font-size: 12px;">
+                <p>&copy; 2026 NexusTrack Global Logistics Solutions. All rights reserved.</p>
             </div>
         </div>
     `;

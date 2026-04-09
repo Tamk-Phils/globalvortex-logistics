@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Search, Plus, Filter, Edit2, Trash2, ArrowUpRight, Package, RefreshCw, X, Save, MapPin, Clock, Copy, Check } from "lucide-react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { sendTrackingEmail } from "@/lib/email";
+import { notifyShipmentUpdate } from "@/app/actions/email";
 import { Shipment, ShipmentUpdate } from "@/types";
 
 export default function ShipmentsList() {
@@ -167,11 +167,16 @@ export default function ShipmentsList() {
             localStorage.setItem("nexustrack_shipments", JSON.stringify(updatedShipments));
 
             // Trigger Automatic Email Alerts
-            if (editingShipment.sender_email) {
-                await sendTrackingEmail(editingShipment.sender_email, editingShipment.tracking_number, newUpdate.status, editingShipment.sender_name || 'Valued Customer');
-            }
             if (editingShipment.recipient_email) {
-                await sendTrackingEmail(editingShipment.recipient_email, editingShipment.tracking_number, newUpdate.status, editingShipment.recipient_name || 'Valued Recipient');
+                await notifyShipmentUpdate({
+                    to: editingShipment.recipient_email,
+                    subject: `Update on Shipment ${editingShipment.tracking_number}`,
+                    trackingNumber: editingShipment.tracking_number,
+                    recipientName: editingShipment.recipient_name || 'Valued Customer',
+                    newStatus: newUpdate.status,
+                    location: newUpdate.location,
+                    description: newUpdate.description
+                });
             }
 
             setIsModalOpen(false);
