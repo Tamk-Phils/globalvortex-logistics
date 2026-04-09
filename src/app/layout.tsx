@@ -8,8 +8,62 @@ import ChatWidget from "@/components/ChatWidget";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NexusTrack | Professional Shipment Tracking",
-  description: "Secure, real-time shipment tracking for modern logistics professionals.",
+  title: {
+    default: "NexusTrack | Professional Global Shipment Tracking",
+    template: "%s | NexusTrack"
+  },
+  description: "Secure, enterprise-grade real-time shipment tracking for modern logistics and supply chain professionals. Sub-second global visibility.",
+  keywords: ["shipment tracking", "logistics platform", "real-time cargo monitor", "supply chain visibility", "freight tracking", "NexusTrack"],
+  authors: [{ name: "NexusTrack Engineering" }],
+  creator: "NexusTrack",
+  publisher: "NexusTrack Global",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://nexustrack.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "NexusTrack | Global Logistics Intelligence",
+    description: "The nervous system of global trade. Sub-second visibility from port to porch.",
+    url: "https://nexustrack.com",
+    siteName: "NexusTrack",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "NexusTrack Global Logistics Monitor",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NexusTrack | Global Logistics Intelligence",
+    description: "The nervous system of global trade. Sub-second visibility from port to porch.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

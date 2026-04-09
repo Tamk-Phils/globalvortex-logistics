@@ -27,8 +27,8 @@ const SidebarContent = ({
     <div className="h-full flex flex-col p-6">
         <div className="flex items-center justify-between mb-12 px-2">
             <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 font-bold italic">
-                    TF
+                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 font-black">
+                    NT
                 </div>
                 <span className="text-xl font-bold tracking-tight text-slate-900 text-nowrap">Admin Panel</span>
             </div>
@@ -150,8 +150,8 @@ export default function AdminLayout({
                 {/* Mobile Top Header */}
                 <header className="lg:hidden h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-30">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold italic text-sm">
-                            TF
+                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-black text-sm">
+                            NT
                         </div>
                         <span className="font-bold text-slate-900">Admin Dashboard</span>
                     </div>

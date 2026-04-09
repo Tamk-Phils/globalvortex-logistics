@@ -37,7 +37,7 @@ export default function Header() {
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3 group">
                     <Logo className="w-12 h-12" />
-                    <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors uppercase">Track<span className="text-primary">Flow</span></span>
+                    <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors uppercase">Nexus<span className="text-primary">Track</span></span>
                 </Link>
 
                 {/* Desktop Nav */}

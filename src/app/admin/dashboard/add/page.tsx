@@ -1,19 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, Save, Package, User, MapPin, Scale, Maximize, AlertCircle, Clock, CreditCard, Tag, FileText, Calendar, Copy, Check, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Shipment } from "@/types";
 import { supabase } from "@/lib/supabase";
-import { sendTrackingEmail } from "@/lib/email";
+import { notifyShipmentCreated } from "@/app/actions/email";
 
 export default function AddShipment() {
     const router = useRouter();
     const [isCopying, setIsCopying] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [formData, setFormData] = useState({
-        tracking_number: `TRK${Math.floor(100000000 + Math.random() * 900000000)}`,
+        tracking_number: "",
         item_type: "",
         description: "",
         sender_name: "",
@@ -33,6 +33,14 @@ export default function AddShipment() {
     });
 
     const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        // Generate tracking number only on client to avoid hydration mismatch
+        setFormData(prev => ({
+            ...prev,
+            tracking_number: `TRK${Math.floor(100000000 + Math.random() * 900000000)}`
+        }));
+    }, []);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(formData.tracking_number);
@@ -75,12 +83,17 @@ export default function AddShipment() {
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
             localStorage.setItem("nexustrack_shipments", JSON.stringify(existing));
 
-            // Trigger Automatic Email Alerts
-            if (formData.sender_email) {
-                await sendTrackingEmail(formData.sender_email, formData.tracking_number, formData.current_status, formData.sender_name);
-            }
+            // Trigger Enterprise Email Alerts
             if (formData.recipient_email) {
-                await sendTrackingEmail(formData.recipient_email, formData.tracking_number, formData.current_status, formData.recipient_name);
+                await notifyShipmentCreated({
+                    to: formData.recipient_email,
+                    subject: `New Shipment Registered: ${formData.tracking_number}`,
+                    trackingNumber: formData.tracking_number,
+                    senderName: formData.sender_name || 'NexusTrack Client',
+                    recipientName: formData.recipient_name || 'Valued Customer',
+                    origin: formData.origin || 'Source Hub',
+                    destination: formData.destination || 'Destination Hub'
+                });
             }
 
             alert(`Shipment ${formData.tracking_number} registered successfully! Alerts dispatched.`);

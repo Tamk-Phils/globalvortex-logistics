@@ -16,7 +16,7 @@ export default function Footer() {
                     <div className="space-y-8">
                         <Link href="/" className="flex items-center gap-3 group">
                             <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform duration-500 shadow-xl shadow-primary/20">
-                                <span className="text-white font-black text-2xl tracking-tighter">TF</span>
+                                <span className="text-white font-black text-2xl tracking-tighter">NT</span>
                             </div>
                             <span className="text-2xl font-black text-white tracking-tight">NexusTrack</span>
                         </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
                                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
                                     <Phone size={18} />
                                 </div>
-                                <p className="text-slate-400 font-bold text-sm">+1 (800) TRACKFLOW</p>
+                                <p className="text-slate-400 font-bold text-sm">+1 (800) NEXUSTRACK</p>
                             </div>
                             <div className="flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">

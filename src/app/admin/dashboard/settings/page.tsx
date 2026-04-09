@@ -87,7 +87,7 @@ export default function SettingsPage() {
                                     <button className="text-primary font-bold text-xs uppercase hover:underline">Revoke Key</button>
                                 </div>
                                 <code className="block bg-black/30 p-4 rounded-xl font-mono text-sm break-all opacity-80">
-                                    tf_live_2026_9481k_x92kja_02jk_lms0293
+                                    nt_live_2026_9481k_x92kja_02jk_lms0293
                                 </code>
                             </div>
                         </section>

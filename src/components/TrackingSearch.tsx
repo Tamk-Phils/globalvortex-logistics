@@ -114,31 +114,76 @@ export default function TrackingSearch() {
                     >
                         {/* Header Branding & ID */}
                         <div className="flex flex-wrap gap-8 justify-between items-start mb-12 pb-12 border-b border-slate-50">
-                            <div>
-                                <p className="text-slate-500 text-xs font-extrabold uppercase tracking-widest mb-2">Shipment Status Dashboard</p>
-                                <div className="flex items-center gap-4">
-                                    <h2 className="text-4xl font-mono font-extrabold text-slate-900 tracking-tighter">
-                                        {result.tracking_number}
-                                    </h2>
-                                    <button
-                                        onClick={() => handleCopy(result.tracking_number)}
-                                        className={`p-2 rounded-lg transition-all ${isCopying ? 'bg-emerald-500 text-white' : 'text-slate-300 hover:text-slate-600 hover:bg-slate-100'}`}
-                                    >
-                                        {isCopying ? <Check size={18} /> : <Copy size={18} />}
-                                    </button>
+                            <div className="space-y-4">
+                                <div>
+                                    <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Authenticated Logistics ID</p>
+                                    <div className="flex items-center gap-4">
+                                        <h2 className="text-4xl font-mono font-extrabold text-slate-900 tracking-tighter">
+                                            {result.tracking_number}
+                                        </h2>
+                                        <button
+                                            onClick={() => handleCopy(result.tracking_number)}
+                                            className={`p-2 rounded-xl transition-all ${isCopying ? 'bg-emerald-500 text-white shadow-lg' : 'text-slate-300 hover:text-primary hover:bg-slate-100'}`}
+                                        >
+                                            {isCopying ? <Check size={18} /> : <Copy size={18} />}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                                        <MapPin size={20} />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Current Packet Location</p>
+                                        <p className="text-lg font-black text-slate-900">
+                                            {result.updates && result.updates.length > 0 ? result.updates[0].location : result.origin || 'Awaiting Update'}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex flex-col items-end gap-3">
-                                <div className="bg-primary text-white px-8 py-4 rounded-2xl text-xl font-extrabold flex items-center gap-3 shadow-lg shadow-primary/20">
-                                    <Truck size={24} className="animate-bounce" />
+                                <div className="bg-primary text-white px-8 py-5 rounded-[24px] text-xl font-black flex items-center gap-4 shadow-2xl shadow-primary/20 border border-white/20">
+                                    <Truck size={28} className="animate-bounce" />
                                     {result.current_status || "Processing"}
                                 </div>
                                 {result.payment_status && (
-                                    <span className={`text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border ${result.payment_status === 'Paid' ? 'bg-emerald-50 border-emerald-100 text-emerald-700' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
-                                        Payment: {result.payment_status}
+                                    <span className={`text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-wider border ${result.payment_status === 'Paid' ? 'bg-emerald-50 border-emerald-100 text-emerald-700' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
+                                        Payment Verification: {result.payment_status}
                                     </span>
                                 )}
                             </div>
+                        </div>
+
+                        {/* Interactive Journey Pulse */}
+                        <div className="mb-12 bg-slate-900 p-10 rounded-[40px] shadow-2xl relative overflow-hidden group">
+                             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -mr-20 -mt-20 group-hover:bg-primary/20 transition-all duration-700" />
+                             <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 justify-between">
+                                <div className="text-center md:text-left">
+                                   <p className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-1">Origin Hub</p>
+                                   <p className="text-white text-xl font-black">{result.origin}</p>
+                                </div>
+
+                                <div className="flex-1 flex flex-col items-center gap-4 w-full">
+                                    <div className="relative w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                        <motion.div 
+                                            initial={{ x: "-100%" }}
+                                            animate={{ x: "0%" }}
+                                            transition={{ duration: 1.5, ease: "easeOut" }}
+                                            className="h-full bg-gradient-to-r from-primary/20 via-primary to-primary/20 w-[60%]"
+                                        />
+                                        <div className="absolute top-1/2 left-[60%] -translate-y-1/2 w-4 h-4 bg-primary rounded-full shadow-[0_0_15px_rgba(59,130,246,0.8)] border-2 border-white animate-pulse" />
+                                    </div>
+                                    <div className="flex items-center gap-2 text-primary font-black uppercase text-[10px] tracking-widest">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+                                        In Transit via Global Network
+                                    </div>
+                                </div>
+
+                                <div className="text-center md:text-right">
+                                   <p className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-1">Final Destination</p>
+                                   <p className="text-white text-xl font-black">{result.destination}</p>
+                                </div>
+                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">

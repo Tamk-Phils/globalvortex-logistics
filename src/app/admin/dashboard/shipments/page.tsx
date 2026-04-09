@@ -48,9 +48,14 @@ export default function ShipmentsList() {
                     setShipments(JSON.parse(saved) as Shipment[]);
                 }
             }
-        } catch (err) {
-            const errorObj = err as { message?: string };
-            console.error("Supabase Load Error:", errorObj);
+        } catch (err: any) {
+            const isQuicError = err.message?.includes('Failed to fetch') || err.name === 'TypeError';
+            console.error("Supabase Load Error:", err.message || err.details || "Connection error", err);
+            
+            if (isQuicError) {
+                console.warn("Network Protocol Warning: If you are seeing ERR_QUIC_PROTOCOL_ERROR, please try disabling QUIC in your browser or check your firewall settings.");
+            }
+
             // Graceful fallback to localStorage
             const saved = localStorage.getItem("nexustrack_shipments");
             if (saved) setShipments(JSON.parse(saved) as Shipment[]);
