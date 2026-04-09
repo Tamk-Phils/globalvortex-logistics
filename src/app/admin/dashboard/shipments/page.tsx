@@ -412,21 +412,6 @@ export default function ShipmentsList() {
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <label className="text-xs font-extrabold text-slate-500 uppercase tracking-widest ml-1">Current Location</label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 pl-12 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-black"
-                                        placeholder="e.g. Heathrow Airport, UK"
-                                        value={newUpdate.location}
-                                        onChange={(e) => setNewUpdate({ ...newUpdate, location: e.target.value })}
-                                        required
-                                    />
-                                    <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
-                                </div>
-                            </div>
-
                             <MapPicker 
                                 initialLat={newUpdate.lat} 
                                 initialLng={newUpdate.lng} 
