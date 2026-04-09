@@ -30,35 +30,46 @@ export default function ShipmentsList() {
     };
 
     const loadShipments = async () => {
+        // Optimistic Load: Show local data first for immediate response
+        const cached = localStorage.getItem("nexustrack_shipments");
+        if (cached) {
+            setShipments(JSON.parse(cached) as Shipment[]);
+        }
+
         setIsLoading(true);
+        
+        // Timeout protection for network requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
         try {
             const { data, error } = await supabase
                 .from('shipments')
                 .select('*')
-                .order('created_at', { ascending: false });
+                .order('created_at', { ascending: false })
+                .abortSignal(controller.signal);
+
+            clearTimeout(timeoutId);
 
             if (error) throw error;
 
             if (data && data.length > 0) {
                 setShipments(data as Shipment[]);
-            } else {
-                // Fallback to localStorage if Supabase is empty or not yet configured
-                const saved = localStorage.getItem("nexustrack_shipments");
-                if (saved) {
-                    setShipments(JSON.parse(saved) as Shipment[]);
-                }
+                // Cache the fresh data
+                localStorage.setItem("nexustrack_shipments", JSON.stringify(data));
             }
         } catch (err: any) {
+            clearTimeout(timeoutId);
+            const isTimeout = err.name === 'AbortError';
             const isQuicError = err.message?.includes('Failed to fetch') || err.name === 'TypeError';
-            console.error("Supabase Load Error:", err.message || err.details || "Connection error", err);
             
-            if (isQuicError) {
-                console.warn("Network Protocol Warning: If you are seeing ERR_QUIC_PROTOCOL_ERROR, please try disabling QUIC in your browser or check your firewall settings.");
+            console.error("Supabase Load Error:", 
+                isTimeout ? "Request Timed Out" : (err.message || "Connection error")
+            );
+            
+            if (isQuicError || isTimeout) {
+                console.warn("Network Latency detected. Using local cache fallback.");
             }
-
-            // Graceful fallback to localStorage
-            const saved = localStorage.getItem("nexustrack_shipments");
-            if (saved) setShipments(JSON.parse(saved) as Shipment[]);
         } finally {
             setIsLoading(false);
         }
