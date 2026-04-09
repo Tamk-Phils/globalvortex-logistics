@@ -14,17 +14,22 @@ export default function Header() {
     const router = useRouter();
 
     useEffect(() => {
+        let isMounted = true;
+        
         // Get initial session
         supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user ?? null);
+            if (isMounted) setUser(session?.user ?? null);
         });
 
         // Listen for changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user ?? null);
+            if (isMounted) setUser(session?.user ?? null);
         });
 
-        return () => subscription.unsubscribe();
+        return () => {
+            isMounted = false;
+            subscription.unsubscribe();
+        };
     }, []);
 
     const handleLogout = async () => {

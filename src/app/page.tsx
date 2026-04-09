@@ -14,12 +14,12 @@ const MorphingBlob = ({ className, delay = 0 }: { className?: string, delay?: nu
   <motion.div
     className={`absolute blur-3xl opacity-20 pointer-events-none ${className}`}
     animate={{
-      borderRadius: ["40% 60% 70% 30% / 40% 50% 60% 50%", "30% 60% 70% 40% / 50% 60% 30% 60%", "60% 40% 30% 70% / 60% 30% 70% 40%"],
+      borderRadius: ["30% 70% 70% 30% / 30% 30% 70% 70%", "50% 50% 20% 80% / 25% 80% 20% 75%", "30% 70% 70% 30% / 30% 30% 70% 70%"],
       scale: [1, 1.1, 1],
       rotate: [0, 90, 180, 270, 360],
     }}
     transition={{
-      duration: 20,
+      duration: 15,
       repeat: Infinity,
       ease: "linear",
       delay,
@@ -447,7 +447,7 @@ export default function Home() {
             ))}
 
             {/* Global Connectivity Paths (Curved Lines) */}
-            <svg viewBox="0 0 1000 428" className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-visible preserve-3d">
+            <svg viewBox="0 0 1000 428" className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-visible">
                {[
                  { d: "M 150 160 Q 300 80 480 135", delay: 0 },
                  { d: "M 480 135 Q 600 145 750 175", delay: 2 },

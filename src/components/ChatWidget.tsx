@@ -17,19 +17,26 @@ export default function ChatWidget() {
 
     // Initial session check
     useEffect(() => {
+        let isMounted = true;
+
         supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user ?? null);
+            if (isMounted) setUser(session?.user ?? null);
         });
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user ?? null);
-            if (!session) {
-                setRoomId(null);
-                setMessages([]);
+            if (isMounted) {
+                setUser(session?.user ?? null);
+                if (!session) {
+                    setRoomId(null);
+                    setMessages([]);
+                }
             }
         });
 
-        return () => subscription.unsubscribe();
+        return () => {
+            isMounted = false;
+            subscription.unsubscribe();
+        };
     }, []);
 
     // Load or create room on first open
