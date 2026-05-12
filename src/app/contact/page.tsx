@@ -110,7 +110,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">COMMAND CENTER</p>
-                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">500 Oracle Pkwy, Redwood City, CA 94065, USA</p>
+                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">USA</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-6">

@@ -123,7 +123,7 @@ export default function QuotePage() {
                                         <h3 className="text-3xl font-black text-slate-900 mb-10 uppercase tracking-tighter">CARGO SPECIFICATIONS</h3>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">NET MASS (KG)</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">NET MASS (LBS)</label>
                                                 <input type="number" placeholder="500" className="w-full bg-white border border-slate-200 rounded-sm py-5 px-8 font-black text-slate-900 text-[10px] uppercase tracking-widest outline-none focus:border-primary transition-all" required />
                                             </div>
                                             <div className="space-y-3">

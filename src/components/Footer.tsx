@@ -86,8 +86,7 @@ export default function Footer() {
                                 </div>
                                 <p className="text-slate-500 text-xs font-bold leading-relaxed uppercase tracking-wider">
                                     Vortex Global Command,<br />
-                                    500 Oracle Pkwy,<br />
-                                    Redwood City, CA 94065, USA
+                                    USA
                                 </p>
                             </div>
                             <div className="flex items-center gap-4">

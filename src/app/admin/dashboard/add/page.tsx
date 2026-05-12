@@ -21,7 +21,7 @@ export default function AddShipment() {
         recipient_name: "",
         recipient_address: "",
         recipient_email: "",
-        origin: "Berlin Hub",
+        origin: "USA Hub",
         destination: "",
         weight: "",
         dimensions: "",
@@ -324,7 +324,7 @@ export default function AddShipment() {
                             </div>
                             <div className="space-y-6">
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">MASS (KG)</label>
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">MASS (LBS)</label>
                                     <input
                                         type="number"
                                         required
