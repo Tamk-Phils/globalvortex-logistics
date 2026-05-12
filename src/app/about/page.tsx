@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Globe, Target, ShieldCheck, Zap, Cpu, Radar } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
     return (
@@ -23,24 +24,34 @@ export default function AboutPage() {
                 </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-32">
-                <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all">
-                    <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                        <Target size={32} />
-                    </div>
-                    <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE MISSION</h3>
-                    <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
-                        To consolidate global logistics into a single, immutable source of truth, enabling absolute transparency and autonomous execution for the next generation of global trade.
-                    </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 items-stretch">
+                <div className="relative rounded-sm overflow-hidden border border-slate-200 shadow-2xl min-h-[400px]">
+                    <Image 
+                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1500" 
+                        alt="Vortex Infrastructure" 
+                        fill 
+                        className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                    />
                 </div>
-                <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all">
-                    <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                        <Zap size={32} />
+                <div className="flex flex-col gap-12">
+                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all flex-1">
+                        <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <Target size={32} />
+                        </div>
+                        <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE MISSION</h3>
+                        <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
+                            To consolidate global logistics into a single, immutable source of truth, enabling absolute transparency and autonomous execution for the next generation of global trade.
+                        </p>
                     </div>
-                    <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE VISION</h3>
-                    <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
-                        A hyper-connected world where every asset is an active node, every delay is mathematically impossible, and commerce flows at the speed of light.
-                    </p>
+                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all flex-1">
+                        <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <Zap size={32} />
+                        </div>
+                        <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE VISION</h3>
+                        <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
+                            A hyper-connected world where every asset is an active node, every delay is mathematically impossible, and commerce flows at the speed of light.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -78,11 +89,19 @@ export default function AboutPage() {
                             <p className="text-5xl font-black text-primary mb-4 tracking-tighter">0.08ms</p>
                             <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Network Latency</p>
                         </div>
-                        <div className="col-span-2 p-10 bg-slate-50 border border-slate-100 rounded-sm">
-                            <h3 className="text-[10px] font-black mb-4 text-slate-900 uppercase tracking-[0.3em] flex items-center gap-2">
-                                <Cpu size={14} className="text-primary" /> SYSTEM INTEGRITY
-                            </h3>
-                            <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed">To ensure absolute stability, our core protocols are distributed across thousands of secure hubs worldwide, preventing any single point of failure.</p>
+                        <div className="col-span-2 p-10 bg-slate-50 border border-slate-100 rounded-sm relative overflow-hidden h-40">
+                             <Image 
+                                src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1500" 
+                                alt="Warehouse Hub" 
+                                fill 
+                                className="object-cover opacity-20 grayscale"
+                            />
+                            <div className="relative z-10">
+                                <h3 className="text-[10px] font-black mb-4 text-slate-900 uppercase tracking-[0.3em] flex items-center gap-2">
+                                    <Cpu size={14} className="text-primary" /> SYSTEM INTEGRITY
+                                </h3>
+                                <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed">To ensure absolute stability, our core protocols are distributed across thousands of secure hubs worldwide.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

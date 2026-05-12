@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Book, FileText, Code, MessageCircle, HelpCircle, ArrowRight, Search, Download, Radar, Zap } from "lucide-react";
+import Image from "next/image";
 
 export default function ResourcesPage() {
     const categories = [
@@ -77,8 +78,15 @@ export default function ResourcesPage() {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        <div className="bg-slate-900 rounded-sm p-16 text-white flex flex-col justify-between overflow-hidden relative shadow-3xl">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-bl-full blur-[80px]" />
+                        <div className="bg-slate-900 rounded-sm p-16 text-white flex flex-col justify-between overflow-hidden relative shadow-3xl min-h-[400px]">
+                            <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none grayscale">
+                                <Image 
+                                    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000" 
+                                    alt="Direct Uplink" 
+                                    fill 
+                                    className="object-cover"
+                                />
+                            </div>
                             <div className="relative z-10">
                                 <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter italic">DIRECT UPLINK</h3>
                                 <p className="text-white/40 font-black text-[10px] mb-12 leading-relaxed max-w-sm uppercase tracking-widest">
@@ -100,9 +108,14 @@ export default function ResourcesPage() {
                             </div>
                         </div>
 
-                        <div className="bg-white border border-slate-200 rounded-sm p-16 text-slate-900 flex flex-col justify-between overflow-hidden relative shadow-3xl">
-                            <div className="absolute top-0 right-0 p-16 opacity-[0.03] text-primary">
-                                <Download size={240} />
+                        <div className="bg-white border border-slate-200 rounded-sm p-16 text-slate-900 flex flex-col justify-between overflow-hidden relative shadow-3xl min-h-[400px]">
+                            <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none grayscale">
+                                <Image 
+                                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
+                                    alt="Press Ledger" 
+                                    fill 
+                                    className="object-cover"
+                                />
                             </div>
                             <div className="relative z-10">
                                 <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter italic">PRESS LEDGER</h3>

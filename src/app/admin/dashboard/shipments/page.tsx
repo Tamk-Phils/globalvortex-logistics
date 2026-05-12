@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Search, Plus, Filter, Edit2, Trash2, ArrowUpRight, Package, RefreshCw, X, Save, MapPin, Clock, Copy, Check, Radar, Activity, Zap } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker"), { ssr: false });
@@ -232,8 +233,11 @@ export default function ShipmentsList() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-sm overflow-hidden border border-slate-200 shadow-3xl">
-                <div className="p-10 border-b border-slate-100 flex flex-wrap gap-8 justify-between items-center bg-slate-50/50">
+            <div className="bg-white rounded-sm overflow-hidden border border-slate-200 shadow-3xl relative">
+                <div className="absolute top-0 right-0 w-full h-full opacity-[0.015] grayscale pointer-events-none">
+                     <Image src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2000" alt="Warehouse" fill className="object-cover" />
+                </div>
+                <div className="p-10 border-b border-slate-100 flex flex-wrap gap-8 justify-between items-center bg-slate-50/50 relative z-10">
                     <div className="relative w-full max-w-xl">
                         <input
                             type="text"
@@ -257,7 +261,7 @@ export default function ShipmentsList() {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto relative z-10">
                     {isLoading && shipments.length === 0 ? (
                         <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO GLOBAL TELEMETRY CLUSTER...</div>
                     ) : (
@@ -274,7 +278,7 @@ export default function ShipmentsList() {
                                 <tbody className="divide-y divide-slate-100">
                                     {filteredShipments.length > 0 ? (
                                         filteredShipments.map((shipment, i) => (
-                                            <tr key={i} className="hover:bg-slate-50 transition-colors group">
+                                            <tr key={i} className="hover:bg-slate-50 transition-colors group bg-white/40">
                                                 <td className="px-10 py-8">
                                                     <div className="flex items-center gap-5">
                                                         <div className="p-3 bg-slate-50 border border-slate-100 rounded-sm text-slate-300 group-hover:text-primary group-hover:border-primary/20 transition-all">
@@ -350,7 +354,7 @@ export default function ShipmentsList() {
                                     )}
                                 </tbody>
                             </table>
-                            <div className="p-10 bg-slate-50/50 border-t border-slate-200">
+                            <div className="p-10 bg-slate-50/50 border-t border-slate-200 relative z-10">
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SYNCHRONIZED WITH {filteredShipments.length} ACTIVE GLOBAL ASSET PACKETS</p>
                             </div>
                         </>

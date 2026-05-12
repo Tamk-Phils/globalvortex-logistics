@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, MessageSquare, Phone, MapPin, Globe, Sparkles, Radar, Send } from "lucide-react";
+import Image from "next/image";
 
 export default function ContactPage() {
     return (
@@ -88,8 +89,18 @@ export default function ContactPage() {
                     transition={{ delay: 0.6 }}
                     className="bg-white rounded-sm shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-200"
                 >
-                    <div className="md:w-2/5 p-16 bg-slate-900 text-white flex flex-col justify-between">
-                        <div>
+                    <div className="md:w-2/5 p-16 bg-slate-900 text-white flex flex-col justify-between relative overflow-hidden">
+                        {/* Background institutional image */}
+                        <div className="absolute inset-0 opacity-[0.07] z-0 pointer-events-none grayscale">
+                             <Image 
+                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000" 
+                                alt="Support Center" 
+                                fill 
+                                className="object-cover"
+                            />
+                        </div>
+                        
+                        <div className="relative z-10">
                             <h3 className="text-4xl font-black mb-6 uppercase tracking-tighter leading-tight">TRANSMIT <br/><span className="text-primary">DATA.</span></h3>
                             <p className="text-white/40 font-bold leading-relaxed mb-16 uppercase tracking-tight text-sm">Submit your credentials and message to the Vortex Global routing engine.</p>
                             <div className="space-y-10">
@@ -99,7 +110,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">COMMAND CENTER</p>
-                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">Level 88, Cyber District, Singapore</p>
+                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">500 Oracle Pkwy, Redwood City, CA 94065, USA</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-6">

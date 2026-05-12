@@ -17,7 +17,7 @@ export default function AlertsPage() {
         { 
             id: 2, 
             type: "info", 
-            title: "Singapore Port Maintenance", 
+            title: "Los Angeles Port Maintenance", 
             description: "Scheduled berth upgrades at Terminal 4. Expect slight delays in container processing through Friday.",
             icon: Anchor,
             impact: "Low",

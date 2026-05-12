@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Package, ShieldCheck, Clock, MapPin, Radar, Activity } from "lucide-react";
+import Image from "next/image";
 import TrackingSearch from "@/components/TrackingSearch";
 
 export default function TrackingPage() {
@@ -9,6 +10,16 @@ export default function TrackingPage() {
         <main className="min-h-screen bg-white text-slate-900">
             
             <section className="pt-32 pb-48 relative overflow-hidden hero-gradient">
+                {/* Background decorative image */}
+                <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.04] z-0 pointer-events-none grayscale">
+                    <Image 
+                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=2000" 
+                        alt="Global Network" 
+                        fill 
+                        className="object-cover"
+                    />
+                </div>
+                
                 {/* Background glow */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -32,8 +43,11 @@ export default function TrackingPage() {
                             </p>
                         </motion.div>
 
-                        <div className="bg-white p-2 rounded-sm shadow-2xl border border-slate-200">
-                            <TrackingSearch />
+                        <div className="bg-white p-2 rounded-sm shadow-2xl border border-slate-200 relative overflow-hidden group">
+                             <div className="absolute inset-0 bg-slate-50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                             <div className="relative z-10">
+                                <TrackingSearch />
+                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-32">

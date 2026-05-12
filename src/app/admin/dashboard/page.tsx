@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Package, TrendingUp, AlertCircle, CheckCircle, ArrowUpRight, Radar, Activity, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Shipment {
     tracking_number: string;
@@ -74,16 +75,19 @@ export default function DashboardOverview() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="lg:col-span-2 bg-white p-10 rounded-sm border border-slate-200 shadow-sm">
+                <div className="lg:col-span-2 bg-white p-10 rounded-sm border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 opacity-[0.02] grayscale pointer-events-none">
+                         <Image src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000" alt="Telemetry" fill className="object-cover" />
+                    </div>
                     <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-3 uppercase tracking-[0.4em]">
                         <Activity className="text-primary" size={18} />
                         RECENT TELEMETRY UPDATES
                     </h3>
-                    <div className="space-y-6">
+                    <div className="space-y-6 relative z-10">
                         {recentShipments.length === 0 ? (
                             <div className="py-20 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest italic bg-slate-50 border border-dashed border-slate-200 rounded-sm">NO RECENT TELEMETRY DETECTED</div>
                         ) : recentShipments.map((shipment) => (
-                            <div key={shipment.tracking_number} className="flex gap-6 items-center p-6 rounded-sm border border-slate-50 hover:border-primary/20 hover:bg-slate-50/50 transition-all group">
+                            <div key={shipment.tracking_number} className="flex gap-6 items-center p-6 rounded-sm border border-slate-50 hover:border-primary/20 hover:bg-slate-50/50 transition-all group bg-white/50 backdrop-blur-sm">
                                 <div className="w-12 h-12 rounded-sm bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all">
                                     <Package size={22} />
                                 </div>
@@ -99,12 +103,15 @@ export default function DashboardOverview() {
 
                 <div className="space-y-8">
                     <div className="bg-slate-900 p-10 rounded-sm text-white shadow-3xl relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
+                             <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000" alt="Hero" fill className="object-cover" />
+                        </div>
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[80px] rounded-full pointer-events-none" />
-                        <h3 className="text-[10px] font-black text-primary mb-10 flex items-center gap-3 uppercase tracking-[0.4em]">
+                        <h3 className="text-[10px] font-black text-primary mb-10 flex items-center gap-3 uppercase tracking-[0.4em] relative z-10">
                             <Zap size={18} />
                             SYSTEM INTEGRITY
                         </h3>
-                        <div className="space-y-8">
+                        <div className="space-y-8 relative z-10">
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center">
                                     <span className="text-white/40 font-black uppercase text-[10px] tracking-widest">DATABASE CLUSTER</span>
@@ -132,7 +139,7 @@ export default function DashboardOverview() {
                             </div>
                         </div>
 
-                        <div className="mt-12 pt-10 border-t border-white/5 text-center">
+                        <div className="mt-12 pt-10 border-t border-white/5 text-center relative z-10">
                             <p className="text-[9px] font-black text-white/20 mb-2 uppercase tracking-[0.3em]">Institutional Access</p>
                             <p className="font-black text-sm uppercase tracking-widest mb-8">Vortex Command Hotline</p>
                             <button className="w-full bg-white text-slate-900 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl">INITIATE UPLINK</button>

@@ -1,18 +1,21 @@
 import nodemailer from 'nodemailer';
 
-// Initialize the SMTP transporter
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.spacemail.com',
-    port: parseInt(process.env.SMTP_PORT || '465'),
-    secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
-});
+// Get transporter function to ensure env variables are loaded
+const getTransporter = () => {
+    return nodemailer.createTransport({
+        host: 'mail.spacemail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+        },
+        name: 'mail.spacemail.com',
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+};
 
 interface BaseEmailParams {
     to: string;
@@ -94,6 +97,7 @@ export async function sendShipmentCreatedEmail({
     `;
 
     try {
+        const transporter = getTransporter();
         await transporter.sendMail({
             from: `"${process.env.FROM_NAME || "Vortex Global"}" <${process.env.FROM_EMAIL}>`,
             to,
@@ -159,6 +163,7 @@ export async function sendShipmentUpdateEmail({
     `;
 
     try {
+        const transporter = getTransporter();
         await transporter.sendMail({
             from: `"${process.env.FROM_NAME || "Vortex Global"}" <${process.env.FROM_EMAIL}>`,
             to,

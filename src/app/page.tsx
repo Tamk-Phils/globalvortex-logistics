@@ -54,6 +54,17 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
         
+        {/* Responsive Hero Image (Moves to background on mobile) */}
+        <div className="absolute inset-0 lg:hidden z-0">
+            <Image 
+                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
+                alt="Vortex Global Command" 
+                fill 
+                className="object-cover opacity-20 grayscale" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white" />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <motion.div
@@ -98,7 +109,7 @@ export default function Home() {
             </motion.div>
 
             <div className="relative h-[700px] w-full hidden lg:block">
-              {/* External Professional Image Showcase */}
+              {/* Institutional Desktop Image */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -106,10 +117,10 @@ export default function Home() {
                 className="absolute inset-0 bg-slate-100 rounded-sm overflow-hidden border border-slate-200 shadow-2xl"
               >
                  <Image 
-                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" 
-                   alt="Modern Logistics Hub" 
+                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
+                   alt="Vortex Global Command Center" 
                    fill 
-                   className="object-cover opacity-90 hover:opacity-100 transition-all duration-1000" 
+                   className="object-cover opacity-90 hover:opacity-100 transition-all duration-1000 grayscale hover:grayscale-0" 
                  />
                  <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent" />
               </motion.div>
@@ -139,25 +150,6 @@ export default function Home() {
                     />
                 </div>
               </motion.div>
-
-              {/* Data Stream Overlay */}
-              <div className="absolute top-10 -right-10 bg-white/90 backdrop-blur-md p-8 rounded-sm shadow-2xl border border-slate-100 z-20 flex flex-col gap-4 max-w-[220px]">
-                 <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    <span className="text-[9px] font-black uppercase tracking-widest text-primary">Active Uplink</span>
-                 </div>
-                 <div className="space-y-3">
-                    {[1,2,3,4].map(i => (
-                        <div key={i} className="h-1 bg-slate-100 rounded-full overflow-hidden">
-                            <motion.div 
-                                animate={{ x: ["-100%", "100%"] }}
-                                transition={{ duration: 1 + i, repeat: Infinity, ease: "linear" }}
-                                className="w-1/2 h-full bg-primary/20" 
-                            />
-                        </div>
-                    ))}
-                 </div>
-              </div>
             </div>
           </div>
         </div>
@@ -165,9 +157,9 @@ export default function Home() {
 
       {/* Modern Tech Showcase Section */}
       <section className="py-40 bg-white relative overflow-hidden rounded-sm mx-4 lg:mx-6 mb-20 shadow-sm border border-slate-100">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 z-0 pointer-events-none grayscale">
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] z-0 pointer-events-none grayscale">
             <Image 
-                src="https://images.unsplash.com/photo-1451187534959-444563c139bb?auto=format&fit=crop&q=80&w=2000" 
+                src="/network_analysis.png" 
                 alt="Global Network" 
                 fill 
                 className="object-cover"
@@ -190,7 +182,7 @@ export default function Home() {
                 className="bg-slate-50 border border-slate-200 p-10 rounded-sm hover:bg-white hover:shadow-2xl transition-all group cursor-pointer"
               >
                  <div className="relative w-full h-72 rounded-sm overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=2000" alt="Autonomous Storage" fill className="object-cover" />
+                    <Image src="/smart_hubs.png" alt="Autonomous Storage" fill className="object-cover" />
                  </div>
                  <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-primary">01. Smart Hubs</h3>
                  <p className="text-slate-500 font-bold uppercase tracking-tight text-sm">Automated logistics terminals with real-time inventory synchronization.</p>
@@ -201,7 +193,7 @@ export default function Home() {
                 className="bg-slate-50 border border-slate-200 p-10 rounded-sm hover:bg-white hover:shadow-2xl transition-all group cursor-pointer"
               >
                  <div className="relative w-full h-72 rounded-sm overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image src="https://images.unsplash.com/photo-1451187534959-444563c139bb?auto=format&fit=crop&q=80&w=2000" alt="Network Analysis" fill className="object-cover" />
+                    <Image src="/network_analysis.png" alt="Network Analysis" fill className="object-cover" />
                  </div>
                  <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-primary">02. Predictive AI</h3>
                  <p className="text-slate-500 font-bold uppercase tracking-tight text-sm">Deep learning models analyzing global trade flows for optimal routing.</p>
@@ -212,7 +204,7 @@ export default function Home() {
                 className="bg-slate-50 border border-slate-200 p-10 rounded-sm hover:bg-white hover:shadow-2xl transition-all group cursor-pointer"
               >
                  <div className="relative w-full h-72 rounded-sm overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image src="https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?auto=format&fit=crop&q=80&w=2000" alt="Last Mile Pods" fill className="object-cover" />
+                    <Image src="/high_speed_transit.png" alt="High-Speed Transit" fill className="object-cover" />
                  </div>
                  <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-primary">03. High-Speed Transit</h3>
                  <p className="text-slate-500 font-bold uppercase tracking-tight text-sm">Direct-line delivery protocols designed for the modern era of commerce.</p>

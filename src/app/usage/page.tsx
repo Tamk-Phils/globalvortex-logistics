@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Zap, ShieldCheck, Cpu, Database, Activity, Radar } from "lucide-react";
+import Image from "next/image";
 
 export default function UsagePage() {
     return (
@@ -25,29 +26,35 @@ export default function UsagePage() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl hover:bg-white transition-all group">
-                        <div className="w-16 h-16 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-10 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl hover:bg-white transition-all group relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] grayscale pointer-events-none">
+                            <Image src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000" alt="Tech" fill className="object-cover" />
+                        </div>
+                        <div className="w-16 h-16 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-10 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500 relative z-10">
                             <Zap size={32} />
                         </div>
-                        <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter uppercase">API BANDWIDTH</h3>
-                        <p className="text-slate-500 font-bold leading-relaxed mb-10 uppercase tracking-tight text-sm">
+                        <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter uppercase relative z-10">API BANDWIDTH</h3>
+                        <p className="text-slate-500 font-bold leading-relaxed mb-10 uppercase tracking-tight text-sm relative z-10">
                             Institutional API access is limited to 10,000 requests per second. Enterprise nodes feature autonomous bursting capabilities defined in their respective SLAs.
                         </p>
-                        <div className="flex gap-4 items-center p-6 bg-white rounded-sm border border-slate-100 shadow-inner">
+                        <div className="flex gap-4 items-center p-6 bg-white rounded-sm border border-slate-100 shadow-inner relative z-10">
                            <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.3)]" />
                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Live Fair-Usage Telemetry</span>
                         </div>
                     </div>
 
-                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl hover:bg-white transition-all group">
-                        <div className="w-16 h-16 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-10 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl hover:bg-white transition-all group relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] grayscale pointer-events-none">
+                            <Image src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1000" alt="Delivery" fill className="object-cover" />
+                        </div>
+                        <div className="w-16 h-16 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-10 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500 relative z-10">
                             <ShieldCheck size={32} />
                         </div>
-                        <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter uppercase">ACCESS INTEGRITY</h3>
-                        <p className="text-slate-500 font-bold leading-relaxed mb-10 uppercase tracking-tight text-sm">
+                        <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter uppercase relative z-10">ACCESS INTEGRITY</h3>
+                        <p className="text-slate-500 font-bold leading-relaxed mb-10 uppercase tracking-tight text-sm relative z-10">
                             Unauthorized telemetry scraping is prohibited. All autonomous access must authenticate via an official Vortex Gateway key with valid cryptographic headers.
                         </p>
-                        <div className="flex gap-4 items-center p-6 bg-white rounded-sm border border-slate-100 shadow-inner">
+                        <div className="flex gap-4 items-center p-6 bg-white rounded-sm border border-slate-100 shadow-inner relative z-10">
                            <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.3)]" />
                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Handshake Protocol Enforced</span>
                         </div>
@@ -55,6 +62,10 @@ export default function UsagePage() {
                 </div>
 
                 <div className="bg-slate-900 text-white p-20 rounded-sm relative overflow-hidden shadow-3xl">
+                    {/* Background image overlay */}
+                    <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none grayscale">
+                        <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" alt="Data Ethics" fill className="object-cover" />
+                    </div>
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full blur-[120px] pointer-events-none" />
                     <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div>

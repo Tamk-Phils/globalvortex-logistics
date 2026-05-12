@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, Save, Package, User, MapPin, Scale, AlertCircle, Clock, CreditCard, FileText, Calendar, Copy, Check, Mail, Radar, Zap } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { notifyShipmentCreated } from "@/app/actions/email";
 
@@ -129,6 +130,9 @@ export default function AddShipment() {
 
             <form onSubmit={handleSubmit} className="space-y-12">
                 <div className="bg-white p-12 md:p-20 rounded-sm border border-slate-200 shadow-3xl space-y-16 relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.01] grayscale pointer-events-none">
+                         <Image src="/images/vortex_tech.png" alt="Tech" fill className="object-cover" />
+                    </div>
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-bl-full pointer-events-none" />
                     
                     {/* Tracking ID Header */}
@@ -158,7 +162,7 @@ export default function AddShipment() {
                     </div>
 
                     {/* Section 1: Asset Intelligence */}
-                    <div className="space-y-10">
+                    <div className="space-y-10 relative z-10">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">
                                 <Package size={20} />
@@ -208,7 +212,7 @@ export default function AddShipment() {
                     </div>
 
                     {/* Section 2: Topology */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 relative z-10">
                         {/* Origin Node */}
                         <div className="space-y-10">
                             <div className="flex items-center gap-4">
@@ -310,7 +314,7 @@ export default function AddShipment() {
                     </div>
 
                     {/* Section 3: Metrology & Logistics */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pt-16 border-t border-slate-100">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pt-16 border-t border-slate-100 relative z-10">
                         <div className="space-y-10">
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">

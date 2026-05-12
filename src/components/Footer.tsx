@@ -85,9 +85,9 @@ export default function Footer() {
                                     <MapPin size={16} />
                                 </div>
                                 <p className="text-slate-500 text-xs font-bold leading-relaxed uppercase tracking-wider">
-                                    Vortex Innovation Hub,<br />
-                                    Level 88, Cyber District,<br />
-                                    Singapore 018989
+                                    Vortex Global Command,<br />
+                                    500 Oracle Pkwy,<br />
+                                    Redwood City, CA 94065, USA
                                 </p>
                             </div>
                             <div className="flex items-center gap-4">
