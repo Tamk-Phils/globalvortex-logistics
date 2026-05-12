@@ -4,7 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Mail, Lock, LogIn, ArrowRight, Loader2, UserPlus } from "lucide-react";
+import { Mail, Lock, LogIn, ArrowRight, Loader2, UserPlus, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -34,77 +34,93 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 sm:p-10">
+        <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 sm:p-10 bg-slate-50 relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 blur-[120px] rounded-full" />
+            </div>
+
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md bg-white rounded-[48px] shadow-2xl shadow-primary/10 border border-slate-100 p-8 sm:p-12"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full max-w-lg bg-white rounded-sm border border-slate-200 shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10"
             >
-                <div className="text-center mb-10">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 text-primary mb-6 shadow-inner">
-                        <LogIn size={40} />
+                <div className="md:w-1/3 bg-slate-900 p-10 flex flex-col justify-between text-white relative">
+                    <div className="relative z-10">
+                        <LogIn size={48} className="text-primary mb-8" />
+                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">ESTABLISH <br/><span className="text-primary">UPLINK</span></h2>
                     </div>
-                    <h1 className="text-3xl font-extrabold text-slate-900 mb-2">Welcome Back</h1>
-                    <p className="text-slate-500 font-bold">Sign in to access live support and track your shipments.</p>
+                    <div className="relative z-10 pt-10 border-t border-white/10">
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
+                    </div>
                 </div>
 
-                {error && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-sm font-bold animate-shake">
-                        {error}
+                <div className="md:w-2/3 p-10 sm:p-16">
+                    <div className="mb-12">
+                        <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">SECURE AUTH</h1>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your protocol credentials to access the global telemetry network.</p>
                     </div>
-                )}
 
-                <form onSubmit={handleLogin} className="space-y-6">
-                    <div className="space-y-2">
-                        <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-2">Email Address</label>
-                        <div className="relative">
-                            <input
-                                type="email"
-                                required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-[24px] py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 transition-all font-bold text-black"
-                                placeholder="name@example.com"
-                            />
-                            <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                    {error && (
+                        <div className="mb-8 p-6 bg-red-50 border border-red-100 text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-3">
+                            <ShieldAlert size={16} />
+                            ACCESS DENIED: {error}
                         </div>
-                    </div>
+                    )}
 
-                    <div className="space-y-2">
-                        <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-2">Safe Passkey</label>
-                        <div className="relative">
-                            <input
-                                type="password"
-                                required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-[24px] py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 transition-all font-bold text-black"
-                                placeholder="••••••••"
-                            />
-                            <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                    <form onSubmit={handleLogin} className="space-y-8">
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Network Identity</label>
+                            <div className="relative">
+                                <input
+                                    type="email"
+                                    required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
+                                    placeholder="IDENTITY@VORTEX.IO"
+                                />
+                                <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                            </div>
                         </div>
+
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Passkey</label>
+                            <div className="relative">
+                                <input
+                                    type="password"
+                                    required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
+                                    placeholder="••••••••"
+                                />
+                                <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full bg-primary hover:bg-slate-900 text-white py-6 rounded-sm font-black text-xs uppercase tracking-[0.4em] transition-all shadow-lg flex items-center justify-center gap-4 group disabled:opacity-50"
+                        >
+                            {isLoading ? (
+                                <Loader2 className="animate-spin" size={18} />
+                            ) : (
+                                <>
+                                    SYNC UPLINK <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                                </>
+                            )}
+                        </button>
+                    </form>
+
+                    <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-slate-400 font-bold text-[9px] uppercase tracking-widest">Secure monitoring active.</p>
+                        <Link href="/signup" className="inline-flex items-center gap-2 text-primary hover:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-colors">
+                            <UserPlus size={14} /> NEW IDENTITY
+                        </Link>
                     </div>
-
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full bg-primary hover:bg-primary/90 text-white py-5 rounded-[24px] font-extrabold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group"
-                    >
-                        {isLoading ? (
-                            <Loader2 className="animate-spin" size={20} />
-                        ) : (
-                            <>
-                                Sign In Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </>
-                        )}
-                    </button>
-                </form>
-
-                <div className="mt-8 pt-8 border-t border-slate-50 text-center">
-                    <p className="text-slate-500 font-bold text-sm mb-4">New here?</p>
-                    <Link href="/signup" className="inline-flex items-center gap-2 text-primary hover:underline font-extrabold">
-                        <UserPlus size={18} /> Create a Secure Account
-                    </Link>
                 </div>
             </motion.div>
         </div>

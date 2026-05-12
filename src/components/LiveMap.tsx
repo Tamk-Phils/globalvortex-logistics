@@ -4,12 +4,22 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 
-// Using a delivery car emoji for the marker
+// Custom SVG marker for a premium feel
 const customIcon = L.divIcon({
-    html: '<div style="font-size: 32px; line-height: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">🚚</div>',
-    className: 'custom-emoji-icon',
-    iconSize: [32, 32],
-    iconAnchor: [16, 16],
+    html: `
+        <div class="relative flex items-center justify-center">
+            <div class="absolute w-8 h-8 bg-primary/20 rounded-full animate-ping"></div>
+            <div class="relative w-10 h-10 bg-white border-2 border-primary rounded-full flex items-center justify-center shadow-xl">
+                <div class="w-4 h-4 bg-primary rounded-full"></div>
+            </div>
+            <div class="absolute -top-12 bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-sm whitespace-nowrap shadow-xl uppercase tracking-widest">
+                Vortex Signal v4.2
+            </div>
+        </div>
+    `,
+    className: 'custom-vortex-icon',
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
 });
 
 interface LiveMapProps {
@@ -34,7 +44,7 @@ export default function LiveMap({ lat, lng, zoom = 13 }: LiveMapProps) {
         setIsMounted(true);
     }, []);
 
-    if (!isMounted) return <div className="w-full h-full bg-slate-100 animate-pulse rounded-3xl" />;
+    if (!isMounted) return <div className="w-full h-full bg-slate-50 animate-pulse rounded-sm" />;
 
     const position: [number, number] = [lat, lng];
 
@@ -42,12 +52,12 @@ export default function LiveMap({ lat, lng, zoom = 13 }: LiveMapProps) {
         <MapContainer
             center={position}
             zoom={zoom}
-            className="w-full h-full rounded-3xl z-0"
+            className="w-full h-full rounded-sm z-0"
             scrollWheelZoom={false}
         >
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
             />
             <Marker position={position} icon={customIcon} />
             <ChangeView center={position} zoom={zoom} />

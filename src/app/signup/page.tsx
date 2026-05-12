@@ -4,7 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Mail, Lock, UserPlus, ArrowRight, Loader2, User, LogIn } from "lucide-react";
+import { Mail, Lock, UserPlus, ArrowRight, Loader2, User, LogIn, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 export default function SignupPage() {
@@ -44,105 +44,118 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 sm:p-10">
+        <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 sm:p-10 bg-slate-50 relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full" />
+                <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-accent/5 blur-[120px] rounded-full" />
+            </div>
+
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md bg-white rounded-[48px] shadow-2xl shadow-primary/10 border border-slate-100 p-8 sm:p-12"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full max-w-2xl bg-white rounded-sm border border-slate-200 shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10"
             >
-                <div className="text-center mb-10">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 text-primary mb-6 shadow-inner">
-                        <UserPlus size={40} />
+                <div className="md:w-1/3 bg-slate-900 p-10 flex flex-col justify-between text-white relative">
+                    <div className="relative z-10">
+                        <UserPlus size={48} className="text-primary mb-8" />
+                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">PROTOCOL <br/><span className="text-primary">ENROLLMENT</span></h2>
                     </div>
-                    <h1 className="text-3xl font-extrabold text-slate-900 mb-2">Create Account</h1>
-                    <p className="text-slate-500 font-bold">Join NexusTrack to access priority support and advanced tracking.</p>
+                    <div className="relative z-10 pt-10 border-t border-white/10">
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
+                    </div>
                 </div>
 
-                {error && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-sm font-bold animate-shake">
-                        {error}
+                <div className="md:w-2/3 p-10 sm:p-16">
+                    <div className="mb-12">
+                        <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">NETWORK IDENTITY</h1>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Establish your secure node within the Vortex Global autonomous logistics network.</p>
                     </div>
-                )}
 
-                {success ? (
-                    <div className="text-center space-y-4 py-8">
-                        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
+                    {error && (
+                        <div className="mb-8 p-6 bg-red-50 border border-red-100 text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-3">
+                            REGISTRATION ERROR: {error}
                         </div>
-                        <h2 className="text-2xl font-bold text-slate-900">Check your email!</h2>
-                        <p className="text-slate-500 font-bold">We've sent you a verification link. Please confirm your email to continue.</p>
+                    )}
+
+                    {success ? (
+                        <div className="text-center space-y-6 py-12 bg-slate-50 border border-slate-200 rounded-sm">
+                            <div className="w-16 h-16 bg-primary text-white flex items-center justify-center mx-auto mb-6 rounded-sm shadow-lg">
+                                <ShieldCheck size={32} />
+                            </div>
+                            <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest">UPLINK PENDING</h2>
+                            <p className="text-slate-500 font-bold text-xs uppercase tracking-tight px-8">A verification protocol has been dispatched to your inbox. Activate your node to begin telemetry sync.</p>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSignup} className="space-y-8">
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Operational Name</label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        required
+                                        value={fullName}
+                                        onChange={(e) => setFullName(e.target.value)}
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
+                                        placeholder="OPERATOR NAME"
+                                    />
+                                    <User className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Network Identity (Email)</label>
+                                <div className="relative">
+                                    <input
+                                        type="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
+                                        placeholder="IDENTITY@VORTEX.IO"
+                                    />
+                                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Passkey</label>
+                                <div className="relative">
+                                    <input
+                                        type="password"
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
+                                        placeholder="••••••••"
+                                        minLength={6}
+                                    />
+                                    <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={isLoading}
+                                className="w-full bg-primary hover:bg-slate-900 text-white py-6 rounded-sm font-black text-xs uppercase tracking-[0.4em] transition-all shadow-lg flex items-center justify-center gap-4 group"
+                            >
+                                {isLoading ? (
+                                    <Loader2 className="animate-spin" size={18} />
+                                ) : (
+                                    <>
+                                        ESTABLISH NODE <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                                    </>
+                                )}
+                            </button>
+                        </form>
+                    )}
+
+                    <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-slate-400 font-bold text-[9px] uppercase tracking-widest">Protocol compliance enforced.</p>
+                        <Link href="/login" className="inline-flex items-center gap-2 text-primary hover:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-colors">
+                            <LogIn size={14} /> EXISTING UPLINK
+                        </Link>
                     </div>
-                ) : (
-                    <form onSubmit={handleSignup} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-2">Full Name</label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    required
-                                    value={fullName}
-                                    onChange={(e) => setFullName(e.target.value)}
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-[24px] py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 transition-all font-bold text-black"
-                                    placeholder="Your Full Name"
-                                />
-                                <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-2">Email Address</label>
-                            <div className="relative">
-                                <input
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-[24px] py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 transition-all font-bold text-black"
-                                    placeholder="name@example.com"
-                                />
-                                <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-2">Safe Passkey</label>
-                            <div className="relative">
-                                <input
-                                    type="password"
-                                    required
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-[24px] py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 transition-all font-bold text-black"
-                                    placeholder="••••••••"
-                                    minLength={6}
-                                />
-                                <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
-                            </div>
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full bg-primary hover:bg-primary/90 text-white py-5 rounded-[24px] font-extrabold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group"
-                        >
-                            {isLoading ? (
-                                <Loader2 className="animate-spin" size={20} />
-                            ) : (
-                                <>
-                                    Create Account <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                                </>
-                            )}
-                        </button>
-                    </form>
-                )}
-
-                <div className="mt-8 pt-8 border-t border-slate-50 text-center">
-                    <p className="text-slate-500 font-bold text-sm mb-4">Already have an account?</p>
-                    <Link href="/login" className="inline-flex items-center gap-2 text-primary hover:underline font-extrabold">
-                        <LogIn size={18} /> Sign In Here
-                    </Link>
                 </div>
             </motion.div>
         </div>

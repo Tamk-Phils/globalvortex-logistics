@@ -1,141 +1,110 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { Package, Menu, X, LogIn, LogOut, User } from "lucide-react";
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Menu, X, User, ShieldCheck, Globe, ChevronDown, Bell, Zap, Radar } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 export default function Header() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [user, setUser] = useState<any>(null);
-    const router = useRouter();
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        let isMounted = true;
-        
-        // Get initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            if (isMounted) setUser(session?.user ?? null);
-        });
-
-        // Listen for changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            if (isMounted) setUser(session?.user ?? null);
-        });
-
-        return () => {
-            isMounted = false;
-            subscription.unsubscribe();
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleLogout = async () => {
-        await supabase.auth.signOut();
-        router.refresh();
-    };
+    const navLinks = [
+        { name: "TELEMETRY", href: "/tracking" },
+        { name: "INFRASTRUCTURE", href: "/about" },
+        { name: "NETWORK", href: "/contact" },
+        { name: "UPLINK", href: "/login" },
+    ];
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-white/80 backdrop-blur-md">
-            {/* Professional Top Bar */}
-            <div className="bg-slate-900 text-white py-2 px-4 text-[10px] font-black uppercase tracking-[0.2em] flex justify-center items-center gap-6">
-                <span className="opacity-60 hidden sm:inline">Certified Global Logistics Intelligence</span>
-                <span className="text-primary tracking-tighter">HQ Support: +49 15510274462</span>
-            </div>
-            <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-3 group">
-                    <Logo className="w-12 h-12" />
-                    <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors uppercase">Nexus<span className="text-primary">Track</span></span>
-                </Link>
-
-                {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center gap-8">
-                    <Link href="/tracking" className="text-sm font-semibold text-foreground/70 hover:text-primary transition-colors">Tracking</Link>
-                    <Link href="/about" className="text-sm font-semibold text-foreground/70 hover:text-primary transition-colors">Solutions</Link>
-                    <Link href="/about" className="text-sm font-semibold text-foreground/70 hover:text-primary transition-colors">Company</Link>
-                    <Link href="/contact" className="text-sm font-semibold text-foreground/70 hover:text-primary transition-colors">Resources</Link>
-
-                    {user ? (
-                        <div className="flex items-center gap-4 pl-4 border-l border-slate-100">
-                            <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                                    <User size={16} />
-                                </div>
-                                <span className="text-sm font-bold text-slate-700 max-w-[120px] truncate">
-                                    {user.user_metadata?.full_name || user.email}
-                                </span>
+        <header className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'py-4' : 'py-8'}`}>
+            <div className="max-w-7xl mx-auto px-6">
+                <nav className={`transition-all duration-500 rounded-sm ${isScrolled ? 'glass shadow-lg px-8 py-4 border-slate-200' : 'px-4 py-4 border-transparent'}`}>
+                    <div className="flex items-center justify-between">
+                        {/* Brand */}
+                        <Link href="/" className="flex items-center gap-4 group">
+                            <Logo className="w-10 h-10" />
+                            <div className="flex flex-col">
+                                <span className={`text-xl font-black tracking-tighter leading-none uppercase transition-colors ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>VORTEX</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Global</span>
                             </div>
-                            <button
-                                onClick={handleLogout}
-                                className="p-2 text-slate-400 hover:text-red-500 transition-colors"
-                                title="Sign Out"
-                            >
-                                <LogOut size={18} />
-                            </button>
-                        </div>
-                    ) : (
-                        <Link
-                            href="/login"
-                            className="bg-primary text-white px-6 py-2.5 rounded-2xl text-sm font-extrabold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
-                        >
-                            <LogIn size={16} />
-                            Login
                         </Link>
-                    )}
-                </nav>
 
-                {/* Mobile Toggle */}
-                <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X /> : <Menu />}
-                </button>
+                        {/* Desktop Nav */}
+                        <div className="hidden lg:flex items-center gap-10">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`text-[10px] font-black tracking-[0.25em] transition-all hover:text-primary relative group uppercase ${pathname === link.href ? 'text-primary' : 'text-slate-500'}`}
+                                >
+                                    {link.name}
+                                    <span className={`absolute -bottom-2 left-0 h-0.5 bg-primary transition-all duration-300 ${pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                </Link>
+                            ))}
+                        </div>
+
+                        {/* Actions */}
+                        <div className="hidden lg:flex items-center gap-6">
+                            <button className="text-slate-400 hover:text-primary transition-colors p-2">
+                                <Search size={18} />
+                            </button>
+                            <Link href="/signup" className="bg-primary text-white px-8 py-3 rounded-sm text-[10px] font-black tracking-[0.3em] uppercase hover:bg-slate-900 transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0">
+                                JOIN NETWORK
+                            </Link>
+                        </div>
+
+                        {/* Mobile Toggle */}
+                        <button 
+                            className="lg:hidden text-slate-900 p-2"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        >
+                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
+                </nav>
             </div>
 
-            {/* Mobile Nav */}
-            {isOpen && (
-                <div className="md:hidden p-6 bg-white border-b border-border animate-in slide-in-from-top duration-300 shadow-xl">
-                    <nav className="flex flex-col gap-4">
-                        <Link href="/" onClick={() => setIsOpen(false)} className="px-4 py-2 font-bold text-slate-700 hover:text-primary">Home</Link>
-                        <Link href="/tracking" onClick={() => setIsOpen(false)} className="px-4 py-2 font-bold text-slate-700 hover:text-primary">Tracking</Link>
-                        <Link href="/about" onClick={() => setIsOpen(false)} className="px-4 py-2 font-bold text-slate-700 hover:text-primary">About Us</Link>
-                        <Link href="/privacy" onClick={() => setIsOpen(false)} className="px-4 py-2 font-bold text-slate-700 hover:text-primary">Privacy Policy</Link>
-
-                        <div className="mt-4 pt-4 border-t border-slate-100">
-                            {user ? (
-                                <div className="flex items-center justify-between px-4">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                                            <User size={20} />
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <span className="text-sm font-bold text-slate-900 truncate">
-                                                {user.user_metadata?.full_name || 'My Account'}
-                                            </span>
-                                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{user.email}</span>
-                                        </div>
-                                    </div>
-                                    <button
-                                        onClick={() => { handleLogout(); setIsOpen(false); }}
-                                        className="p-2 text-red-500 bg-red-50 rounded-xl"
-                                    >
-                                        <LogOut size={20} />
-                                    </button>
-                                </div>
-                            ) : (
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="lg:hidden glass border-b border-slate-200 overflow-hidden mt-4 mx-6 rounded-sm shadow-2xl"
+                    >
+                        <div className="p-8 flex flex-col gap-8">
+                            {navLinks.map((link) => (
                                 <Link
-                                    href="/login"
-                                    onClick={() => setIsOpen(false)}
-                                    className="w-full bg-primary text-white py-4 rounded-2xl text-center font-extrabold shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="text-xs font-black tracking-[0.3em] text-slate-900 hover:text-primary transition-colors uppercase"
                                 >
-                                    <LogIn size={20} />
-                                    Login to Account
+                                    {link.name}
                                 </Link>
-                            )}
+                            ))}
+                            <Link 
+                                href="/signup"
+                                className="bg-primary text-white py-5 rounded-sm text-xs font-black tracking-[0.4em] uppercase text-center shadow-lg"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                JOIN NETWORK
+                            </Link>
                         </div>
-                    </nav>
-                </div>
-            )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 }

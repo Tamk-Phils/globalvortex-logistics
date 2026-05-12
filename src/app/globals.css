@@ -1,60 +1,60 @@
 @import "tailwindcss";
-@import "leaflet/dist/leaflet.css";
 
 @theme {
-  --color-primary: #10b981;
-  /* Emerald 500 */
-  --color-primary-dark: #059669;
-  /* Emerald 600 */
-  --color-secondary: #3b82f6;
-  /* Blue 500 */
-  --color-accent: #0ea5e9;
-  /* Sky 500 */
-  --color-background: #ffffff;
-  --color-foreground: #1e293b;
-  --color-muted: #f1f5f9;
-  --color-border: #e2e8f0;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #1e293b;
-  --primary: #10b981;
-  --secondary: #3b82f6;
-  --accent: #0ea5e9;
-  --muted: #f1f5f9;
+  --foreground: #0f172a;
+  --primary: #0070f3;
+  --accent: #7c3aed;
+  --surface: #f8fafc;
   --border: #e2e8f0;
 }
 
-html,
 body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--background);
+  background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .hero-gradient {
-  background: radial-gradient(circle at 50% -20%, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%);
+  background: radial-gradient(circle at 50% -20%, #eff6ff 0%, #ffffff 100%);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px rgba(0, 112, 243, 0.15);
+}
+
+.neon-border {
+  border: 1px solid rgba(0, 112, 243, 0.2);
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 4s ease-in-out infinite;
 }

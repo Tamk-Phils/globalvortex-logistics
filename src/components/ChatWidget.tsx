@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send, User, Headset, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, User, Headset, Loader2, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { ChatMessage, ChatRoom } from "@/types";
@@ -42,7 +42,7 @@ export default function ChatWidget() {
     // Load or create room on first open
     useEffect(() => {
         if (isOpen && !roomId && user) {
-            const savedRoomId = localStorage.getItem(`nexustrack_chat_room_${user.id}`);
+            const savedRoomId = localStorage.getItem(`vortex_chat_room_${user.id}`);
             if (savedRoomId) {
                 setRoomId(savedRoomId);
                 loadMessages(savedRoomId);
@@ -102,9 +102,9 @@ export default function ChatWidget() {
             if (error) throw error;
             if (data) {
                 setRoomId(data.id);
-                localStorage.setItem(`nexustrack_chat_room_${user.id}`, data.id);
+                localStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
                 // Send initial greeting
-                await sendMessage(data.id, "Hello! How can we help you today?", 'admin');
+                await sendMessage(data.id, "Welcome to the Vortex Support Uplink. How can we assist with your telemetry today?", 'admin');
             }
         } catch (err) {
             console.error("Error creating chat room:", err);
@@ -158,25 +158,25 @@ export default function ChatWidget() {
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-4 w-[calc(100vw-2rem)] sm:w-96 h-[500px] max-h-[70vh] sm:max-h-[600px] bg-white rounded-[32px] shadow-2xl border border-slate-100 flex flex-col overflow-hidden"
+                        className="mb-4 w-[calc(100vw-2rem)] sm:w-96 h-[500px] max-h-[70vh] sm:max-h-[600px] bg-white rounded-sm shadow-2xl border border-slate-200 flex flex-col overflow-hidden"
                     >
                         {/* Header */}
                         <div className="bg-slate-900 p-6 flex justify-between items-center text-white">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-primary/20 rounded-xl">
+                                <div className="p-2 bg-primary/10 rounded-sm border border-primary/20">
                                     <Headset size={20} className="text-primary" />
                                 </div>
                                 <div>
-                                    <p className="font-extrabold text-sm">Live Support</p>
+                                    <p className="font-black text-xs uppercase tracking-widest">Support Uplink</p>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                                        <p className="text-[10px] font-bold text-slate-400">Agents Online</p>
+                                        <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
+                                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Agents Operational</p>
                                     </div>
                                 </div>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="p-2 hover:bg-white/10 rounded-xl transition-colors"
+                                className="p-2 hover:bg-white/10 rounded-sm transition-colors text-white/40 hover:text-white"
                             >
                                 <X size={20} />
                             </button>
@@ -185,7 +185,7 @@ export default function ChatWidget() {
                         {/* Chat Messages */}
                         <div
                             ref={scrollRef}
-                            className="flex-1 overflow-y-auto p-6 space-y-4"
+                            className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50"
                         >
                             {isLoading ? (
                                 <div className="h-full flex items-center justify-center">
@@ -197,9 +197,9 @@ export default function ChatWidget() {
                                         key={i}
                                         className={`flex ${msg.sender_role === 'customer' ? 'justify-end' : 'justify-start'}`}
                                     >
-                                        <div className={`max-w-[80%] p-4 rounded-2xl text-sm font-medium ${msg.sender_role === 'customer'
-                                            ? 'bg-primary text-white rounded-tr-none'
-                                            : 'bg-slate-100 text-slate-900 rounded-tl-none'
+                                        <div className={`max-w-[85%] p-4 rounded-sm text-xs font-bold uppercase tracking-tight ${msg.sender_role === 'customer'
+                                            ? 'bg-primary text-white shadow-md'
+                                            : 'bg-white text-slate-500 border border-slate-200 shadow-sm'
                                             }`}>
                                             {msg.content}
                                         </div>
@@ -211,18 +211,18 @@ export default function ChatWidget() {
                         {/* Input Area */}
                         <form
                             onSubmit={handleSendMessage}
-                            className="p-4 border-t border-slate-100 bg-slate-50 flex gap-2"
+                            className="p-4 border-t border-slate-100 bg-white flex gap-2"
                         >
                             <input
                                 type="text"
-                                placeholder="Write a message..."
-                                className="flex-1 bg-white border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                placeholder="TRANSMIT MESSAGE..."
+                                className="flex-1 bg-slate-50 border border-slate-200 rounded-sm py-3 px-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                             />
                             <button
                                 type="submit"
-                                className="p-3 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors"
+                                className="p-3 bg-slate-900 text-white rounded-sm hover:bg-primary transition-all shadow-md"
                             >
                                 <Send size={18} />
                             </button>
@@ -235,7 +235,7 @@ export default function ChatWidget() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`p-4 rounded-full shadow-2xl flex items-center justify-center transition-all ${isOpen ? 'bg-white text-slate-900 rotate-90' : 'bg-slate-900 text-white'
+                className={`p-4 rounded-sm shadow-2xl flex items-center justify-center transition-all border ${isOpen ? 'bg-slate-900 text-white rotate-90 border-slate-900' : 'bg-white text-primary border-slate-200 shadow-xl'
                     }`}
             >
                 {isOpen ? <X size={24} /> : <MessageCircle size={24} />}

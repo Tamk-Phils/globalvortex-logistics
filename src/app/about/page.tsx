@@ -1,83 +1,88 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, Target, ShieldCheck } from "lucide-react";
+import { Globe, Target, ShieldCheck, Zap, Cpu, Radar } from "lucide-react";
 
 export default function AboutPage() {
     return (
-        <main className="container mx-auto py-24 px-4 max-w-5xl">
+        <main className="container mx-auto py-32 px-6 max-w-7xl text-slate-900">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-16"
+                className="text-center mb-24 max-w-4xl mx-auto"
             >
-                <h1 className="text-5xl font-extrabold mb-6">About NexusTrack</h1>
-                <div className="space-y-6 text-lg text-slate-700 leading-relaxed font-medium">
+                <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
+                    <Radar size={14} className="animate-spin-slow" />
+                    <span className="text-slate-500">System Genesis Protocol</span>
+                </div>
+                <h1 className="text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">VORTEX <span className="text-primary italic">ORIGIN.</span></h1>
+                <div className="space-y-6 text-xl text-slate-500 leading-relaxed font-bold uppercase tracking-tight">
                     <p>
-                        Founded in 2015, NexusTrack was built with a single mission: to bring enterprise-grade logistics monitoring to every business, regardless of size.
+                        Established in 2026, Vortex Global was engineered to resolve the fragmentation of global trade. We don&apos;t just track shipments; we synchronize the world&apos;s physical assets with their digital signatures.
                     </p>
                 </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-                <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-100">
-                    <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
-                        <Target size={28} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-32">
+                <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all">
+                    <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                        <Target size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">
-                        To provide logistics professionals with the most accurate, real-time data possible, enabling them to make informed decisions and build trust with their own clients.
+                    <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE MISSION</h3>
+                    <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
+                        To consolidate global logistics into a single, immutable source of truth, enabling absolute transparency and autonomous execution for the next generation of global trade.
                     </p>
                 </div>
-                <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-100">
-                    <div className="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-6">
-                        <Globe size={28} />
+                <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all">
+                    <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                        <Zap size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">
-                        A world where every shipment is visible, every delay is anticipated, and global commerce flows without interruption.
+                    <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE VISION</h3>
+                    <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
+                        A hyper-connected world where every asset is an active node, every delay is mathematically impossible, and commerce flows at the speed of light.
                     </p>
                 </div>
             </div>
 
-            <div className="bg-slate-900 rounded-[40px] p-12 text-white overflow-hidden relative">
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="bg-white rounded-sm p-16 text-slate-900 overflow-hidden relative border border-slate-200 shadow-2xl mb-24">
+                {/* Background glow */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+                
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div>
-                        <h2 className="text-4xl font-bold mb-6">Enterprise Reliability</h2>
-                        <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                            We understand that in logistics, timing is everything. That&apos;s why we&apos;ve built our infrastructure on enterprise-grade servers with 99.9% uptime guarantees.
+                        <h2 className="text-5xl font-black mb-8 uppercase tracking-tighter leading-tight">CLOUD <br/> <span className="text-primary italic">INFRASTRUCTURE.</span></h2>
+                        <p className="text-slate-500 text-lg mb-12 leading-relaxed font-bold uppercase tracking-tight">
+                            Vortex Global operates a planetary ground node network and satellite constellation to ensure 99.999% uptime for institutional telemetry sync.
                         </p>
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-3">
-                                <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                                    <ShieldCheck size={14} className="text-primary" />
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-4">
+                                <div className="w-8 h-8 rounded-sm bg-primary/5 border border-primary/10 flex items-center justify-center">
+                                    <ShieldCheck size={18} className="text-primary" />
                                 </div>
-                                <span className="font-semibold">ISO 27001 Certified Infrastructure</span>
+                                <span className="font-black text-[10px] uppercase tracking-widest text-slate-500">Enterprise Encryption Standards</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                                    <ShieldCheck size={14} className="text-primary" />
+                            <div className="flex items-center gap-4">
+                                <div className="w-8 h-8 rounded-sm bg-primary/5 border border-primary/10 flex items-center justify-center">
+                                    <ShieldCheck size={18} className="text-primary" />
                                 </div>
-                                <span className="font-semibold">GDPR Compliant Data Processing</span>
+                                <span className="font-black text-[10px] uppercase tracking-widest text-slate-500">Autonomous Protocol Verification</span>
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <p className="text-4xl font-bold text-primary mb-2">10M+</p>
-                            <p className="text-slate-400 font-medium">Packages Tracked</p>
+                    <div className="grid grid-cols-2 gap-6">
+                        <div className="bg-slate-50 p-10 rounded-sm border border-slate-100 text-center group hover:bg-white hover:shadow-xl transition-all">
+                            <p className="text-5xl font-black text-primary mb-4 tracking-tighter">14.2K</p>
+                            <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Active Nodes</p>
                         </div>
-                        <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100">
-                            <h3 className="text-xl font-bold mb-4 text-slate-900">Our Vision</h3>
-                            <p className="text-slate-700 font-medium text-lg">To create the world&apos;s most transparent and efficient logistics network, powered by real-time data and smart automation.</p>
+                        <div className="bg-slate-50 p-10 rounded-sm border border-slate-100 text-center group hover:bg-white hover:shadow-xl transition-all">
+                            <p className="text-5xl font-black text-primary mb-4 tracking-tighter">0.08ms</p>
+                            <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Network Latency</p>
                         </div>
-                        <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100">
-                            <h3 className="text-xl font-bold mb-4 text-slate-900">Our Values</h3>
-                            <p className="text-slate-700 font-medium text-lg">Integrity, precision, and a relentless focus on our customers&apos; success in the global marketplace.</p>
-                        </div>
-                        <div className="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <p className="text-4xl font-bold text-emerald-400 mb-2">24/7</p>
-                            <p className="text-slate-400 font-medium">Expert Support</p>
+                        <div className="col-span-2 p-10 bg-slate-50 border border-slate-100 rounded-sm">
+                            <h3 className="text-[10px] font-black mb-4 text-slate-900 uppercase tracking-[0.3em] flex items-center gap-2">
+                                <Cpu size={14} className="text-primary" /> SYSTEM INTEGRITY
+                            </h3>
+                            <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed">To ensure absolute stability, our core protocols are distributed across thousands of secure hubs worldwide, preventing any single point of failure.</p>
                         </div>
                     </div>
                 </div>
