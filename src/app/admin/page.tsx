@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, User, ArrowRight, ShieldCheck, Home } from "lucide-react";
+import { Lock, User, ArrowRight, ShieldCheck, Home, Radar } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default function AdminLogin() {
         e.preventDefault();
         setIsLoading(true);
 
-        // Hardcoded demo auth match from PDF
+        // Hardcoded demo auth match
         setTimeout(() => {
             if (username === "admin" && password === "admin123") {
                 router.push("/admin/dashboard");
@@ -28,69 +28,73 @@ export default function AdminLogin() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-[calc(100vh-80px)] p-6 bg-slate-50/50">
+        <div className="flex items-center justify-center min-h-screen p-6 bg-white relative overflow-hidden">
+            {/* Background glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="w-full max-w-md bg-white p-12 rounded-[40px] shadow-2xl shadow-slate-200 border border-slate-100"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="w-full max-w-lg bg-white p-12 md:p-16 rounded-sm shadow-3xl border border-slate-200 relative z-10"
             >
-                <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 text-primary mb-8 shadow-inner">
-                        <ShieldCheck size={40} />
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
+                        <Radar size={14} className="animate-spin-slow" />
+                        <span className="text-slate-500">Command Center Uplink</span>
                     </div>
-                    <h2 className="text-4xl font-extrabold text-slate-900 mb-2">Gatekeeper</h2>
-                    <p className="text-slate-500 font-medium">Logistics Management Portal</p>
+                    <h2 className="text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase leading-[0.9]">VORTEX <br/><span className="text-primary italic">COMMAND.</span></h2>
+                    <p className="text-slate-400 font-bold uppercase tracking-tight text-xs mt-4">Authorized Personnel Only</p>
                 </div>
 
-                <form onSubmit={handleLogin} className="space-y-8">
+                <form onSubmit={handleLogin} className="space-y-10">
                     <div className="space-y-3">
-                        <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-1">Administrative Identity</label>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">ADMIN IDENTITY</label>
                         <div className="relative">
                             <input
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 transition-all font-bold text-black"
-                                placeholder="Username"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary transition-all font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
+                                placeholder="USERNAME"
                                 required
                             />
-                            <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                            <User className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                         </div>
                     </div>
 
                     <div className="space-y-3">
-                        <label className="text-xs font-extrabold text-slate-400 uppercase tracking-widest ml-1">Secure Passkey</label>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">SECURE PASSKEY</label>
                         <div className="relative">
                             <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 pl-14 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 transition-all font-bold text-black"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary transition-all font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
                                 placeholder="••••••••"
                                 required
                             />
-                            <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                            <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                         </div>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-4">
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-slate-900 hover:bg-black text-white py-5 rounded-[24px] font-extrabold transition-all shadow-xl shadow-slate-300 flex items-center justify-center gap-3 group text-lg"
+                            className="w-full bg-slate-900 hover:bg-primary text-white py-6 rounded-sm font-black transition-all shadow-xl flex items-center justify-center gap-4 group text-[10px] uppercase tracking-[0.4em]"
                         >
-                            {isLoading ? "Verifying..." : (
+                            {isLoading ? "SYNCHRONIZING..." : (
                                 <>
-                                    Authorize Access <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                                    AUTHORIZE UPLINK <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                                 </>
                             )}
                         </button>
                     </div>
                 </form>
 
-                <div className="mt-10 pt-8 border-t border-slate-50 text-center">
-                    <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-primary transition-colors font-bold text-sm">
-                        <Home size={16} /> Return to Public Tracking
+                <div className="mt-16 pt-10 border-t border-slate-100 text-center">
+                    <Link href="/" className="inline-flex items-center gap-3 text-slate-400 hover:text-primary transition-colors font-black text-[10px] uppercase tracking-widest">
+                        <Home size={16} /> RETURN TO PUBLIC TERMINAL
                     </Link>
                 </div>
             </motion.div>

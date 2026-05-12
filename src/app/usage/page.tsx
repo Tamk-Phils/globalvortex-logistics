@@ -1,82 +1,82 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, ShieldCheck, Cpu, Database, Activity } from "lucide-react";
+import { Zap, ShieldCheck, Cpu, Database, Activity, Radar } from "lucide-react";
 
 export default function UsagePage() {
     return (
-        <div className="bg-slate-50 min-h-screen pt-24">
-            <div className="container mx-auto px-6 py-20 max-w-5xl">
+        <div className="bg-white min-h-screen pt-32 pb-48 text-slate-900">
+            <div className="container mx-auto px-6 max-w-7xl">
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-20 text-center"
+                    className="mb-24 text-center max-w-4xl mx-auto"
                 >
-                    <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase mb-6 border border-emerald-100">
-                        <Activity size={14} />
-                        Operational Guidelines
+                    <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
+                        <Radar size={14} className="animate-spin-slow" />
+                        <span className="text-slate-500">Operational Guidelines</span>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-8">
-                        Platform <br/> <span className="text-emerald-500">Usage Policy</span>
+                    <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 uppercase leading-[0.9]">
+                        PLATFORM <br/> <span className="text-primary italic">PROTOCOLS.</span>
                     </h1>
-                    <p className="text-xl text-slate-500 font-bold leading-relaxed max-w-2xl mx-auto">
-                        NexusTrack is designed for high-throughput logistics intelligence. To maintain peak performance for all users, we enforce the following usage standards.
+                    <p className="text-xl text-slate-500 font-bold leading-relaxed max-w-3xl mx-auto uppercase tracking-tight">
+                        Vortex Global is engineered for institutional-grade logistics intelligence. To maintain peak performance, we enforce the following operational standards.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                    <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-xl shadow-slate-200/50">
-                        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-600/20">
-                            <Zap size={28} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
+                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl hover:bg-white transition-all group">
+                        <div className="w-16 h-16 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-10 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <Zap size={32} />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900 mb-4">API Rate Limits</h3>
-                        <p className="text-slate-600 font-bold leading-relaxed mb-6">
-                            Standard API access is limited to 1,000 requests per minute. Enterprise accounts feature custom bursting capabilities defined in their respective SLAs.
+                        <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter uppercase">API BANDWIDTH</h3>
+                        <p className="text-slate-500 font-bold leading-relaxed mb-10 uppercase tracking-tight text-sm">
+                            Institutional API access is limited to 10,000 requests per second. Enterprise nodes feature autonomous bursting capabilities defined in their respective SLAs.
                         </p>
-                        <div className="flex gap-4 items-center p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                           <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                           <span className="text-xs font-black uppercase tracking-widest text-slate-500">Live Fair-Usage Monitoring</span>
+                        <div className="flex gap-4 items-center p-6 bg-white rounded-sm border border-slate-100 shadow-inner">
+                           <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.3)]" />
+                           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Live Fair-Usage Telemetry</span>
                         </div>
                     </div>
 
-                    <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-xl shadow-slate-200/50">
-                        <div className="w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-indigo-600/20">
-                            <ShieldCheck size={28} />
+                    <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl hover:bg-white transition-all group">
+                        <div className="w-16 h-16 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-10 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                            <ShieldCheck size={32} />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900 mb-4">Automated Access</h3>
-                        <p className="text-slate-600 font-bold leading-relaxed mb-6">
-                            Unauthorized scraping or automated harvesting of tracking data is strictly prohibited. All automated access must use an official API key with valid auth headers.
+                        <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter uppercase">ACCESS INTEGRITY</h3>
+                        <p className="text-slate-500 font-bold leading-relaxed mb-10 uppercase tracking-tight text-sm">
+                            Unauthorized telemetry scraping is prohibited. All autonomous access must authenticate via an official Vortex Gateway key with valid cryptographic headers.
                         </p>
-                        <div className="flex gap-4 items-center p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                           <div className="w-2 h-2 rounded-full bg-blue-500" />
-                           <span className="text-xs font-black uppercase tracking-widest text-slate-500">Security Handshake Required</span>
+                        <div className="flex gap-4 items-center p-6 bg-white rounded-sm border border-slate-100 shadow-inner">
+                           <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.3)]" />
+                           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Handshake Protocol Enforced</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-slate-900 text-white p-16 rounded-[60px] relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/10 rounded-l-full blur-[100px] pointer-events-none" />
-                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="bg-slate-900 text-white p-20 rounded-sm relative overflow-hidden shadow-3xl">
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full blur-[120px] pointer-events-none" />
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div>
-                            <h2 className="text-4xl font-black tracking-tighter mb-8">Data Ethics</h2>
-                            <div className="space-y-6">
-                                <div className="flex gap-6">
-                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                                        <Database size={24} className="text-emerald-400" />
+                            <h2 className="text-5xl font-black tracking-tighter mb-10 uppercase leading-tight">DATA <br/><span className="text-primary italic">ETHICS.</span></h2>
+                            <div className="space-y-8">
+                                <div className="flex gap-8">
+                                    <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center shrink-0">
+                                        <Database size={28} className="text-primary" />
                                     </div>
-                                    <p className="text-slate-400 font-bold">We never cache sensitive PII data beyond the legal necessity for tracking fulfillment.</p>
+                                    <p className="text-white/40 font-bold uppercase tracking-tight text-sm leading-relaxed">We never cache sensitive PII telemetry beyond the legal necessity for protocol fulfillment.</p>
                                 </div>
-                                <div className="flex gap-6">
-                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                                        <Cpu size={24} className="text-blue-400" />
+                                <div className="flex gap-8">
+                                    <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center shrink-0">
+                                        <Cpu size={28} className="text-primary" />
                                     </div>
-                                    <p className="text-slate-400 font-bold">Our algorithms are regularly audited for bias and accuracy in ETA predictions.</p>
+                                    <p className="text-white/40 font-bold uppercase tracking-tight text-sm leading-relaxed">Our autonomous algorithms are audited for accuracy in planetary ETA predictions.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="p-8 bg-white/5 backdrop-blur-md rounded-[40px] border border-white/10 text-center">
-                            <p className="text-3xl font-black mb-2">99.99%</p>
-                            <p className="text-slate-400 font-black uppercase tracking-widest text-xs">Uptime Integrity</p>
+                        <div className="p-16 bg-white/5 backdrop-blur-xl rounded-sm border border-white/10 text-center flex flex-col justify-center items-center group">
+                            <p className="text-6xl font-black mb-4 tracking-tighter group-hover:text-primary transition-colors">99.999%</p>
+                            <p className="text-white/20 font-black uppercase tracking-[0.4em] text-[10px]">UPTIME INTEGRITY</p>
                         </div>
                     </div>
                 </div>

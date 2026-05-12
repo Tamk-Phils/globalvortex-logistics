@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowLeft, Save, Package, User, MapPin, Scale, AlertCircle, Clock, CreditCard, FileText, Calendar, Copy, Check, Mail } from "lucide-react";
+import { ArrowLeft, Save, Package, User, MapPin, Scale, AlertCircle, Clock, CreditCard, FileText, Calendar, Copy, Check, Mail, Radar, Zap } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -20,7 +20,7 @@ export default function AddShipment() {
         recipient_name: "",
         recipient_address: "",
         recipient_email: "",
-        origin: "Berlin, Germany",
+        origin: "Berlin Hub",
         destination: "",
         weight: "",
         dimensions: "",
@@ -33,10 +33,10 @@ export default function AddShipment() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Generate tracking number only on client to avoid hydration mismatch
+        // Generate tracking number
         setFormData(prev => ({
             ...prev,
-            tracking_number: `TRK${Math.floor(100000000 + Math.random() * 900000000)}`
+            tracking_number: `VTX${Math.floor(100000000 + Math.random() * 900000000)}`
         }));
     }, []);
 
@@ -62,7 +62,7 @@ export default function AddShipment() {
                     id: Math.random().toString(36).substr(2, 9),
                     status: formData.current_status,
                     location: formData.origin,
-                    description: `Shipment registered: ${formData.description || 'Initial registration'}. Item: ${formData.item_type}`,
+                    description: `Transit Protocol Initialized: ${formData.description || 'Asset Registered'}. Type: ${formData.item_type}`,
                     created_at: new Date().toISOString()
                 }
             ]
@@ -75,31 +75,28 @@ export default function AddShipment() {
 
             if (sbError) throw sbError;
 
-            // Optional: fallback to localStorage for redundancy or if Supabase isn't configured yet
-            const existingRaw = localStorage.getItem("nexustrack_shipments");
+            // Cache fallback
+            const existingRaw = localStorage.getItem("vortex_shipments");
             const existing: any[] = existingRaw ? JSON.parse(existingRaw) : [];
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
-            localStorage.setItem("nexustrack_shipments", JSON.stringify(existing));
+            localStorage.setItem("vortex_shipments", JSON.stringify(existing));
 
-            // Trigger Enterprise Email Alerts
             if (formData.recipient_email) {
                 await notifyShipmentCreated({
                     to: formData.recipient_email,
-                    subject: `New Shipment Registered: ${formData.tracking_number}`,
+                    subject: `Vortex Global: Transit Protocol ${formData.tracking_number}`,
                     trackingNumber: formData.tracking_number,
-                    senderName: formData.sender_name || 'NexusTrack Client',
-                    recipientName: formData.recipient_name || 'Valued Customer',
+                    senderName: formData.sender_name || 'Vortex Client',
+                    recipientName: formData.recipient_name || 'Asset Receiver',
                     origin: formData.origin || 'Source Hub',
                     destination: formData.destination || 'Destination Hub'
                 });
             }
 
-            alert(`Shipment ${formData.tracking_number} registered successfully! Alerts dispatched.`);
             router.push("/admin/dashboard/shipments");
         } catch (err: any) {
             console.error("Full Supabase Error:", err);
-            const isPlaceholder = process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('placeholder');
-            setError(`Database Error: ${err.message || "Failed to reach Supabase."} ${isPlaceholder ? "Critical: Environment variables are missing in production. Please check Netlify settings." : "Check your RLS policies or network."}`);
+            setError(`Protocol Variance: ${err.message || "Failed to synchronize with telemetry cluster."}`);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } finally {
             setIsSaving(false);
@@ -107,218 +104,237 @@ export default function AddShipment() {
     };
 
     return (
-        <div className="space-y-10 max-w-5xl">
-            <div className="flex items-center gap-6">
-                <Link href="/admin/dashboard/shipments" className="p-4 rounded-2xl bg-white border border-slate-200 text-slate-400 hover:text-primary transition-all shadow-sm">
-                    <ArrowLeft size={24} />
-                </Link>
-                <div>
-                    <h1 className="text-4xl font-extrabold text-slate-900">Shipment Registration</h1>
-                    <p className="text-slate-500 text-lg font-bold">Capture core logistics data for global tracking.</p>
+        <div className="space-y-12 max-w-6xl pb-24">
+            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+                <div className="flex items-center gap-6">
+                    <Link href="/admin/dashboard/shipments" className="p-5 rounded-sm bg-white border border-slate-200 text-slate-400 hover:text-slate-900 transition-all shadow-sm group">
+                        <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+                    </Link>
+                    <div>
+                        <div className="flex items-center gap-3 mb-2">
+                            <Radar size={16} className="text-primary animate-pulse" />
+                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Protocol Entry</span>
+                        </div>
+                        <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase">INITIALIZE <span className="text-primary italic">TRANSIT.</span></h1>
+                    </div>
                 </div>
             </div>
 
             {error && (
-                <div className="bg-red-50 border-2 border-red-100 p-6 rounded-3xl flex items-center gap-4 text-red-600 animate-in fade-in slide-in-from-top-4">
-                    <AlertCircle size={24} />
-                    <p className="font-bold">{error}</p>
+                <div className="bg-red-50 border border-red-100 p-8 rounded-sm flex items-center gap-6 text-red-600 animate-in fade-in slide-in-from-top-4">
+                    <AlertCircle size={28} />
+                    <p className="font-black text-[10px] uppercase tracking-widest leading-relaxed">ERROR CODE: {error}</p>
                 </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="bg-white p-10 rounded-[40px] border border-slate-200 shadow-xl shadow-slate-200/50 space-y-12">
-
-                    {/* Tracking ID Display */}
-                    <div className="flex flex-wrap gap-8 justify-between items-center pb-10 border-b border-slate-100">
-                        <div className="space-y-2 flex-1 min-w-[300px]">
-                            <p className="text-xs font-extrabold text-slate-400 uppercase tracking-widest block mb-1">Generated Logistics ID</p>
-                            <div className="flex items-center gap-4">
-                                <h2 className="text-4xl font-mono font-extrabold text-slate-900 tracking-tighter">
+            <form onSubmit={handleSubmit} className="space-y-12">
+                <div className="bg-white p-12 md:p-20 rounded-sm border border-slate-200 shadow-3xl space-y-16 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-bl-full pointer-events-none" />
+                    
+                    {/* Tracking ID Header */}
+                    <div className="flex flex-wrap gap-12 justify-between items-end pb-16 border-b border-slate-100 relative z-10">
+                        <div className="space-y-4">
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">GENERATED TELEMETRY SIGNATURE</p>
+                            <div className="flex items-center gap-6">
+                                <h2 className="text-6xl font-black text-slate-900 tracking-tighter uppercase italic">
                                     {formData.tracking_number}
                                 </h2>
                                 <button
                                     type="button"
                                     onClick={handleCopy}
-                                    className={`p-3 rounded-xl transition-all ${isCopying ? 'bg-emerald-500 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-900'}`}
+                                    className={`p-4 rounded-sm transition-all ${isCopying ? 'bg-primary text-white' : 'bg-slate-50 border border-slate-100 text-slate-400 hover:bg-slate-900 hover:text-white hover:border-slate-900'}`}
                                 >
-                                    {isCopying ? <Check size={20} /> : <Copy size={20} />}
+                                    {isCopying ? <Check size={24} /> : <Copy size={24} />}
                                 </button>
                             </div>
                         </div>
-                        <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800 flex items-center gap-6 text-white shadow-2xl">
+                        <div className="bg-slate-900 p-10 rounded-sm border border-slate-800 flex items-center gap-8 text-white shadow-3xl">
                             <div className="text-right">
-                                <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] mb-1">Security Status</p>
-                                <p className="text-xl font-extrabold text-primary">System Encrypted</p>
+                                <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">NETWORK STATUS</p>
+                                <p className="text-2xl font-black text-primary uppercase italic tracking-tighter">SECURE NODE</p>
                             </div>
-                            <Package className="text-slate-700" size={40} />
+                            <Zap className="text-primary/40 animate-pulse" size={48} />
                         </div>
                     </div>
 
-                    {/* Item Details */}
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/5">
-                            <Package className="text-slate-900" size={20} />
-                            <h3 className="text-xl font-extrabold text-slate-900">Cargo Specifics</h3>
+                    {/* Section 1: Asset Intelligence */}
+                    <div className="space-y-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">
+                                <Package size={20} />
+                            </div>
+                            <h3 className="text-xl font-black text-slate-900 tracking-tighter uppercase">ASSET INTELLIGENCE</h3>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">What is being shipped?</label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">ASSET CLASSIFICATION</label>
                                 <input
                                     type="text"
                                     required
-                                    placeholder="e.g. Industrial Textiles, Microchips"
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
+                                    placeholder="E.G. QUANTUM COMPONENTS, AEROSPACE PARTS"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
                                     value={formData.item_type}
                                     onChange={(e) => setFormData({ ...formData, item_type: e.target.value })}
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Estimated Delivery Time</label>
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">ESTIMATED NODE ARRIVAL</label>
                                 <div className="relative">
                                     <input
                                         type="datetime-local"
                                         required
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none cursor-pointer"
                                         value={formData.estimated_delivery}
                                         onChange={(e) => setFormData({ ...formData, estimated_delivery: e.target.value })}
                                     />
-                                    <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none" size={20} />
+                                    <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none" size={20} />
                                 </div>
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-slate-500">Cargo Description</label>
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">TECHNICAL DESCRIPTION</label>
                             <div className="relative">
                                 <textarea
                                     required
-                                    rows={3}
-                                    placeholder="Provide a detailed overview of the shipment contents and special handling instructions..."
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 pl-12 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 resize-none transition-all"
+                                    rows={4}
+                                    placeholder="PROVIDE COMPREHENSIVE OVERVIEW OF ASSET VARIANCE AND HANDLING PROTOCOLS..."
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-sm py-6 px-8 pl-14 focus:outline-none focus:border-primary font-bold text-slate-500 text-xs outline-none resize-none uppercase tracking-tight"
                                     value={formData.description}
                                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                 />
-                                <FileText className="absolute left-4 top-6 text-slate-300" size={20} />
+                                <FileText className="absolute left-6 top-7 text-slate-300" size={20} />
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        {/* Sender Partition */}
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/5">
-                                <User className="text-slate-900" size={20} />
-                                <h3 className="text-xl font-extrabold text-slate-900">Sender Profile</h3>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Origin Stakeholder Name</label>
-                                <input
-                                    type="text"
-                                    required
-                                    placeholder="Company or Individual"
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
-                                    value={formData.sender_name}
-                                    onChange={(e) => setFormData({ ...formData, sender_name: e.target.value })}
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Contact Email</label>
-                                <div className="relative">
-                                    <input
-                                        type="email"
-                                        required
-                                        placeholder="sender@example.com"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 pl-12 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
-                                        value={formData.sender_email}
-                                        onChange={(e) => setFormData({ ...formData, sender_email: e.target.value })}
-                                    />
-                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                    {/* Section 2: Topology */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+                        {/* Origin Node */}
+                        <div className="space-y-10">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">
+                                    <User size={20} />
                                 </div>
+                                <h3 className="text-xl font-black text-slate-900 tracking-tighter uppercase">ORIGIN NODE</h3>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Jurisdiction / Origin</label>
-                                <div className="relative">
+                            <div className="space-y-8">
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">SENDER IDENTIFIER</label>
                                     <input
                                         type="text"
                                         required
-                                        placeholder="City, Country"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 pl-12 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
-                                        value={formData.origin}
-                                        onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
+                                        placeholder="INSTITUTION / OPERATOR"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
+                                        value={formData.sender_name}
+                                        onChange={(e) => setFormData({ ...formData, sender_name: e.target.value })}
                                     />
-                                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">UPLINK EMAIL</label>
+                                    <div className="relative">
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="OPERATOR@VORTEX.IO"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 pl-14 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
+                                            value={formData.sender_email}
+                                            onChange={(e) => setFormData({ ...formData, sender_email: e.target.value })}
+                                        />
+                                        <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                    </div>
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">SOURCE HUB</label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            required
+                                            placeholder="CITY, JURISDICTION"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 pl-14 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
+                                            value={formData.origin}
+                                            onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
+                                        />
+                                        <MapPin className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Receiver Partition */}
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/5">
-                                <User className="text-slate-900" size={20} />
-                                <h3 className="text-xl font-extrabold text-slate-900">Receiver Profile</h3>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Destination Stakeholder Name</label>
-                                <input
-                                    type="text"
-                                    required
-                                    placeholder="Full Name / Company"
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
-                                    value={formData.recipient_name}
-                                    onChange={(e) => setFormData({ ...formData, recipient_name: e.target.value })}
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Contact Email</label>
-                                <div className="relative">
-                                    <input
-                                        type="email"
-                                        required
-                                        placeholder="email@example.com"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 pl-12 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 transition-all"
-                                        value={formData.recipient_email}
-                                        onChange={(e) => setFormData({ ...formData, recipient_email: e.target.value })}
-                                    />
-                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                        {/* Destination Node */}
+                        <div className="space-y-10">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">
+                                    <User size={20} />
                                 </div>
+                                <h3 className="text-xl font-black text-slate-900 tracking-tighter uppercase">DESTINATION NODE</h3>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-500">Full Shipping Address</label>
-                                <textarea
-                                    required
-                                    rows={1}
-                                    placeholder="Street, Suite, ZIP, City, Country"
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/30 font-bold text-slate-900 resize-none transition-all"
-                                    value={formData.recipient_address}
-                                    onChange={(e) => setFormData({ ...formData, recipient_address: e.target.value })}
-                                />
+                            <div className="space-y-8">
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">RECEIVER IDENTIFIER</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="INSTITUTION / OPERATOR"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
+                                        value={formData.recipient_name}
+                                        onChange={(e) => setFormData({ ...formData, recipient_name: e.target.value })}
+                                    />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">UPLINK EMAIL</label>
+                                    <div className="relative">
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="OPERATOR@VORTEX.IO"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 pl-14 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
+                                            value={formData.recipient_email}
+                                            onChange={(e) => setFormData({ ...formData, recipient_email: e.target.value })}
+                                        />
+                                        <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                    </div>
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">FULL GEOSPATIAL ADDRESS</label>
+                                    <textarea
+                                        required
+                                        rows={1}
+                                        placeholder="STREET, SUITE, ZIP, COUNTRY"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none resize-none"
+                                        value={formData.recipient_address}
+                                        onChange={(e) => setFormData({ ...formData, recipient_address: e.target.value })}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Metrology & Operations */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pt-10 border-t border-slate-100">
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/5">
-                                <Scale className="text-slate-900" size={20} />
-                                <h3 className="text-lg font-extrabold text-slate-900">Metrology</h3>
+                    {/* Section 3: Metrology & Logistics */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pt-16 border-t border-slate-100">
+                        <div className="space-y-10">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">
+                                    <Scale size={20} />
+                                </div>
+                                <h3 className="text-xl font-black text-slate-900 tracking-tighter uppercase">METROLOGY</h3>
                             </div>
-                            <div className="space-y-4">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-slate-500">Weight (lbs)</label>
+                            <div className="space-y-6">
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">MASS (KG)</label>
                                     <input
                                         type="number"
                                         required
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 font-bold text-slate-900 transition-all"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
                                         value={formData.weight}
                                         onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-slate-500">Dimensions</label>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">VOLUME DIMENSIONS</label>
                                     <input
                                         type="text"
-                                        placeholder="L x W x H"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 font-bold text-slate-900 transition-all"
+                                        placeholder="L X W X H"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none"
                                         value={formData.dimensions}
                                         onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
                                     />
@@ -326,43 +342,45 @@ export default function AddShipment() {
                             </div>
                         </div>
 
-                        <div className="space-y-6 md:col-span-2">
-                            <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/5">
-                                <CreditCard className="text-slate-900" size={20} />
-                                <h3 className="text-lg font-extrabold text-slate-900">Financials & Milestones</h3>
+                        <div className="space-y-10 md:col-span-2">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-primary">
+                                    <CreditCard size={20} />
+                                </div>
+                                <h3 className="text-xl font-black text-slate-900 tracking-tighter uppercase">PROTOCOL CONFIGURATION</h3>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-slate-500">Payment Method</label>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div className="space-y-6">
+                                    <div className="space-y-3">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">TRANSACTION METHOD</label>
                                         <select
-                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 font-bold appearance-none text-slate-900"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none cursor-pointer appearance-none"
                                             value={formData.payment_method}
                                             onChange={(e) => setFormData({ ...formData, payment_method: e.target.value })}
                                         >
                                             <option value="Bank Transfer">Bank Transfer</option>
                                             <option value="Crypto">Crypto</option>
-                                            <option value="Gift Card">Gift Card</option>
+                                            <option value="Institutional Credit">Institutional Credit</option>
                                         </select>
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-slate-500">Payment Status</label>
+                                    <div className="space-y-3">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">TRANSACTION STATUS</label>
                                         <select
-                                            className="w-full bg-slate-100 border border-slate-200 rounded-xl py-4 px-6 font-bold text-slate-900"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 outline-none cursor-pointer appearance-none"
                                             value={formData.payment_status}
                                             onChange={(e) => setFormData({ ...formData, payment_status: e.target.value })}
                                         >
                                             <option value="Pending">Pending</option>
-                                            <option value="Partially Paid">Partially Paid</option>
-                                            <option value="Paid">Fully Paid</option>
+                                            <option value="Partially Synced">Partially Synced</option>
+                                            <option value="Verified">Verified</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-slate-500">Initial Status</label>
+                                <div className="space-y-6">
+                                    <div className="space-y-3">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">INITIAL PROTOCOL STATUS</label>
                                         <select
-                                            className="w-full bg-slate-900 text-white border border-slate-800 rounded-xl py-4 px-6 font-extrabold appearance-none"
+                                            className="w-full bg-slate-900 text-white border border-slate-900 rounded-sm py-5 px-8 focus:outline-none focus:bg-primary font-black text-[10px] uppercase tracking-widest cursor-pointer appearance-none outline-none"
                                             value={formData.current_status}
                                             onChange={(e) => setFormData({ ...formData, current_status: e.target.value })}
                                         >
@@ -373,9 +391,9 @@ export default function AddShipment() {
                                             <option value="Postponed">Postponed</option>
                                         </select>
                                     </div>
-                                    <div className="p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-                                        <p className="text-xs font-bold text-slate-400 leading-relaxed">
-                                            The status and financial information will be locked specifically to this cargo manifest.
+                                    <div className="p-6 bg-slate-50 border border-dashed border-slate-200 rounded-sm">
+                                        <p className="text-[9px] font-black text-slate-400 leading-relaxed uppercase tracking-[0.1em]">
+                                            THIS MANIFEST WILL BE LOCKED TO THE PLANETARY TELEMETRY LEDGER UPON FINALIZATION.
                                         </p>
                                     </div>
                                 </div>
@@ -383,15 +401,15 @@ export default function AddShipment() {
                         </div>
                     </div>
 
-                    <div className="pt-10 border-t border-slate-100 flex justify-end gap-6 items-center">
-                        <Link href="/admin/dashboard/shipments" className="text-slate-400 font-bold hover:text-slate-600 transition-colors">Discard Manifesto</Link>
+                    <div className="pt-16 border-t border-slate-100 flex flex-wrap justify-end gap-10 items-center relative z-10">
+                        <Link href="/admin/dashboard/shipments" className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-red-500 transition-colors">ABORT MANIFEST</Link>
                         <button
                             type="submit"
                             disabled={isSaving}
-                            className={`bg-slate-900 hover:bg-black text-white px-12 py-5 rounded-[24px] font-extrabold transition-all shadow-2xl shadow-slate-900/30 flex items-center gap-4 text-lg disabled:opacity-50`}
+                            className={`bg-slate-900 hover:bg-primary text-white px-16 py-6 rounded-sm font-black text-[10px] uppercase tracking-[0.4em] transition-all shadow-3xl flex items-center gap-6 disabled:opacity-50`}
                         >
-                            {isSaving ? <Clock className="animate-spin" size={24} /> : <Save size={14} />}
-                            {isSaving ? "Synchronizing..." : "Finalize Manifest"}
+                            {isSaving ? <Clock className="animate-spin" size={20} /> : <Save size={20} />}
+                            {isSaving ? "SYNCHRONIZING..." : "INITIALIZE PROTOCOL"}
                         </button>
                     </div>
                 </div>

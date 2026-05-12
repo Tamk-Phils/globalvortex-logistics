@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:mail": "tsx -r tsconfig-paths/register scripts/tests/email-test.ts",
+    "test:db": "tsx -r tsconfig-paths/register scripts/tests/db-test.ts",
+    "test:brand": "node scripts/tests/brand-check.js",
+    "test": "npm run test:brand && npm run test:mail && npm run test:db"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",
@@ -20,8 +24,7 @@
     "nodemailer": "^8.0.5",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-leaflet": "^5.0.0",
-    "resend": "^6.10.0"
+    "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -33,6 +36,9 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

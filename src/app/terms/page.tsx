@@ -1,77 +1,77 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Scale, ShieldAlert, Lock, FileText, CheckCircle } from "lucide-react";
+import { Scale, ShieldAlert, Lock, FileText, CheckCircle, Radar } from "lucide-react";
 
 export default function TermsPage() {
     return (
-        <div className="bg-white min-h-screen pt-24">
-            <div className="container mx-auto px-6 py-20 max-w-4xl">
+        <div className="bg-white min-h-screen pt-32 pb-48 text-slate-900">
+            <div className="container mx-auto px-6 max-w-5xl">
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-20"
+                    className="mb-24 text-center"
                 >
-                    <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase mb-6 border border-blue-100">
-                        <Scale size={14} />
-                        Legal Framework
+                    <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
+                        <Radar size={14} className="animate-spin-slow" />
+                        <span className="text-slate-500">Legal Framework & Compliance</span>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-8">
-                        Terms of <br/> <span className="text-primary">Usage</span>
+                    <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 uppercase leading-[0.9]">
+                        USAGE <br/> <span className="text-primary italic">CHARTER.</span>
                     </h1>
-                    <p className="text-xl text-slate-500 font-bold leading-relaxed">
-                        Last Modified: April 9, 2026. Please read these terms carefully before using the NexusTrack Global Logistics Platform.
+                    <p className="text-xl text-slate-500 font-bold leading-relaxed uppercase tracking-tight">
+                        Last Modified: May 2026. Please synchronize with these protocols before utilizing the Vortex Global Telemetry Network.
                     </p>
                 </motion.div>
 
-                <div className="space-y-16">
-                    <section>
-                        <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary">
-                                <FileText size={20} />
+                <div className="space-y-20">
+                    <section className="group">
+                        <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-6 tracking-tighter uppercase">
+                            <div className="w-14 h-14 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                <FileText size={28} />
                             </div>
-                            1. Acceptance of Terms
+                            1. PROTOCOL ACCEPTANCE
                         </h2>
-                        <div className="prose prose-slate prose-lg max-w-none text-slate-600 font-medium">
-                            <p>By accessing or using the NexusTrack platform, you agree to be bound by these Terms of Service. If you are using the platform on behalf of a company, you represent that you have the authority to bind that entity to these terms.</p>
-                            <p>NexusTrack reserves the right to modify these terms at any time. Continued use of the platform after such changes constitutes acceptance of the new terms.</p>
+                        <div className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed pl-20 space-y-4">
+                            <p>By accessing the Vortex Global platform, you agree to be bound by these Charter protocols. If you are operating on behalf of an institution, you represent that you have the authority to bind that node to these terms.</p>
+                            <p>Vortex Global reserves the right to modify these protocols at any millisecond. Continued telemetry sync constitutes acceptance of the new charter.</p>
                         </div>
                     </section>
 
-                    <section>
-                        <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary">
-                                <Lock size={20} />
+                    <section className="group">
+                        <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-6 tracking-tighter uppercase">
+                            <div className="w-14 h-14 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                <Lock size={28} />
                             </div>
-                            2. Data Privacy & Security
+                            2. TELEMETRY OWNERSHIP
                         </h2>
-                        <div className="prose prose-slate prose-lg max-w-none text-slate-600 font-medium">
-                            <p>We take the security of your shipping data seriously. All tracking information is encrypted in transit and at rest. You retain ownership of all data submitted to the platform, but grant NexusTrack a non-exclusive license to use such data to provide the services.</p>
+                        <div className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed pl-20 space-y-4">
+                            <p>We prioritize the security of your transit data. All tracking signatures are encrypted in transit. You retain ownership of all telemetry submitted, but grant Vortex Global a non-exclusive license to use such data to optimize the planetary network.</p>
                         </div>
                     </section>
 
-                    <section>
-                        <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary">
-                                <ShieldAlert size={20} />
+                    <section className="group">
+                        <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-6 tracking-tighter uppercase">
+                            <div className="w-14 h-14 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                <ShieldAlert size={28} />
                             </div>
-                            3. Prohibited Conduct
+                            3. PROHIBITED VARIANCE
                         </h2>
-                        <div className="prose prose-slate prose-lg max-w-none text-slate-600 font-medium">
-                            <p>Users are strictly prohibited from reverse engineering the NexusTrack telemetry algorithms, attempting to bypass API rate limits, or using the platform for illegal trade tracking.</p>
+                        <div className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed pl-20 space-y-4">
+                            <p>Operators are strictly prohibited from reverse engineering the Vortex autonomous algorithms, attempting to bypass node rate limits, or using the platform for unauthorized asset tracking.</p>
                         </div>
                     </section>
 
-                    <section className="p-12 bg-slate-50 rounded-[40px] border border-slate-100 flex justify-between items-center">
-                        <div>
-                            <p className="font-bold text-slate-600 mb-2">Have legal concerns?</p>
-                            <div className="flex items-center gap-3 text-emerald-600 font-black uppercase tracking-widest text-xs">
+                    <section className="p-16 bg-slate-50 rounded-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-10 shadow-3xl">
+                        <div className="text-center md:text-left">
+                            <p className="font-black text-slate-900 text-lg uppercase tracking-tighter mb-4 italic">HAVE LEGAL CONCERNS?</p>
+                            <div className="flex items-center justify-center md:justify-start gap-4 text-primary font-black uppercase tracking-[0.3em] text-[10px]">
                                 <CheckCircle size={16} />
-                                Fully Compliant Platform
+                                FULLY COMPLIANT PLATFORM
                             </div>
                         </div>
-                        <a href="mailto:legal@nexustrack.com" className="bg-white px-8 py-4 border border-slate-200 rounded-2xl font-black text-slate-900 hover:border-primary hover:text-primary transition-all">
-                            Contact Legal
+                        <a href="mailto:legal@vortex-global.io" className="bg-slate-900 px-12 py-5 rounded-sm font-black text-white text-[10px] uppercase tracking-widest hover:bg-primary transition-all shadow-xl">
+                            CONTACT COMPLIANCE
                         </a>
                     </section>
                 </div>

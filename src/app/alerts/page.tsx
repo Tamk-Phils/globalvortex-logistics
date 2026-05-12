@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Info, AlertTriangle, CheckCircle2, CloudRain, Wind, Anchor, Plane, Truck } from "lucide-react";
+import { Info, AlertTriangle, CheckCircle2, CloudRain, Wind, Anchor, Plane, Truck, Radar, Zap } from "lucide-react";
 
 export default function AlertsPage() {
     const alerts = [
@@ -42,33 +42,33 @@ export default function AlertsPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-slate-50 pt-20 pb-32">
-            <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto space-y-12">
+        <main className="min-h-screen bg-white pt-32 pb-48 text-slate-900">
+            <div className="container mx-auto px-6">
+                <div className="max-w-5xl mx-auto space-y-24">
                     <div className="text-center">
-                        <div className="inline-flex items-center gap-2 bg-amber-600/10 text-amber-700 px-4 py-2 rounded-full text-sm font-bold border border-amber-600/20 mb-6">
-                            <Info size={16} />
-                            <span>Live Operational Intelligence</span>
+                        <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
+                            <Radar size={14} className="animate-spin-slow" />
+                            <span className="text-slate-500">Live Operational Intelligence</span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-6">
-                            Service <span className="text-primary">Status</span>
+                        <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
+                            SYSTEM <span className="text-primary italic">STATUS.</span>
                         </h1>
-                        <p className="text-xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
-                            Monitor the health of our global infrastructure and stay informed about factors affecting your shipments.
+                        <p className="text-xl text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight">
+                            Monitor the health of the Vortex Global infrastructure and stay synchronized with factors affecting your transits.
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-slate-200/50 border border-slate-100">
-                        <h3 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
-                            <CheckCircle2 className="text-emerald-500" />
-                            System Infrastructure
+                    <div className="bg-slate-50 rounded-sm p-12 border border-slate-200 shadow-sm">
+                        <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-4 uppercase tracking-[0.4em]">
+                            <CheckCircle2 className="text-primary" size={20} />
+                            CORE INFRASTRUCTURE
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {systems.map((sys, i) => (
-                                <div key={i} className="flex items-center justify-between p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <span className="font-bold text-slate-700">{sys.name}</span>
-                                    <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider">
-                                        <div className={`w-2.5 h-2.5 rounded-full ${sys.color} animate-pulse`} />
+                                <div key={i} className="flex items-center justify-between p-8 bg-white rounded-sm border border-slate-100 shadow-sm group hover:border-primary/30 transition-all">
+                                    <span className="font-black text-slate-700 text-xs uppercase tracking-widest">{sys.name}</span>
+                                    <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest">
+                                        <div className={`w-2 h-2 rounded-full ${sys.color} animate-pulse shadow-[0_0_8px_rgba(0,0,0,0.1)]`} />
                                         <span className={sys.color.replace('bg-', 'text-')}>{sys.status}</span>
                                     </div>
                                 </div>
@@ -76,10 +76,10 @@ export default function AlertsPage() {
                         </div>
                     </div>
 
-                    <div className="space-y-6">
-                        <h3 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
-                            <AlertTriangle className="text-amber-500" />
-                            Active Alerts & Advisories
+                    <div className="space-y-12">
+                        <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-4 uppercase tracking-[0.4em]">
+                            <AlertTriangle className="text-amber-500" size={20} />
+                            ACTIVE TELEMETRY ALERTS
                         </h3>
                         {alerts.map((alert) => (
                             <motion.div 
@@ -87,29 +87,29 @@ export default function AlertsPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm flex flex-col md:flex-row gap-8 items-start group hover:shadow-md transition-all"
+                                className="bg-white p-12 rounded-sm border border-slate-200 shadow-sm flex flex-col md:flex-row gap-12 items-start group hover:shadow-2xl transition-all"
                             >
-                                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-inner ${
-                                    alert.type === 'warning' ? 'bg-red-50 text-red-500' : 
-                                    alert.type === 'info' ? 'bg-blue-50 text-blue-500' : 'bg-emerald-50 text-emerald-500'
+                                <div className={`w-20 h-20 rounded-sm flex items-center justify-center shrink-0 border ${
+                                    alert.type === 'warning' ? 'bg-red-50 border-red-100 text-red-500' : 
+                                    alert.type === 'info' ? 'bg-blue-50 border-blue-100 text-blue-500' : 'bg-emerald-50 border-emerald-100 text-emerald-500'
                                 }`}>
-                                    <alert.icon size={32} />
+                                    <alert.icon size={36} />
                                 </div>
                                 <div className="flex-1">
-                                    <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
-                                        <h4 className="text-2xl font-black text-slate-900">{alert.title}</h4>
-                                        <span className="text-xs font-black uppercase tracking-widest text-slate-400">{alert.date}</span>
+                                    <div className="flex flex-wrap items-center justify-between gap-6 mb-6">
+                                        <h4 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">{alert.title}</h4>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 px-3 py-1 rounded-sm border border-slate-100">{alert.date}</span>
                                     </div>
-                                    <p className="text-slate-500 font-bold mb-6 leading-relaxed">{alert.description}</p>
-                                    <div className="flex items-center gap-4">
-                                        <div className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-lg border ${
+                                    <p className="text-slate-500 font-bold mb-10 leading-relaxed uppercase tracking-tight text-lg">{alert.description}</p>
+                                    <div className="flex items-center gap-6">
+                                        <div className={`text-[10px] font-black uppercase tracking-[0.3em] px-4 py-2 rounded-sm border ${
                                             alert.impact === 'High' ? 'bg-red-50 border-red-100 text-red-600' : 
                                             alert.impact === 'Low' ? 'bg-blue-50 border-blue-100 text-blue-600' : 'bg-emerald-50 border-emerald-100 text-emerald-600'
                                         }`}>
-                                            Impact: {alert.impact}
+                                            IMPACT: {alert.impact}
                                         </div>
-                                        <button className="text-primary font-black text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                            Deep Intel <CheckCircle2 size={16} />
+                                        <button className="text-primary font-black text-[10px] uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                                            DEEP INTEL <Zap size={14} />
                                         </button>
                                     </div>
                                 </div>
@@ -117,15 +117,16 @@ export default function AlertsPage() {
                         ))}
                     </div>
 
-                    <div className="bg-slate-900 rounded-[40px] p-10 text-white text-center">
-                        <p className="text-sm font-black text-slate-400 mb-2 uppercase tracking-[0.3em]">Notification Protocol</p>
-                        <h4 className="text-3xl font-black mb-6">Stay ahead of every event.</h4>
-                        <p className="text-slate-400 font-medium mb-10 max-w-xl mx-auto">
-                            Sign up for critical alert SMS dispatch. We'll notify your operations team the second our sensors detect potential disruption.
+                    <div className="bg-slate-900 rounded-sm p-20 text-white text-center relative overflow-hidden shadow-3xl">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
+                        <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-[0.5em]">PROTOCOL ENFORCEMENT</p>
+                        <h4 className="text-5xl font-black mb-8 tracking-tighter uppercase">STAY AHEAD OF <br/><span className="italic">THE VORTEX.</span></h4>
+                        <p className="text-white/40 font-bold mb-16 max-w-2xl mx-auto uppercase tracking-tight text-lg leading-relaxed">
+                            Establish a direct SMS relay for critical telemetry dispatches. We synchronize your operations the millisecond a node detects potential variance.
                         </p>
-                        <div className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-                            <input type="text" placeholder="Phone Number" className="flex-1 bg-white/10 border border-white/20 rounded-2xl py-4 px-6 text-white font-bold" />
-                            <button className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-black transition-colors">Activate</button>
+                        <div className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+                            <input type="text" placeholder="TERMINAL PHONE NUMBER" className="flex-1 bg-white/5 border border-white/10 rounded-sm py-5 px-8 text-white font-black text-[10px] uppercase tracking-widest outline-none focus:border-primary transition-all" />
+                            <button className="bg-primary hover:bg-white text-slate-900 px-12 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl">ACTIVATE RELAY</button>
                         </div>
                     </div>
                 </div>
