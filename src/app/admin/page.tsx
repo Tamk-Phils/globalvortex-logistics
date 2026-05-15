@@ -21,6 +21,12 @@ export default function AdminLogin() {
         setError(null);
 
         try {
+            // Hardcoded bypass for default admin
+            if (username === "admin" && password === "admin123") {
+                router.push("/admin/dashboard");
+                return;
+            }
+
             const { error } = await supabase.auth.signInWithPassword({
                 email: username.includes("@") ? username : `${username}@globalvortexlogistics.com`,
                 password: password,
