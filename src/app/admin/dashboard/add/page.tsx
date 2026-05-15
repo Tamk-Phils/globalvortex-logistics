@@ -82,12 +82,13 @@ export default function AddShipment() {
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
             localStorage.setItem("vortex_shipments", JSON.stringify(existing));
 
-                    await notifyShipmentCreated({
-                        to: formData.recipient_email,
-                        subject: `Vortex Global: Shipment Created ${formData.tracking_number}`,
-                        trackingNumber: formData.tracking_number,
-                        senderName: formData.sender_name || 'Vortex Global Client',
-                        recipientName: formData.recipient_name || 'Package Receiver',
+            if (formData.recipient_email) {
+                await notifyShipmentCreated({
+                    to: formData.recipient_email,
+                    subject: `Vortex Global: Shipment Created ${formData.tracking_number}`,
+                    trackingNumber: formData.tracking_number,
+                    senderName: formData.sender_name || 'Vortex Global Client',
+                    recipientName: formData.recipient_name || 'Package Receiver',
                     origin: formData.origin || 'Origin Hub',
                     destination: formData.destination || 'Destination Hub'
                 });
