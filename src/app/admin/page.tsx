@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Lock, User, ArrowRight, ShieldCheck, Home, Radar } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
 export default function AdminLogin() {
     const [username, setUsername] = useState("");
@@ -12,19 +13,26 @@ export default function AdminLogin() {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
-    const handleLogin = (e: React.FormEvent) => {
+    const [error, setError] = useState<string | null>(null);
+
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        setError(null);
 
-        // Hardcoded demo auth match
-        setTimeout(() => {
-            if (username === "admin" && password === "admin123") {
-                router.push("/admin/dashboard");
-            } else {
-                alert("Verification failed. Please check your administrative credentials.");
-                setIsLoading(false);
-            }
-        }, 1000);
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                email: username.includes("@") ? username : `${username}@globalvortexlogistics.com`,
+                password: password,
+            });
+
+            if (error) throw error;
+
+            router.push("/admin/dashboard");
+        } catch (err: any) {
+            setError(err.message || "Verification failed. Please check your credentials.");
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -45,6 +53,13 @@ export default function AdminLogin() {
                     <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase leading-[0.9]">VORTEX <br/><span className="text-primary italic">ADMIN.</span></h2>
                     <p className="text-slate-400 font-bold uppercase tracking-tight text-[10px] sm:text-xs mt-4">Authorized Personnel Only</p>
                 </div>
+
+                {error && (
+                    <div className="mb-10 p-6 bg-red-50 border border-red-100 text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-3">
+                        <ShieldCheck size={16} />
+                        {error}
+                    </div>
+                )}
 
                 <form onSubmit={handleLogin} className="space-y-10">
                     <div className="space-y-3">
