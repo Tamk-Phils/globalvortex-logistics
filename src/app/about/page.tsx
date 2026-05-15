@@ -14,12 +14,12 @@ export default function AboutPage() {
             >
                 <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
                     <Radar size={14} className="animate-spin-slow" />
-                    <span className="text-slate-500">System Genesis Protocol</span>
+                    <span className="text-slate-500">About Us</span>
                 </div>
-                <h1 className="text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">VORTEX <span className="text-primary italic">ORIGIN.</span></h1>
+                <h1 className="text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">OUR <span className="text-primary italic">STORY.</span></h1>
                 <div className="space-y-6 text-xl text-slate-500 leading-relaxed font-bold uppercase tracking-tight">
                     <p>
-                        Established in 2026, Vortex Global was engineered to resolve the fragmentation of global trade. We don&apos;t just track shipments; we synchronize the world&apos;s physical assets with their digital signatures.
+                        Established in 2026, Vortex Global was built to make international shipping easier. We don&apos;t just track packages; we connect the world&apos;s shipping routes with modern technology.
                     </p>
                 </div>
             </motion.div>
@@ -30,7 +30,7 @@ export default function AboutPage() {
                         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1500" 
                         alt="Vortex Infrastructure" 
                         fill 
-                        className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                        className="object-cover transition-all duration-1000"
                     />
                 </div>
                 <div className="flex flex-col gap-12">
@@ -40,7 +40,7 @@ export default function AboutPage() {
                         </div>
                         <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE MISSION</h3>
                         <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
-                            To consolidate global logistics into a single, immutable source of truth, enabling absolute transparency and autonomous execution for the next generation of global trade.
+                            To make global logistics simple and transparent, providing reliable shipping data for everyone.
                         </p>
                     </div>
                     <div className="bg-slate-50 p-12 rounded-sm border border-slate-200 shadow-sm group hover:bg-white hover:shadow-2xl transition-all flex-1">
@@ -49,7 +49,7 @@ export default function AboutPage() {
                         </div>
                         <h3 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-slate-900">THE VISION</h3>
                         <p className="text-slate-500 leading-relaxed font-bold uppercase tracking-tight text-sm">
-                            A hyper-connected world where every asset is an active node, every delay is mathematically impossible, and commerce flows at the speed of light.
+                            A connected world where every package is tracked accurately, and shipping flows smoothly across borders.
                         </p>
                     </div>
                 </div>
@@ -61,33 +61,33 @@ export default function AboutPage() {
                 
                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div>
-                        <h2 className="text-5xl font-black mb-8 uppercase tracking-tighter leading-tight">CLOUD <br/> <span className="text-primary italic">INFRASTRUCTURE.</span></h2>
+                        <h2 className="text-5xl font-black mb-8 uppercase tracking-tighter leading-tight">MODERN <br/> <span className="text-primary italic">TECHNOLOGY.</span></h2>
                         <p className="text-slate-500 text-lg mb-12 leading-relaxed font-bold uppercase tracking-tight">
-                            Vortex Global operates a planetary ground node network and satellite constellation to ensure 99.999% uptime for institutional telemetry sync.
+                            Vortex Global uses a global network of centers and real-time technology to ensure your package data is always up to date.
                         </p>
                         <div className="space-y-6">
                             <div className="flex items-center gap-4">
                                 <div className="w-8 h-8 rounded-sm bg-primary/5 border border-primary/10 flex items-center justify-center">
                                     <ShieldCheck size={18} className="text-primary" />
                                 </div>
-                                <span className="font-black text-[10px] uppercase tracking-widest text-slate-500">Enterprise Encryption Standards</span>
+                                <span className="font-black text-[10px] uppercase tracking-widest text-slate-500">Secure Data Standards</span>
                             </div>
                             <div className="flex items-center gap-4">
                                 <div className="w-8 h-8 rounded-sm bg-primary/5 border border-primary/10 flex items-center justify-center">
                                     <ShieldCheck size={18} className="text-primary" />
                                 </div>
-                                <span className="font-black text-[10px] uppercase tracking-widest text-slate-500">Autonomous Protocol Verification</span>
+                                <span className="font-black text-[10px] uppercase tracking-widest text-slate-500">Real-time Verification</span>
                             </div>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-6">
                         <div className="bg-slate-50 p-10 rounded-sm border border-slate-100 text-center group hover:bg-white hover:shadow-xl transition-all">
                             <p className="text-5xl font-black text-primary mb-4 tracking-tighter">14.2K</p>
-                            <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Active Nodes</p>
+                            <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Tracking Centers</p>
                         </div>
                         <div className="bg-slate-50 p-10 rounded-sm border border-slate-100 text-center group hover:bg-white hover:shadow-xl transition-all">
                             <p className="text-5xl font-black text-primary mb-4 tracking-tighter">0.08ms</p>
-                            <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Network Latency</p>
+                            <p className="text-slate-400 font-black text-[9px] uppercase tracking-widest">Update Speed</p>
                         </div>
                         <div className="col-span-2 p-10 bg-slate-50 border border-slate-100 rounded-sm relative overflow-hidden h-40">
                              <Image 
@@ -98,9 +98,9 @@ export default function AboutPage() {
                             />
                             <div className="relative z-10">
                                 <h3 className="text-[10px] font-black mb-4 text-slate-900 uppercase tracking-[0.3em] flex items-center gap-2">
-                                    <Cpu size={14} className="text-primary" /> SYSTEM INTEGRITY
+                                    <Cpu size={14} className="text-primary" /> OUR NETWORK
                                 </h3>
-                                <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed">To ensure absolute stability, our core protocols are distributed across thousands of secure hubs worldwide.</p>
+                                <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed">To ensure stability, our shipping data is mirrored across thousands of secure servers worldwide.</p>
                             </div>
                         </div>
                     </div>

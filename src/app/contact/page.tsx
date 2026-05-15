@@ -19,7 +19,7 @@ export default function ContactPage() {
                         className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm"
                     >
                         <Radar size={14} className="animate-spin-slow" />
-                        <span className="text-slate-500">Support Uplink Protocol</span>
+                        <span className="text-slate-500">Contact Support</span>
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.1 }}
                         className="text-6xl md:text-8xl font-black text-slate-900 mb-8 uppercase tracking-tighter leading-[0.85]"
                     >
-                        CONTACT <br/><span className="text-primary italic">SUPPORT.</span>
+                        CONTACT <br/><span className="text-primary italic">US.</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -122,11 +122,11 @@ export default function ContactPage() {
                         <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Identity First</label>
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">First Name</label>
                                     <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-200 outline-none" placeholder="JOHN" />
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Identity Last</label>
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Last Name</label>
                                     <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-200 outline-none" placeholder="DOE" />
                                 </div>
                             </div>
@@ -135,7 +135,7 @@ export default function ContactPage() {
                                 <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-200 outline-none" placeholder="YOUR@EMAIL.COM" />
                             </div>
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Your Message</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Message</label>
                                 <textarea rows={5} className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all resize-none placeholder:text-slate-200 outline-none" placeholder="HOW CAN WE HELP?" />
                             </div>
                             <button className="w-full bg-slate-900 hover:bg-primary text-white font-black text-[10px] uppercase tracking-[0.4em] py-6 rounded-sm transition-all shadow-xl flex items-center justify-center gap-3 group">

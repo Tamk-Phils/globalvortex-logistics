@@ -34,8 +34,8 @@ export default function Header() {
                         <Link href="/" className="flex items-center gap-4 group">
                             <Logo className="w-10 h-10" />
                             <div className="flex flex-col">
-                                <span className={`text-xl font-black tracking-tighter leading-none uppercase transition-colors ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>LES TRACK</span>
-                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Logistics</span>
+                                <span className={`text-xl font-black tracking-tighter leading-none uppercase transition-colors ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>VORTEX</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">GLOBAL</span>
                             </div>
                         </Link>
 

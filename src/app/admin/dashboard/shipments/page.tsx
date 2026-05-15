@@ -37,7 +37,7 @@ export default function ShipmentsList() {
 
     const loadShipments = async () => {
         // Optimistic Load
-        const cached = localStorage.getItem("lestrack_shipments");
+        const cached = localStorage.getItem("vortex_shipments");
         if (cached) {
             setShipments(JSON.parse(cached) as Shipment[]);
         }
@@ -58,7 +58,7 @@ export default function ShipmentsList() {
 
             if (data) {
                 setShipments(data as Shipment[]);
-                localStorage.setItem("lestrack_shipments", JSON.stringify(data));
+                localStorage.setItem("vortex_shipments", JSON.stringify(data));
             }
         } catch (err: any) {
             clearTimeout(timeoutId);
@@ -88,7 +88,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("lestrack_shipments", JSON.stringify(updated));
+            localStorage.setItem("vortex_shipments", JSON.stringify(updated));
         } catch (err) {
             console.error(err);
             alert("Failed to archive transit.");
@@ -109,7 +109,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("lestrack_shipments", JSON.stringify(updated));
+            localStorage.setItem("vortex_shipments", JSON.stringify(updated));
             alert(`Transit ${id} restored successfully.`);
         } catch (err) {
             console.error(err);
@@ -173,12 +173,12 @@ export default function ShipmentsList() {
             });
 
             setShipments(updatedShipments);
-            localStorage.setItem("lestrack_shipments", JSON.stringify(updatedShipments));
+            localStorage.setItem("vortex_shipments", JSON.stringify(updatedShipments));
 
             if (editingShipment.recipient_email) {
                 await notifyShipmentUpdate({
                     to: editingShipment.recipient_email,
-                    subject: `Les Track: Shipment Update ${editingShipment.tracking_number}`,
+                    subject: `Vortex Global: Shipment Update ${editingShipment.tracking_number}`,
                     trackingNumber: editingShipment.tracking_number,
                     recipientName: editingShipment.recipient_name || 'Operator',
                     newStatus: newUpdate.status,
@@ -263,7 +263,7 @@ export default function ShipmentsList() {
 
                 <div className="overflow-x-auto relative z-10">
                     {isLoading && shipments.length === 0 ? (
-                        <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO GLOBAL TELEMETRY CLUSTER...</div>
+                        <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO DATABASE...</div>
                     ) : (
                         <>
                             <table className="w-full text-left">
@@ -348,14 +348,14 @@ export default function ShipmentsList() {
                                     ) : (
                                         <tr>
                                             <td colSpan={4} className="px-10 py-32 text-center bg-slate-50/50">
-                                                <p className="text-slate-300 font-black text-[10px] uppercase tracking-[0.4em]">NO TRANSIT RECORDS DISCOVERED</p>
+                                                <p className="text-slate-300 font-black text-[10px] uppercase tracking-[0.4em]">NO SHIPMENTS FOUND</p>
                                             </td>
                                         </tr>
                                     )}
                                 </tbody>
                             </table>
                             <div className="p-10 bg-slate-50/50 border-t border-slate-200 relative z-10">
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SYNCHRONIZED WITH {filteredShipments.length} ACTIVE GLOBAL ASSET PACKETS</p>
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SYNCHRONIZED WITH {filteredShipments.length} ACTIVE SHIPMENTS</p>
                             </div>
                         </>
                     )}
@@ -415,7 +415,7 @@ export default function ShipmentsList() {
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">UPDATE LOG</label>
                                 <textarea
                                     className="w-full bg-slate-50 border border-slate-200 rounded-sm py-6 px-8 focus:outline-none focus:border-primary font-bold text-slate-500 text-xs min-h-[120px] outline-none resize-none uppercase tracking-tight"
-                                    placeholder="ENTER DESCRIPTIVE VARIANCE LOG..."
+                                    placeholder="ENTER SHIPMENT DETAILS..."
                                     value={newUpdate.description}
                                     onChange={(e) => setNewUpdate({ ...newUpdate, description: e.target.value })}
                                     required

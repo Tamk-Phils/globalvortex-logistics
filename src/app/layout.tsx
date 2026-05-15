@@ -10,34 +10,34 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Les Track | Smart Logistics & Real-Time Tracking",
-    template: "%s | Les Track"
+    default: "Vortex Global | Smart Logistics & Real-Time Tracking",
+    template: "%s | Vortex Global"
   },
-  description: "Simple, fast, and reliable shipment tracking. Track your assets across the globe with Les Track.",
-  keywords: ["logistics tracking", "les track", "shipment tracking", "global shipping", "package tracker"],
-  authors: [{ name: "Les Track Support" }],
-  creator: "Les Track",
-  publisher: "Les Track Logistics",
+  description: "Simple, fast, and reliable shipment tracking. Track your assets across the globe with Vortex Global.",
+  keywords: ["logistics tracking", "vortex global", "shipment tracking", "global shipping", "package tracker"],
+  authors: [{ name: "Vortex Global Support" }],
+  creator: "Vortex Global",
+  publisher: "Vortex Global Logistics",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://lestrack.com"),
+  metadataBase: new URL("https://vortexglobal.io"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Les Track | Smart Logistics & Real-Time Tracking",
+    title: "Vortex Global | Smart Logistics & Real-Time Tracking",
     description: "Your trusted partner in global shipping. Providing reliable, fast, and transparent logistics solutions worldwide.",
-    url: "https://lestrack.com",
-    siteName: "Les Track",
+    url: "https://vortexglobal.io",
+    siteName: "Vortex Global",
     images: [
       {
         url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
         width: 1200,
         height: 630,
-        alt: "Les Track Logistics",
+        alt: "Vortex Global Logistics",
       },
     ],
     locale: "en_US",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Les Track | Smart Logistics & Real-Time Tracking",
+    title: "Vortex Global | Smart Logistics & Real-Time Tracking",
     description: "Your trusted partner in global shipping. Providing reliable, fast, and transparent logistics solutions worldwide.",
     images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200"],
   },

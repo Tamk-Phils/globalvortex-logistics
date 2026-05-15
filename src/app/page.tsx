@@ -59,8 +59,8 @@ export default function Home() {
                 className="object-cover object-[75%_50%]" 
                 priority
             />
-            {/* Subtle Overlays for Readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+            {/* Clear Image Overlay */}
+            <div className="absolute inset-0 bg-black/10 z-10" />
         </div>
 
         <div className="container mx-auto px-6 relative z-20">
@@ -77,12 +77,12 @@ export default function Home() {
               </div>
               
               <h1 className="text-7xl md:text-9xl font-black leading-[0.85] tracking-tighter text-slate-900">
-                LES <br />
-                <span className="text-primary italic">TRACK.</span>
+                VORTEX <br />
+                <span className="text-primary italic">GLOBAL.</span>
               </h1>
               
               <p className="text-xl text-slate-900 leading-relaxed max-w-xl font-black uppercase tracking-tight">
-                Simple, fast, and reliable shipping. Track your assets across the globe with real-time intelligence and absolute precision.
+                Simple and fast shipping tracking. See where your package is right now with perfect accuracy.
               </p>
 
               <div className="flex flex-wrap gap-6 pt-4">

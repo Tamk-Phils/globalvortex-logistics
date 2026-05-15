@@ -18,7 +18,7 @@ export default function Footer() {
                         <Link href="/" className="flex items-center gap-4 group">
                             <Logo className="w-12 h-12" />
                             <div className="flex flex-col">
-                                <span className="text-xl font-black text-slate-900 tracking-tighter leading-none uppercase">LES TRACK</span>
+                                <span className="text-xl font-black text-slate-900 tracking-tighter leading-none uppercase">VORTEX GLOBAL</span>
                                 <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Logistics</span>
                             </div>
                         </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
                                 <div className="w-8 h-8 rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
                                     <Mail size={16} />
                                 </div>
-                                <p className="text-slate-900 text-xs font-black uppercase tracking-widest break-all">support@globalvortexlogistics.com</p>
+                                <p className="text-slate-900 text-xs font-black uppercase tracking-widest break-all">support@vortexglobal.io</p>
                             </div>
                         </div>
                     </div>
@@ -94,18 +94,18 @@ export default function Footer() {
                 {/* Bottom Section */}
                 <div className="pt-12 border-t border-slate-200 flex flex-col lg:flex-row justify-between items-center gap-12">
                     <div className="flex-1 max-w-md">
-                        <h5 className="text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] mb-4">Newsletter Uplink</h5>
+                        <h5 className="text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] mb-4">Newsletter</h5>
                         <div className="flex gap-2">
-                            <input type="email" placeholder="ENTER EMAIL FOR PROTOCOL UPDATES" className="flex-1 bg-white border border-slate-200 rounded-sm py-3 px-4 text-slate-900 text-[10px] font-black uppercase tracking-widest focus:ring-1 focus:ring-primary transition-all outline-none" />
-                            <button className="bg-slate-900 text-white px-6 py-3 rounded-sm text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all shadow-md">Connect</button>
+                            <input type="email" placeholder="ENTER YOUR EMAIL" className="flex-1 bg-white border border-slate-200 rounded-sm py-3 px-4 text-slate-900 text-[10px] font-black uppercase tracking-widest focus:ring-1 focus:ring-primary transition-all outline-none" />
+                            <button className="bg-slate-900 text-white px-6 py-3 rounded-sm text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all shadow-md">Subscribe</button>
                         </div>
                     </div>
                     <div className="text-center lg:text-right">
-                        <p className="text-slate-400 font-black text-[9px] uppercase tracking-[0.4em] mb-4">© 2026 LES TRACK LOGISTICS. ALL SYSTEMS OPERATIONAL.</p>
+                        <p className="text-slate-400 font-black text-[9px] uppercase tracking-[0.4em] mb-4">© 2026 VORTEX GLOBAL LOGISTICS. ALL RIGHTS RESERVED.</p>
                         <div className="flex gap-6 justify-center lg:justify-end">
-                            <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Privacy Protocols</Link>
-                            <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Legal Terms</Link>
-                            <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Infrastructure</Link>
+                            <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Privacy Policy</Link>
+                            <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Terms of Service</Link>
+                            <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">System Status</Link>
                         </div>
                     </div>
                 </div>

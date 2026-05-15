@@ -35,11 +35,11 @@ export default function TrackingPage() {
                                 <span className="text-slate-500">Global Tracking Active</span>
                             </div>
                             <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
-                                SHIPMENT <span className="text-primary italic">TRACKING.</span>
+                                TRACK <span className="text-primary italic">PACKAGE.</span>
                             </h1>
                             <p className="text-xl text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight">
-                                Enter your tracking number to see real-time updates on your shipment. 
-                                Our global network ensures your assets are always within reach.
+                                Enter your tracking number to see where your package is. 
+                                We track shipments anywhere in the world.
                             </p>
                         </motion.div>
 

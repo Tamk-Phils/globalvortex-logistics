@@ -15,10 +15,10 @@ interface Shipment {
 
 export default function DashboardOverview() {
     const [stats, setStats] = useState([
-        { label: "TOTAL TRANSITS", value: "0", icon: Package, color: "text-primary", bg: "bg-primary/5" },
-        { label: "ACTIVE SYNC", value: "0", icon: Activity, color: "text-primary", bg: "bg-primary/5" },
-        { label: "VERIFIED NODES", value: "0", icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
-        { label: "EXCEPTIONS", value: "0", icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
+        { label: "TOTAL SHIPMENTS", value: "0", icon: Package, color: "text-primary", bg: "bg-primary/5" },
+        { label: "IN TRANSIT", value: "0", icon: Activity, color: "text-primary", bg: "bg-primary/5" },
+        { label: "DELIVERED", value: "0", icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
+        { label: "HELD", value: "0", icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
     ]);
     const [recentShipments, setRecentShipments] = useState<Shipment[]>([]);
 
@@ -45,7 +45,7 @@ export default function DashboardOverview() {
                     { label: "TOTAL SHIPMENTS", value: total.toLocaleString(), icon: Package, color: "text-primary", bg: "bg-primary/5" },
                     { label: "IN TRANSIT", value: inTransit.toLocaleString(), icon: Activity, color: "text-primary", bg: "bg-primary/5" },
                     { label: "DELIVERED", value: delivered.toLocaleString(), icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
-                    { label: "EXCEPTIONS", value: exceptions.toLocaleString(), icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
+                    { label: "HELD", value: exceptions.toLocaleString(), icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
                 ]);
 
                 setRecentShipments(shipments.slice(-5).reverse());
@@ -61,9 +61,9 @@ export default function DashboardOverview() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <Radar size={20} className="text-primary animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Fleet Intelligence</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Dashboard</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">LES TRACK <br/><span className="text-primary italic">DASHBOARD.</span></h1>
+                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">VORTEX GLOBAL <br/><span className="text-primary italic">DASHBOARD.</span></h1>
                 </div>
                 <Link href="/admin/dashboard/shipments" className="bg-slate-900 text-white px-8 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-3 hover:bg-primary transition-all shadow-xl">
                     VIEW ALL SHIPMENTS <ArrowUpRight size={16} />
@@ -123,7 +123,7 @@ export default function DashboardOverview() {
                         <div className="space-y-8 relative z-10">
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center">
-                                    <span className="text-white/40 font-black uppercase text-[10px] tracking-widest">DATABASE CLUSTER</span>
+                                    <span className="text-white/40 font-black uppercase text-[10px] tracking-widest">DATABASE</span>
                                     <div className="flex items-center gap-2 font-black text-primary text-[10px] uppercase tracking-widest">
                                         <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                                         CONNECTED
@@ -149,8 +149,8 @@ export default function DashboardOverview() {
                         </div>
 
                         <div className="mt-12 pt-10 border-t border-white/5 text-center relative z-10">
-                            <p className="text-[9px] font-black text-white/20 mb-2 uppercase tracking-[0.3em]">Institutional Access</p>
-                            <p className="font-black text-sm uppercase tracking-widest mb-8">Les Track Support</p>
+                            <p className="text-[9px] font-black text-white/20 mb-2 uppercase tracking-[0.3em]">Support Access</p>
+                            <p className="font-black text-sm uppercase tracking-widest mb-8">Vortex Global Support</p>
                             <button className="w-full bg-white text-slate-900 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl">CONTACT SUPPORT</button>
                         </div>
                     </div>

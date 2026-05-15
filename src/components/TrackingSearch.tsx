@@ -41,7 +41,7 @@ export default function TrackingSearch() {
             if (sbError) {
                 if (sbError.code === 'PGRST116') {
                     // Not found, try fallback for demo
-                    const saved = localStorage.getItem("lestrack_shipments");
+                    const saved = localStorage.getItem("vortex_shipments");
                     const localShipments: Shipment[] = saved ? JSON.parse(saved) : [];
                     const found = localShipments.find(s =>
                         s.tracking_number.toLowerCase() === trackingNumber.trim().toLowerCase() && !s.is_deleted
@@ -49,7 +49,7 @@ export default function TrackingSearch() {
                     if (found) {
                         setResult(found);
                     } else {
-                        setError("TRACKING ID NOT RECOGNIZED. PLEASE CHECK AND TRY AGAIN.");
+                        setError("TRACKING ID NOT FOUND. PLEASE TRY AGAIN.");
                     }
                 } else {
                     throw sbError;
@@ -160,7 +160,7 @@ export default function TrackingSearch() {
                                         <div className="flex justify-center mt-6">
                                             <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-primary">
                                                 <Zap size={14} className="animate-pulse" />
-                                                SECURE IN-TRANSIT
+                                                IN TRANSIT
                                             </div>
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@ export default function TrackingSearch() {
                                             SHIPMENT DETAILS
                                         </div>
                                         <p className="text-lg font-bold text-slate-500 leading-relaxed uppercase tracking-tight">
-                                            {result.description || 'VERIFIED AUTONOMOUS CARGO. HIGH-PRIORITY ORBITAL HANDOVER ACTIVE.'}
+                                            {result.description || 'Shipment details verified.'}
                                         </p>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@ export default function TrackingSearch() {
                                         </div>
                                         <div className="space-y-6">
                                             <div className="flex justify-between items-center border-b border-slate-100 pb-4">
-                                                <span className="text-slate-400 text-[9px] font-black uppercase tracking-widest">NET MASS</span>
+                                                <span className="text-slate-400 text-[9px] font-black uppercase tracking-widest">WEIGHT</span>
                                                 <span className="font-black text-primary uppercase text-sm">{result.weight} LBS</span>
                                             </div>
                                             <div className="flex justify-between items-center border-b border-slate-100 pb-4">
@@ -252,7 +252,7 @@ export default function TrackingSearch() {
                                                 <span className="font-black uppercase text-sm">{result.item_type || 'GENERAL'}</span>
                                             </div>
                                             <div className="flex justify-between items-center border-b border-slate-100 pb-4">
-                                                <span className="text-slate-400 text-[9px] font-black uppercase tracking-widest">ETA</span>
+                                                <span className="text-slate-400 text-[9px] font-black uppercase tracking-widest">ESTIMATED DELIVERY</span>
                                                 <span className="font-black text-primary uppercase text-sm">{result.estimated_delivery ? new Date(result.estimated_delivery).toLocaleDateString() : 'TBD'}</span>
                                             </div>
                                             <div className="flex justify-between items-center">
@@ -272,7 +272,7 @@ export default function TrackingSearch() {
                             <div className="mt-32 space-y-16 relative before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[1px] before:bg-slate-100">
                                 <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-[0.5em] mb-12 flex items-center gap-4">
                                     <div className="w-10 h-[1px] bg-primary" />
-                                    SHIPMENT HISTORY
+                                    TRACKING HISTORY
                                 </h3>
                                 {result.updates.map((update: ShipmentUpdate, idx: number) => (
                                     <div key={idx} className="relative pl-16 group">

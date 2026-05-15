@@ -52,14 +52,14 @@ export default function LoginPage() {
                         <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">CLIENT <br/><span className="text-primary">LOGIN</span></h2>
                     </div>
                     <div className="relative z-10 pt-10 border-t border-white/10">
-                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">LES TRACK</p>
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
                     </div>
                 </div>
 
                 <div className="md:w-2/3 p-10 sm:p-16">
                     <div className="mb-12">
-                        <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">SECURE ACCESS</h1>
-                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your credentials to access your tracking dashboard.</p>
+                        <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">CLIENT LOGIN</h1>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your email and password to access your account.</p>
                     </div>
 
                     {error && (
@@ -71,7 +71,7 @@ export default function LoginPage() {
 
                     <form onSubmit={handleLogin} className="space-y-8">
                         <div className="space-y-3">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Network Identity</label>
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Email</label>
                             <div className="relative">
                                 <input
                                     type="email"
@@ -79,14 +79,14 @@ export default function LoginPage() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
-                                    placeholder="IDENTITY@VORTEX.IO"
+                                    placeholder="EMAIL@EXAMPLE.COM"
                                 />
                                 <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                             </div>
                         </div>
 
                         <div className="space-y-3">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Passkey</label>
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Password</label>
                             <div className="relative">
                                 <input
                                     type="password"
@@ -118,7 +118,7 @@ export default function LoginPage() {
                     <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <p className="text-slate-400 font-bold text-[9px] uppercase tracking-widest">Secure monitoring active.</p>
                         <Link href="/signup" className="inline-flex items-center gap-2 text-primary hover:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-colors">
-                            <UserPlus size={14} /> NEW IDENTITY
+                            <UserPlus size={14} /> NEW ACCOUNT
                         </Link>
                     </div>
                 </div>

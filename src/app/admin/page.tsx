@@ -42,13 +42,13 @@ export default function AdminLogin() {
                         <Radar size={14} className="animate-spin-slow" />
                         <span className="text-slate-500">Admin Portal</span>
                     </div>
-                    <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase leading-[0.9]">LES TRACK <br/><span className="text-primary italic">ADMIN.</span></h2>
+                    <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase leading-[0.9]">VORTEX <br/><span className="text-primary italic">ADMIN.</span></h2>
                     <p className="text-slate-400 font-bold uppercase tracking-tight text-[10px] sm:text-xs mt-4">Authorized Personnel Only</p>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-10">
                     <div className="space-y-3">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">ADMIN IDENTITY</label>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">USERNAME</label>
                         <div className="relative">
                             <input
                                 type="text"
@@ -63,7 +63,7 @@ export default function AdminLogin() {
                     </div>
 
                     <div className="space-y-3">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">SECURE PASSKEY</label>
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">PASSWORD</label>
                         <div className="relative">
                             <input
                                 type="password"
@@ -83,9 +83,9 @@ export default function AdminLogin() {
                             disabled={isLoading}
                             className="w-full bg-slate-900 hover:bg-primary text-white py-6 rounded-sm font-black transition-all shadow-xl flex items-center justify-center gap-4 group text-[10px] uppercase tracking-[0.4em]"
                         >
-                            {isLoading ? "SYNCHRONIZING..." : (
+                            {isLoading ? "LOGGING IN..." : (
                                 <>
-                                    AUTHORIZE UPLINK <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                                    LOGIN <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                                 </>
                             )}
                         </button>
@@ -94,7 +94,7 @@ export default function AdminLogin() {
 
                 <div className="mt-16 pt-10 border-t border-slate-100 text-center">
                     <Link href="/" className="inline-flex items-center gap-3 text-slate-400 hover:text-primary transition-colors font-black text-[10px] uppercase tracking-widest">
-                        <Home size={16} /> RETURN TO PUBLIC TERMINAL
+                        <Home size={16} /> RETURN TO WEBSITE
                     </Link>
                 </div>
             </motion.div>

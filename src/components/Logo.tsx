@@ -26,9 +26,9 @@ export default function Logo({ className = "w-10 h-10" }: { className?: string }
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
 
-                {/* Stylized L Path */}
+                {/* Vortex V-Shape */}
                 <path 
-                    d="M35 25V75H75" 
+                    d="M20 30L50 80L80 30" 
                     stroke="url(#logoGradient)" 
                     strokeWidth="10" 
                     strokeLinecap="round" 
@@ -36,9 +36,9 @@ export default function Logo({ className = "w-10 h-10" }: { className?: string }
                     className="drop-shadow-sm"
                 />
                 
-                {/* Focus Node */}
+                {/* Center Node */}
                 <motion.circle 
-                    cx="35" cy="75" r="8" 
+                    cx="50" cy="50" r="8" 
                     fill="#0070F3"
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 4, repeat: Infinity }}

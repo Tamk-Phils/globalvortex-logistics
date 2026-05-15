@@ -37,7 +37,7 @@ export default function AddShipment() {
         // Generate tracking number
         setFormData(prev => ({
             ...prev,
-            tracking_number: `LT${Math.floor(100000000 + Math.random() * 900000000)}`
+            tracking_number: `VG${Math.floor(100000000 + Math.random() * 900000000)}`
         }));
     }, []);
 
@@ -77,18 +77,17 @@ export default function AddShipment() {
             if (sbError) throw sbError;
 
             // Cache fallback
-            const existingRaw = localStorage.getItem("lestrack_shipments");
+            const existingRaw = localStorage.getItem("vortex_shipments");
             const existing: any[] = existingRaw ? JSON.parse(existingRaw) : [];
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
-            localStorage.setItem("lestrack_shipments", JSON.stringify(existing));
+            localStorage.setItem("vortex_shipments", JSON.stringify(existing));
 
-            if (formData.recipient_email) {
-                await notifyShipmentCreated({
-                    to: formData.recipient_email,
-                    subject: `Les Track: Shipment Created ${formData.tracking_number}`,
-                    trackingNumber: formData.tracking_number,
-                    senderName: formData.sender_name || 'Les Track Client',
-                    recipientName: formData.recipient_name || 'Package Receiver',
+                    await notifyShipmentCreated({
+                        to: formData.recipient_email,
+                        subject: `Vortex Global: Shipment Created ${formData.tracking_number}`,
+                        trackingNumber: formData.tracking_number,
+                        senderName: formData.sender_name || 'Vortex Global Client',
+                        recipientName: formData.recipient_name || 'Package Receiver',
                     origin: formData.origin || 'Origin Hub',
                     destination: formData.destination || 'Destination Hub'
                 });
@@ -155,7 +154,7 @@ export default function AddShipment() {
                         <div className="bg-slate-900 p-10 rounded-sm border border-slate-800 flex items-center gap-8 text-white shadow-3xl">
                             <div className="text-right">
                                 <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">SYSTEM STATUS</p>
-                                <p className="text-2xl font-black text-primary uppercase italic tracking-tighter">SECURE NODE</p>
+                                <p className="text-2xl font-black text-primary uppercase italic tracking-tighter">ACTIVE</p>
                             </div>
                             <Zap className="text-primary/40 animate-pulse" size={48} />
                         </div>
@@ -382,7 +381,7 @@ export default function AddShipment() {
                                 </div>
                                 <div className="space-y-6">
                                     <div className="space-y-3">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">INITIAL STATUS</label>
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">STATUS</label>
                                         <select
                                             className="w-full bg-slate-900 text-white border border-slate-900 rounded-sm py-5 px-8 focus:outline-none focus:bg-primary font-black text-[10px] uppercase tracking-widest cursor-pointer appearance-none outline-none"
                                             value={formData.current_status}
@@ -397,7 +396,7 @@ export default function AddShipment() {
                                     </div>
                                     <div className="p-6 bg-slate-50 border border-dashed border-slate-200 rounded-sm">
                                         <p className="text-[9px] font-black text-slate-400 leading-relaxed uppercase tracking-[0.1em]">
-                                            THIS SHIPMENT WILL BE ADDED TO THE LES TRACK SECURE DATABASE.
+                                            THIS SHIPMENT WILL BE ADDED TO THE VORTEX GLOBAL DATABASE.
                                         </p>
                                     </div>
                                 </div>
