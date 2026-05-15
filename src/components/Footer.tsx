@@ -18,12 +18,12 @@ export default function Footer() {
                         <Link href="/" className="flex items-center gap-4 group">
                             <Logo className="w-12 h-12" />
                             <div className="flex flex-col">
-                                <span className="text-xl font-black text-slate-900 tracking-tighter leading-none uppercase">VORTEX</span>
-                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Global</span>
+                                <span className="text-xl font-black text-slate-900 tracking-tighter leading-none uppercase">LES TRACK</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Logistics</span>
                             </div>
                         </Link>
                         <p className="text-slate-500 font-bold leading-relaxed text-sm uppercase tracking-tight">
-                            The definitive logistics intelligence platform. Harnessing orbital telemetry and autonomous systems to redefine global transit security.
+                            Your trusted partner in global shipping. Providing reliable, fast, and transparent logistics solutions worldwide.
                         </p>
                         <div className="flex gap-4">
                             {[Twitter, Instagram, Linkedin, Facebook].map((Icon, i) => (
@@ -37,10 +37,10 @@ export default function Footer() {
                     {/* Quick Links */}
                     <div>
                         <h4 className="text-slate-900 font-black uppercase tracking-[0.3em] text-[10px] mb-8 border-b border-slate-200 pb-4 flex items-center gap-2">
-                            <Zap size={12} className="text-primary" /> Core Infrastructure
+                            <Zap size={12} className="text-primary" /> Services
                         </h4>
                         <ul className="space-y-4">
-                            {['Autonomous Fleet', 'Orbital Tracking', 'Quantum Security', 'Smart Contracts'].map(item => (
+                            {['Express Shipping', 'Global Freight', 'Asset Tracking', 'Supply Chain'].map(item => (
                                 <li key={item}>
                                     <Link href="#" className="text-slate-500 hover:text-primary font-black uppercase tracking-widest text-[10px] transition-all flex items-center gap-2 group hover:translate-x-2">
                                         <ArrowRight size={12} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -54,15 +54,15 @@ export default function Footer() {
                     {/* Support */}
                     <div>
                         <h4 className="text-slate-900 font-black uppercase tracking-[0.3em] text-[10px] mb-8 border-b border-slate-200 pb-4 flex items-center gap-2">
-                            <Shield size={12} className="text-primary" /> Command Center
+                            <Shield size={12} className="text-primary" /> Support
                         </h4>
                         <ul className="space-y-4">
                             {[
-                                { name: 'Support Uplink', href: '/contact' },
-                                { name: 'Network Status', href: '/alerts' },
-                                { name: 'Protocol Center', href: '#' },
-                                { name: 'Transparency', href: '#' },
-                                { name: 'Node Locator', href: '#' }
+                                { name: 'Contact Us', href: '/contact' },
+                                { name: 'Service Alerts', href: '/alerts' },
+                                { name: 'Terms of Service', href: '/terms' },
+                                { name: 'Privacy Policy', href: '/privacy' },
+                                { name: 'Help Center', href: '#' }
                             ].map(item => (
                                 <li key={item.name}>
                                     <Link href={item.href} className="text-slate-500 hover:text-primary font-black uppercase tracking-widest text-[10px] transition-all flex items-center gap-2 group hover:translate-x-2">
@@ -77,23 +77,14 @@ export default function Footer() {
                     {/* Contact Info */}
                     <div>
                         <h4 className="text-slate-900 font-black uppercase tracking-[0.3em] text-[10px] mb-8 border-b border-slate-200 pb-4 flex items-center gap-2">
-                            <Globe size={12} className="text-primary" /> Global HQ
+                            <Globe size={12} className="text-primary" /> Contact
                         </h4>
                         <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="w-8 h-8 rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                                    <MapPin size={16} />
-                                </div>
-                                <p className="text-slate-500 text-xs font-bold leading-relaxed uppercase tracking-wider">
-                                    Vortex Global Command,<br />
-                                    USA
-                                </p>
-                            </div>
                             <div className="flex items-center gap-4">
                                 <div className="w-8 h-8 rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                                    <Phone size={16} />
+                                    <Mail size={16} />
                                 </div>
-                                <p className="text-slate-900 text-xs font-black uppercase tracking-widest">+1 (800) VORTEX-LOG</p>
+                                <p className="text-slate-900 text-xs font-black uppercase tracking-widest break-all">support@globalvortexlogistics.com</p>
                             </div>
                         </div>
                     </div>
@@ -110,7 +101,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="text-center lg:text-right">
-                        <p className="text-slate-400 font-black text-[9px] uppercase tracking-[0.4em] mb-4">© 2026 VORTEX GLOBAL LOGISTICS. SYSTEMS OPERATIONAL.</p>
+                        <p className="text-slate-400 font-black text-[9px] uppercase tracking-[0.4em] mb-4">© 2026 LES TRACK LOGISTICS. ALL SYSTEMS OPERATIONAL.</p>
                         <div className="flex gap-6 justify-center lg:justify-end">
                             <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Privacy Protocols</Link>
                             <Link href="#" className="text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Legal Terms</Link>

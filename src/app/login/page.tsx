@@ -49,17 +49,17 @@ export default function LoginPage() {
                 <div className="md:w-1/3 bg-slate-900 p-10 flex flex-col justify-between text-white relative">
                     <div className="relative z-10">
                         <LogIn size={48} className="text-primary mb-8" />
-                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">ESTABLISH <br/><span className="text-primary">UPLINK</span></h2>
+                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">CLIENT <br/><span className="text-primary">LOGIN</span></h2>
                     </div>
                     <div className="relative z-10 pt-10 border-t border-white/10">
-                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">LES TRACK</p>
                     </div>
                 </div>
 
                 <div className="md:w-2/3 p-10 sm:p-16">
                     <div className="mb-12">
-                        <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">SECURE AUTH</h1>
-                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your protocol credentials to access the global telemetry network.</p>
+                        <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">SECURE ACCESS</h1>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your credentials to access your tracking dashboard.</p>
                     </div>
 
                     {error && (
@@ -109,7 +109,7 @@ export default function LoginPage() {
                                 <Loader2 className="animate-spin" size={18} />
                             ) : (
                                 <>
-                                    SYNC UPLINK <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                                    LOG IN <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                                 </>
                             )}
                         </button>

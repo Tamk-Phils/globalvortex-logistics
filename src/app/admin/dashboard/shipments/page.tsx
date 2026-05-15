@@ -37,7 +37,7 @@ export default function ShipmentsList() {
 
     const loadShipments = async () => {
         // Optimistic Load
-        const cached = localStorage.getItem("vortex_shipments");
+        const cached = localStorage.getItem("lestrack_shipments");
         if (cached) {
             setShipments(JSON.parse(cached) as Shipment[]);
         }
@@ -58,7 +58,7 @@ export default function ShipmentsList() {
 
             if (data) {
                 setShipments(data as Shipment[]);
-                localStorage.setItem("vortex_shipments", JSON.stringify(data));
+                localStorage.setItem("lestrack_shipments", JSON.stringify(data));
             }
         } catch (err: any) {
             clearTimeout(timeoutId);
@@ -88,7 +88,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("vortex_shipments", JSON.stringify(updated));
+            localStorage.setItem("lestrack_shipments", JSON.stringify(updated));
         } catch (err) {
             console.error(err);
             alert("Failed to archive transit.");
@@ -109,7 +109,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("vortex_shipments", JSON.stringify(updated));
+            localStorage.setItem("lestrack_shipments", JSON.stringify(updated));
             alert(`Transit ${id} restored successfully.`);
         } catch (err) {
             console.error(err);
@@ -173,12 +173,12 @@ export default function ShipmentsList() {
             });
 
             setShipments(updatedShipments);
-            localStorage.setItem("vortex_shipments", JSON.stringify(updatedShipments));
+            localStorage.setItem("lestrack_shipments", JSON.stringify(updatedShipments));
 
             if (editingShipment.recipient_email) {
                 await notifyShipmentUpdate({
                     to: editingShipment.recipient_email,
-                    subject: `Vortex Global: Transit Update ${editingShipment.tracking_number}`,
+                    subject: `Les Track: Shipment Update ${editingShipment.tracking_number}`,
                     trackingNumber: editingShipment.tracking_number,
                     recipientName: editingShipment.recipient_name || 'Operator',
                     newStatus: newUpdate.status,
@@ -212,9 +212,9 @@ export default function ShipmentsList() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <Radar size={20} className="text-primary animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Fleet Management</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Shipment Management</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">TRANSIT <br/><span className="text-primary italic">PROTOCOLS.</span></h1>
+                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">ALL <br/><span className="text-primary italic">SHIPMENTS.</span></h1>
                 </div>
                 <div className="flex gap-4">
                     <button
@@ -228,7 +228,7 @@ export default function ShipmentsList() {
                         href="/admin/dashboard/add"
                         className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl flex items-center gap-4"
                     >
-                        <Plus size={20} /> INITIALIZE TRANSIT
+                        <Plus size={20} /> NEW SHIPMENT
                     </Link>
                 </div>
             </div>
@@ -241,7 +241,7 @@ export default function ShipmentsList() {
                     <div className="relative w-full max-w-xl">
                         <input
                             type="text"
-                            placeholder="SEARCH BY SIGNATURE OR NODE..."
+                            placeholder="SEARCH BY SHIPMENT ID OR NAME..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full bg-white border border-slate-200 rounded-sm py-5 px-8 pl-14 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
@@ -269,10 +269,10 @@ export default function ShipmentsList() {
                             <table className="w-full text-left">
                                 <thead>
                                     <tr className="bg-slate-900 text-white">
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">TRANSIT SIGNATURE</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">NODE TOPOLOGY</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">OPERATIONAL STATUS</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] text-right">COMMANDS</th>
+                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SHIPMENT ID</th>
+                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">RECIPIENT & ROUTE</th>
+                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">STATUS</th>
+                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] text-right">ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
@@ -294,7 +294,7 @@ export default function ShipmentsList() {
                                                                     {copyId === shipment.tracking_number ? <Check size={16} /> : <Copy size={16} />}
                                                                 </button>
                                                             </div>
-                                                            <p className="text-slate-400 text-[9px] font-black mt-1 uppercase tracking-widest">{shipment.item_type || 'GENERAL ASSET'}</p>
+                                                            <p className="text-slate-400 text-[9px] font-black mt-1 uppercase tracking-widest">{shipment.item_type || 'SHIPMENT'}</p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -368,7 +368,7 @@ export default function ShipmentsList() {
                     <div className="bg-white w-full max-w-xl max-h-[90vh] flex flex-col rounded-sm shadow-3xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-300">
                         <div className="p-12 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 shrink-0">
                             <div>
-                                <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">PUSH TELEMETRY</h3>
+                                <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">UPDATE SHIPMENT</h3>
                                 <p className="text-[10px] font-black text-primary mt-2 uppercase tracking-widest">ID: {editingShipment.tracking_number}</p>
                             </div>
                             <button
@@ -381,7 +381,7 @@ export default function ShipmentsList() {
 
                         <form onSubmit={handleUpdateStatus} className="p-12 space-y-10 overflow-y-auto">
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">NEW MILESTONE</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">NEW STATUS</label>
                                 <div className="relative">
                                     <select
                                         className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 appearance-none cursor-pointer outline-none"
@@ -401,7 +401,7 @@ export default function ShipmentsList() {
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">GEOSPATIAL LOCK</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">LOCATION (COORDINATES)</label>
                                 <div className="rounded-sm overflow-hidden border border-slate-200 shadow-inner">
                                     <MapPicker 
                                         initialLat={newUpdate.lat} 
@@ -412,7 +412,7 @@ export default function ShipmentsList() {
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">TELEMETRY LOG</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">UPDATE LOG</label>
                                 <textarea
                                     className="w-full bg-slate-50 border border-slate-200 rounded-sm py-6 px-8 focus:outline-none focus:border-primary font-bold text-slate-500 text-xs min-h-[120px] outline-none resize-none uppercase tracking-tight"
                                     placeholder="ENTER DESCRIPTIVE VARIANCE LOG..."
@@ -428,13 +428,13 @@ export default function ShipmentsList() {
                                     onClick={() => setIsModalOpen(false)}
                                     className="flex-1 bg-white border border-slate-200 text-slate-400 py-6 rounded-sm font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-all"
                                 >
-                                    TERMINATE
+                                    CANCEL
                                 </button>
                                 <button
                                     type="submit"
                                     className="flex-1 bg-slate-900 hover:bg-primary text-white py-6 rounded-sm font-black text-[10px] uppercase tracking-[0.4em] shadow-xl flex items-center justify-center gap-4 transition-all"
                                 >
-                                    <Save size={20} /> SYNC PROTOCOL
+                                    <Save size={20} /> SAVE UPDATE
                                 </button>
                             </div>
                         </form>

@@ -19,10 +19,10 @@ export default function Header() {
     }, []);
 
     const navLinks = [
-        { name: "TELEMETRY", href: "/tracking" },
-        { name: "INFRASTRUCTURE", href: "/about" },
-        { name: "NETWORK", href: "/contact" },
-        { name: "UPLINK", href: "/login" },
+        { name: "TRACKING", href: "/tracking" },
+        { name: "ABOUT US", href: "/about" },
+        { name: "SUPPORT", href: "/contact" },
+        { name: "LOGIN", href: "/login" },
     ];
 
     return (
@@ -34,8 +34,8 @@ export default function Header() {
                         <Link href="/" className="flex items-center gap-4 group">
                             <Logo className="w-10 h-10" />
                             <div className="flex flex-col">
-                                <span className={`text-xl font-black tracking-tighter leading-none uppercase transition-colors ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>VORTEX</span>
-                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Global</span>
+                                <span className={`text-xl font-black tracking-tighter leading-none uppercase transition-colors ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>LES TRACK</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-primary uppercase">Logistics</span>
                             </div>
                         </Link>
 
@@ -59,7 +59,7 @@ export default function Header() {
                                 <Search size={18} />
                             </button>
                             <Link href="/signup" className="bg-primary text-white px-8 py-3 rounded-sm text-[10px] font-black tracking-[0.3em] uppercase hover:bg-slate-900 transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0">
-                                JOIN NETWORK
+                                GET STARTED
                             </Link>
                         </div>
 
@@ -99,7 +99,7 @@ export default function Header() {
                                 className="bg-primary text-white py-5 rounded-sm text-xs font-black tracking-[0.4em] uppercase text-center shadow-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                JOIN NETWORK
+                                GET STARTED
                             </Link>
                         </div>
                     </motion.div>

@@ -36,7 +36,7 @@ interface UpdateShipmentParams extends BaseEmailParams {
     description: string;
 }
 
-const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://vortex-global.io"}/tracking`;
+const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://lestrack.com"}/tracking`;
 
 export async function sendShipmentCreatedEmail({
     to,
@@ -52,20 +52,20 @@ export async function sendShipmentCreatedEmail({
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
             <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 4px 4px 0 0;">
-                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX GLOBAL</h1>
-                <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Operational Telemetry</p>
+                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">LES TRACK</h1>
+                <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Smart Logistics Platform</p>
             </div>
             <div style="padding: 40px; background-color: #ffffff;">
-                <h2 style="color: #0f172a; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 20px;">Protocol Initiated: New Shipment</h2>
+                <h2 style="color: #0f172a; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 20px;">New Shipment Created</h2>
                 <p style="color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                    IDENTIFIER: <strong>${recipientName}</strong>,
+                    Hello <strong>${recipientName}</strong>,
                 </p>
                 <p style="color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                    A new transit protocol has been established by <strong>${senderName}</strong>. Your asset is now being tracked across the Vortex Global network.
+                    A new shipment has been created for you by <strong>${senderName}</strong>. You can track your package in real-time on our platform.
                 </p>
                 
                 <div style="background-color: #f8fafc; padding: 25px; border-radius: 4px; margin: 30px 0; border: 1px solid #e2e8f0;">
-                    <p style="color: #94a3b8; font-size: 9px; margin: 0 0 10px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Tracking Signature</p>
+                    <p style="color: #94a3b8; font-size: 9px; margin: 0 0 10px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Tracking Number</p>
                     <p style="color: #0070f3; font-family: monospace; font-size: 28px; font-weight: 900; margin: 0;">
                         ${trackingNumber}
                     </p>
@@ -75,11 +75,11 @@ export async function sendShipmentCreatedEmail({
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <td style="padding: 15px 0; border-bottom: 1px solid #f1f5f9;">
-                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Origin Node</span><br/>
+                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Origin</span><br/>
                                 <strong style="color: #0f172a; font-size: 14px; text-transform: uppercase;">${origin}</strong>
                             </td>
                             <td style="padding: 15px 0; border-bottom: 1px solid #f1f5f9; text-align: right;">
-                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Destination Node</span><br/>
+                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Destination</span><br/>
                                 <strong style="color: #0f172a; font-size: 14px; text-transform: uppercase;">${destination}</strong>
                             </td>
                         </tr>
@@ -87,11 +87,11 @@ export async function sendShipmentCreatedEmail({
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
-                    <a href="${trackingLink}" style="background-color: #0070F3; color: white; padding: 18px 36px; text-decoration: none; border-radius: 2px; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; display: inline-block;">Enter Portal</a>
+                    <a href="${trackingLink}" style="background-color: #0070F3; color: white; padding: 18px 36px; text-decoration: none; border-radius: 2px; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; display: inline-block;">Track Package</a>
                 </div>
             </div>
             <div style="text-align: center; padding: 30px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <p>&copy; 2026 Vortex Global Logistics. Systems Operational.</p>
+                <p>&copy; 2026 Les Track Logistics. All Systems Operational.</p>
             </div>
         </div>
     `;
@@ -99,7 +99,7 @@ export async function sendShipmentCreatedEmail({
     try {
         const transporter = getTransporter();
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Global"}" <${process.env.FROM_EMAIL}>`,
+            from: `"${process.env.FROM_NAME || "Les Track"}" <${process.env.FROM_EMAIL}>`,
             to,
             subject,
             html: htmlContent,
@@ -125,16 +125,16 @@ export async function sendShipmentUpdateEmail({
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
             <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 4px 4px 0 0;">
-                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX GLOBAL</h1>
-                <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Operational Telemetry</p>
+                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">LES TRACK</h1>
+                <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Smart Logistics Platform</p>
             </div>
             <div style="padding: 40px; background-color: #ffffff;">
-                <h2 style="color: #0f172a; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 20px;">Telemetry Update</h2>
+                <h2 style="color: #0f172a; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 20px;">Shipment Update</h2>
                 <p style="color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                    IDENTIFIER: <strong>${recipientName}</strong>,
+                    Hello <strong>${recipientName}</strong>,
                 </p>
                 <p style="color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                    Transit signature <strong>${trackingNumber}</strong> has been updated in the global ledger.
+                    Your shipment <strong>${trackingNumber}</strong> has been updated.
                 </p>
                 
                 <div style="background-color: #f8fafc; padding: 25px; border-radius: 4px; margin: 30px 0; border: 1px solid #e2e8f0;">
@@ -143,21 +143,21 @@ export async function sendShipmentUpdateEmail({
                         <p style="color: #0070f3; font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase;">${newStatus}</p>
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <p style="color: #94a3b8; font-size: 9px; margin: 0 0 5px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Current Node</p>
+                        <p style="color: #94a3b8; font-size: 9px; margin: 0 0 5px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Current Location</p>
                         <p style="color: #0f172a; font-size: 14px; margin: 0; font-weight: 700; text-transform: uppercase;">${location || "In Transit"}</p>
                     </div>
                     <div>
-                        <p style="color: #94a3b8; font-size: 9px; margin: 0 0 5px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Protocol Details</p>
-                        <p style="color: #64748b; font-size: 12px; margin: 0; font-weight: 500; line-height: 1.5;">${description || "No additional variance reported."}</p>
+                        <p style="color: #94a3b8; font-size: 9px; margin: 0 0 5px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Update Details</p>
+                        <p style="color: #64748b; font-size: 12px; margin: 0; font-weight: 500; line-height: 1.5;">${description || "No additional information reported."}</p>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
-                    <a href="${trackingLink}" style="background-color: #0070F3; color: white; padding: 18px 36px; text-decoration: none; border-radius: 2px; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; display: inline-block;">Enter Portal</a>
+                    <a href="${trackingLink}" style="background-color: #0070F3; color: white; padding: 18px 36px; text-decoration: none; border-radius: 2px; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; display: inline-block;">Track Package</a>
                 </div>
             </div>
             <div style="text-align: center; padding: 30px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <p>&copy; 2026 Vortex Global Logistics. Systems Operational.</p>
+                <p>&copy; 2026 Les Track Logistics. All Systems Operational.</p>
             </div>
         </div>
     `;
@@ -165,7 +165,7 @@ export async function sendShipmentUpdateEmail({
     try {
         const transporter = getTransporter();
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Global"}" <${process.env.FROM_EMAIL}>`,
+            from: `"${process.env.FROM_NAME || "Les Track"}" <${process.env.FROM_EMAIL}>`,
             to,
             subject,
             html: htmlContent,

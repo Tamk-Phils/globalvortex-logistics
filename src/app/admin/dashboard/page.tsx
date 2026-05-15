@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Package, TrendingUp, AlertCircle, CheckCircle, ArrowUpRight, Radar, Activity, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 
 interface Shipment {
     tracking_number: string;
@@ -24,26 +25,34 @@ export default function DashboardOverview() {
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        const timer = setTimeout(() => {
-            const saved = localStorage.getItem("vortex_shipments");
-            const shipments: Shipment[] = saved ? JSON.parse(saved) : [];
+        const fetchData = async () => {
+            const { data: shipments, error } = await supabase
+                .from('shipments')
+                .select('*');
 
-            const total = shipments.length;
-            const inTransit = shipments.filter(s => (s.current_status || s.status) === "In Transit").length;
-            const delivered = shipments.filter(s => (s.current_status || s.status) === "Delivered").length;
-            const exceptions = shipments.filter(s => (s.current_status || s.status) === "Held").length;
+            if (error) {
+                console.error("Error fetching stats:", error);
+                return;
+            }
 
-            setStats([
-                { label: "TOTAL TRANSITS", value: total.toLocaleString(), icon: Package, color: "text-primary", bg: "bg-primary/5" },
-                { label: "ACTIVE SYNC", value: inTransit.toLocaleString(), icon: Activity, color: "text-primary", bg: "bg-primary/5" },
-                { label: "VERIFIED NODES", value: delivered.toLocaleString(), icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
-                { label: "EXCEPTIONS", value: exceptions.toLocaleString(), icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
-            ]);
+            if (shipments) {
+                const total = shipments.length;
+                const inTransit = shipments.filter(s => (s.current_status || s.status) === "In Transit").length;
+                const delivered = shipments.filter(s => (s.current_status || s.status) === "Delivered").length;
+                const exceptions = shipments.filter(s => (s.current_status || s.status) === "Held").length;
 
-            setRecentShipments(shipments.slice(-5).reverse());
-        }, 0);
+                setStats([
+                    { label: "TOTAL SHIPMENTS", value: total.toLocaleString(), icon: Package, color: "text-primary", bg: "bg-primary/5" },
+                    { label: "IN TRANSIT", value: inTransit.toLocaleString(), icon: Activity, color: "text-primary", bg: "bg-primary/5" },
+                    { label: "DELIVERED", value: delivered.toLocaleString(), icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
+                    { label: "EXCEPTIONS", value: exceptions.toLocaleString(), icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
+                ]);
 
-        return () => clearTimeout(timer);
+                setRecentShipments(shipments.slice(-5).reverse());
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (
@@ -52,12 +61,12 @@ export default function DashboardOverview() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <Radar size={20} className="text-primary animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Operational Intelligence</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Fleet Intelligence</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">GLOBAL <br/><span className="text-primary italic">TELEMETRY.</span></h1>
+                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">LES TRACK <br/><span className="text-primary italic">DASHBOARD.</span></h1>
                 </div>
                 <Link href="/admin/dashboard/shipments" className="bg-slate-900 text-white px-8 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-3 hover:bg-primary transition-all shadow-xl">
-                    ALL TRANSIT PROTOCOLS <ArrowUpRight size={16} />
+                    VIEW ALL SHIPMENTS <ArrowUpRight size={16} />
                 </Link>
             </div>
 
@@ -81,19 +90,19 @@ export default function DashboardOverview() {
                     </div>
                     <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-3 uppercase tracking-[0.4em]">
                         <Activity className="text-primary" size={18} />
-                        RECENT TELEMETRY UPDATES
+                        RECENT SHIPMENT UPDATES
                     </h3>
                     <div className="space-y-6 relative z-10">
                         {recentShipments.length === 0 ? (
-                            <div className="py-20 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest italic bg-slate-50 border border-dashed border-slate-200 rounded-sm">NO RECENT TELEMETRY DETECTED</div>
+                            <div className="py-20 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest italic bg-slate-50 border border-dashed border-slate-200 rounded-sm">NO RECENT SHIPMENTS FOUND</div>
                         ) : recentShipments.map((shipment) => (
                             <div key={shipment.tracking_number} className="flex gap-6 items-center p-6 rounded-sm border border-slate-50 hover:border-primary/20 hover:bg-slate-50/50 transition-all group bg-white/50 backdrop-blur-sm">
                                 <div className="w-12 h-12 rounded-sm bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all">
                                     <Package size={22} />
                                 </div>
                                 <div className="flex-1">
-                                    <p className="font-black text-slate-900 text-sm uppercase tracking-tight">TRANSIT <span className="text-primary">#{shipment.tracking_number}</span> SYNC COMPLETE</p>
-                                    <p className="text-slate-400 font-bold text-[10px] mt-1 uppercase tracking-widest">STATUS: {shipment.current_status} • NODE SYNC: {new Date(shipment.created_at).toLocaleDateString()}</p>
+                                    <p className="font-black text-slate-900 text-sm uppercase tracking-tight">SHIPMENT <span className="text-primary">#{shipment.tracking_number}</span> UPDATE</p>
+                                    <p className="text-slate-400 font-bold text-[10px] mt-1 uppercase tracking-widest">STATUS: {shipment.current_status} • UPDATED: {new Date(shipment.created_at).toLocaleDateString()}</p>
                                 </div>
                                 <div className="text-[9px] font-black text-slate-300 uppercase tracking-widest px-3 py-1 bg-slate-100 rounded-sm">LOGS</div>
                             </div>
@@ -109,7 +118,7 @@ export default function DashboardOverview() {
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[80px] rounded-full pointer-events-none" />
                         <h3 className="text-[10px] font-black text-primary mb-10 flex items-center gap-3 uppercase tracking-[0.4em] relative z-10">
                             <Zap size={18} />
-                            SYSTEM INTEGRITY
+                            SERVER STATUS
                         </h3>
                         <div className="space-y-8 relative z-10">
                             <div className="space-y-4">
@@ -117,7 +126,7 @@ export default function DashboardOverview() {
                                     <span className="text-white/40 font-black uppercase text-[10px] tracking-widest">DATABASE CLUSTER</span>
                                     <div className="flex items-center gap-2 font-black text-primary text-[10px] uppercase tracking-widest">
                                         <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                                        SYNCED
+                                        CONNECTED
                                     </div>
                                 </div>
                                 <div className="h-1 bg-white/5 rounded-full overflow-hidden">
@@ -127,10 +136,10 @@ export default function DashboardOverview() {
 
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center">
-                                    <span className="text-white/40 font-black uppercase text-[10px] tracking-widest">TELEMETRY API</span>
+                                    <span className="text-white/40 font-black uppercase text-[10px] tracking-widest">API GATEWAY</span>
                                     <div className="flex items-center gap-2 font-black text-primary text-[10px] uppercase tracking-widest">
                                         <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                                        OPTIMAL
+                                        ONLINE
                                     </div>
                                 </div>
                                 <div className="h-1 bg-white/5 rounded-full overflow-hidden">
@@ -141,8 +150,8 @@ export default function DashboardOverview() {
 
                         <div className="mt-12 pt-10 border-t border-white/5 text-center relative z-10">
                             <p className="text-[9px] font-black text-white/20 mb-2 uppercase tracking-[0.3em]">Institutional Access</p>
-                            <p className="font-black text-sm uppercase tracking-widest mb-8">Vortex Command Hotline</p>
-                            <button className="w-full bg-white text-slate-900 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl">INITIATE UPLINK</button>
+                            <p className="font-black text-sm uppercase tracking-widest mb-8">Les Track Support</p>
+                            <button className="w-full bg-white text-slate-900 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl">CONTACT SUPPORT</button>
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@ export default function ChatWidget() {
     // Load or create room on first open
     useEffect(() => {
         if (isOpen && !roomId && user) {
-            const savedRoomId = localStorage.getItem(`vortex_chat_room_${user.id}`);
+            const savedRoomId = localStorage.getItem(`lestrack_chat_room_${user.id}`);
             if (savedRoomId) {
                 setRoomId(savedRoomId);
                 loadMessages(savedRoomId);
@@ -102,9 +102,9 @@ export default function ChatWidget() {
             if (error) throw error;
             if (data) {
                 setRoomId(data.id);
-                localStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
+                localStorage.setItem(`lestrack_chat_room_${user.id}`, data.id);
                 // Send initial greeting
-                await sendMessage(data.id, "Welcome to the Vortex Support Uplink. How can we assist with your telemetry today?", 'admin');
+                await sendMessage(data.id, "Welcome to Les Track Support. How can we help you today?", 'admin');
             }
         } catch (err) {
             console.error("Error creating chat room:", err);
@@ -167,10 +167,10 @@ export default function ChatWidget() {
                                     <Headset size={20} className="text-primary" />
                                 </div>
                                 <div>
-                                    <p className="font-black text-xs uppercase tracking-widest">Support Uplink</p>
+                                    <p className="font-black text-xs uppercase tracking-widest">Support Chat</p>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
-                                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Agents Operational</p>
+                                        <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.5)]" />
+                                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Support Active</p>
                                     </div>
                                 </div>
                             </div>

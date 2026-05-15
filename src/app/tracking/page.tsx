@@ -32,14 +32,14 @@ export default function TrackingPage() {
                         >
                             <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
                                 <Radar size={14} className="animate-spin-slow" />
-                                <span className="text-slate-500">Global Telemetry Node Active</span>
+                                <span className="text-slate-500">Global Tracking Active</span>
                             </div>
                             <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
-                                TRANSIT <span className="text-primary italic">INTELLIGENCE.</span>
+                                SHIPMENT <span className="text-primary italic">TRACKING.</span>
                             </h1>
                             <p className="text-xl text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight">
-                                Access the Vortex Global secure tracking uplink. 
-                                Synchronize with our planetary network for high-precision transit verification.
+                                Enter your tracking number to see real-time updates on your shipment. 
+                                Our global network ensures your assets are always within reach.
                             </p>
                         </motion.div>
 
@@ -52,9 +52,9 @@ export default function TrackingPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-32">
                             {[
-                                { icon: ShieldCheck, title: "DATA LOCK", desc: "Enterprise-grade encryption for every transit packet." },
-                                { icon: Activity, title: "PLANETARY SYNC", desc: "Real-time synchronization with our global hub network." },
-                                { icon: MapPin, title: "SECURE NODES", desc: "Operational visibility across all 14,200+ endpoints." }
+                                { icon: ShieldCheck, title: "SECURE DATA", desc: "Your shipping information is protected by industry-standard encryption." },
+                                { icon: Activity, title: "REAL-TIME UPDATES", desc: "Get instant notifications and status changes for your shipments." },
+                                { icon: MapPin, title: "GLOBAL REACH", desc: "Reliable tracking across our entire international logistics network." }
                             ].map((item, i) => (
                                 <motion.div 
                                     key={i}

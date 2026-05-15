@@ -48,24 +48,22 @@ export default function Home() {
   return (
     <main className="relative bg-white min-h-screen overflow-hidden text-slate-900">
 
-      {/* Light & Velocity Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-40 lg:pt-48 lg:pb-64 hero-gradient">
-        {/* Subtle Background Elements */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
-        
-        {/* Responsive Hero Image (Moves to background on mobile) */}
-        <div className="absolute inset-0 lg:hidden z-0">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-32 pb-40 lg:pt-48 lg:pb-64 bg-slate-900">
+        {/* Clear Background Image */}
+        <div className="absolute inset-0 z-0">
             <Image 
                 src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
-                alt="Vortex Global Command" 
+                alt="Les Track Logistics" 
                 fill 
-                className="object-cover opacity-20 grayscale" 
+                className="object-cover object-[75%_50%]" 
+                priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white" />
+            {/* Subtle Overlays for Readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -73,81 +71,69 @@ export default function Home() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-12"
             >
-              <div className="inline-flex items-center gap-3 bg-white px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] border border-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] border border-slate-200 shadow-sm">
                 <Radar size={14} className="text-primary animate-spin-slow" />
-                <span className="text-slate-500">Cloud Logistics Protocol</span>
+                <span className="text-slate-600">Smart Logistics Platform</span>
               </div>
               
               <h1 className="text-7xl md:text-9xl font-black leading-[0.85] tracking-tighter text-slate-900">
-                VORTEX <br />
-                <span className="text-primary italic">VELOCITY.</span>
+                LES <br />
+                <span className="text-primary italic">TRACK.</span>
               </h1>
               
-              <p className="text-xl text-slate-500 leading-relaxed max-w-xl font-bold uppercase tracking-tight">
-                Experience the next generation of global transit. Pure speed, absolute visibility, and autonomous intelligence integrated into a single cloud platform.
+              <p className="text-xl text-slate-900 leading-relaxed max-w-xl font-black uppercase tracking-tight">
+                Simple, fast, and reliable shipping. Track your assets across the globe with real-time intelligence and absolute precision.
               </p>
 
               <div className="flex flex-wrap gap-6 pt-4">
                 <Link href="/tracking" className="inline-flex items-center gap-4 bg-primary text-white px-12 py-6 rounded-sm font-black text-xs uppercase tracking-[0.3em] hover:bg-slate-900 transition-all shadow-xl hover:shadow-2xl group">
-                  Enter Portal <MoveRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                  Track Package <MoveRight size={18} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
-                <Link href="/login" className="inline-flex items-center gap-4 bg-white text-slate-900 px-12 py-6 rounded-sm font-black text-xs uppercase tracking-[0.3em] hover:bg-slate-50 transition-all border border-slate-200 shadow-sm">
-                  Client Access
+                <Link href="/login" className="inline-flex items-center gap-4 bg-white/90 backdrop-blur-md text-slate-900 px-12 py-6 rounded-sm font-black text-xs uppercase tracking-[0.3em] hover:bg-slate-50 transition-all border border-slate-200 shadow-sm">
+                  Client Login
                 </Link>
               </div>
 
-              <div className="flex gap-12 pt-10 border-t border-slate-100 items-center">
+              <div className="flex gap-12 pt-10 border-t border-slate-200/50 items-center">
                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Global Nodes</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Global Reach</p>
                     <p className="text-3xl font-black text-slate-900 tracking-tighter">14,200+</p>
                  </div>
                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Transit Speed</p>
-                    <p className="text-3xl font-black text-slate-900 tracking-tighter">0.08ms</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Delivery Speed</p>
+                    <p className="text-3xl font-black text-slate-900 tracking-tighter">Fast & Secure</p>
                  </div>
               </div>
             </motion.div>
 
-            <div className="relative h-[700px] w-full hidden lg:block">
-              {/* Institutional Desktop Image */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.5 }}
-                className="absolute inset-0 bg-slate-100 rounded-sm overflow-hidden border border-slate-200 shadow-2xl"
-              >
-                 <Image 
-                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
-                   alt="Vortex Global Command Center" 
-                   fill 
-                   className="object-cover opacity-90 hover:opacity-100 transition-all duration-1000 grayscale hover:grayscale-0" 
-                 />
-                 <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent" />
-              </motion.div>
-              
-              {/* Floating Performance Metric */}
+            <div className="relative h-[600px] w-full hidden lg:flex items-center justify-center">
+              {/* Floating Performance Metric (Now floating freely over the clear background) */}
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -bottom-10 -left-20 bg-white p-10 rounded-sm border border-slate-100 shadow-2xl z-20 text-slate-900 min-w-[320px] backdrop-blur-xl"
+                className="bg-white/80 backdrop-blur-2xl p-12 rounded-sm border border-white shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)] z-20 text-slate-900 min-w-[380px]"
               >
-                <div className="flex items-center gap-6 mb-4">
-                    <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center text-primary border border-primary/10">
-                        <TrendingUp size={32} />
+                <div className="flex items-center gap-8 mb-6">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary border border-primary/20">
+                        <TrendingUp size={40} />
                     </div>
                     <div>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-50 text-slate-500">Efficiency Index</p>
-                        <p className="text-4xl font-black tracking-tighter">99.98<span className="text-primary">%</span></p>
+                        <p className="text-[11px] font-black uppercase tracking-[0.3em] opacity-60 text-slate-600">Efficiency Index</p>
+                        <p className="text-5xl font-black tracking-tighter">99.98<span className="text-primary">%</span></p>
                     </div>
                 </div>
-                <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-1.5 w-full bg-slate-200/50 rounded-full overflow-hidden">
                     <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: "99.9%" }}
                         transition={{ duration: 2, delay: 1.5 }}
-                        className="h-full bg-primary" 
+                        className="h-full bg-primary shadow-[0_0_12px_rgba(0,112,243,0.5)]" 
                     />
+                </div>
+                <div className="mt-8 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    <span>Peak Performance</span>
+                    <span className="text-primary animate-pulse">Live Tracking</span>
                 </div>
               </motion.div>
             </div>
@@ -169,10 +155,10 @@ export default function Home() {
         <div className="container mx-auto px-10 relative z-10">
            <div className="mb-24 max-w-3xl">
               <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[1.0] tracking-tighter uppercase text-slate-900">
-                 CLOUD <br /> <span className="text-primary italic">PRECISION.</span>
+                 SMART <br /> <span className="text-primary italic">SHIPPING.</span>
               </h2>
               <p className="text-slate-500 text-xl font-bold uppercase tracking-tight leading-relaxed max-w-2xl">
-                 Our infrastructure leverages professional-grade data hubs and global satellite links to provide the industry&apos;s most reliable transit intelligence.
+                 Our infrastructure uses advanced tracking and global logistics networks to provide the most reliable shipping experience.
               </p>
            </div>
 
@@ -218,11 +204,10 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto mb-24">
             <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 uppercase tracking-tighter">
-                CORE <span className="text-primary italic">SYSTEMS.</span>
+                OUR <span className="text-primary italic">PROMISE.</span>
             </h2>
             <p className="text-slate-500 text-xl font-bold uppercase tracking-tight leading-relaxed">
-              Vortex Global is built on a foundation of cryptographic security and 
-              clinical infrastructure, setting the new benchmark for global logistics.
+              Les Track is built on trust and efficiency, setting the new standard for global shipping and asset tracking.
             </p>
           </div>
 
@@ -275,19 +260,19 @@ export default function Home() {
                 name: "Sarah Vance",
                 role: "Operations Manager",
                 company: "Nova Logistics",
-                quote: "Vortex Global has transformed our replenishment cycles. The telemetry is flawless, and the speed is unprecedented."
+                quote: "Les Track has transformed our shipping cycles. The tracking is flawless, and the speed is amazing."
               },
               {
                 name: "Marcus Thorne",
-                role: "Director of Tech",
-                company: "Cyberdyne",
-                quote: "Transitioning to the Vortex protocol was the best decision for our high-value asset division. Security is now absolute."
+                role: "Business Owner",
+                company: "Tech Corp",
+                quote: "Switching to Les Track was the best decision for our business. Security and visibility are now top-notch."
               },
               {
                 name: "Elena Rodriguez",
                 role: "Lead Engineer",
                 company: "Horizon",
-                quote: "The API latency is nonexistent. We've integrated Vortex into our core autonomous routing and haven't looked back."
+                quote: "The interface is so simple. We've integrated Les Track into our daily operations and haven't looked back."
               }
             ].map((t, i) => (
               <motion.div
@@ -327,17 +312,17 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-tight tracking-tighter uppercase">
-                SYSTEM <br />
-                <span className="text-primary italic">GUIDANCE.</span>
+                NEED <br />
+                <span className="text-primary italic">HELP?</span>
               </h2>
               <p className="text-slate-500 text-xl font-bold mb-12 leading-relaxed uppercase tracking-tight">
-                Technical documentation on transit protocols, autonomous routing, and centralized security.
+                Quick answers to your shipping and tracking questions.
               </p>
               <div className="p-10 bg-white border border-slate-200 rounded-sm shadow-xl">
-                <p className="font-black text-slate-900 mb-4 text-xl uppercase tracking-[0.3em]">ESTABLISH UPLINK</p>
-                <p className="text-slate-500 font-bold mb-10 text-sm uppercase tracking-tight">Our technical support engineering team is ready to integrate your assets into the Vortex protocol.</p>
+                <p className="font-black text-slate-900 mb-4 text-xl uppercase tracking-[0.3em]">GET IN TOUCH</p>
+                <p className="text-slate-500 font-bold mb-10 text-sm uppercase tracking-tight">Our support team is ready to help you with your shipping needs.</p>
                 <Link href="/contact" className="inline-flex items-center gap-4 bg-primary text-white px-10 py-5 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-slate-900 transition-all shadow-xl">
-                  Contact Uplink <MoveRight size={18} />
+                  Contact Support <MoveRight size={18} />
                 </Link>
               </div>
             </motion.div>
@@ -349,17 +334,17 @@ export default function Home() {
               className="space-y-4"
             >
               <FAQItem
-                question="HOW DOES ORBITAL TELEMETRY ENSURE PRECISION?"
-                answer="Vortex utilizes a proprietary LEO satellite constellation with sub-meter resolution sensors. Every transit is tracked in real-time with centimeter-level accuracy."
-              />
-              <FAQItem
-                 question="WHAT IS THE AUTONOMOUS ROUTING PROTOCOL?"
-                 answer="Our AI engine, VORTEX-CORE, analyzes millions of data points—including port congestion and weather—to reroute assets before delays occur."
+                 question="HOW DO I TRACK MY PACKAGE?"
+                 answer="Simply enter your tracking number on our homepage or tracking portal to see real-time updates on your shipment."
                />
                <FAQItem
-                 question="IS THE NETWORK CENTRALIZED?"
-                 answer="Vortex Global uses a hybrid architecture, combining high-speed central processing with decentralized edge nodes for maximum reliability."
-               />
+                  question="WHAT SHIPPING SERVICES DO YOU OFFER?"
+                  answer="We provide a range of shipping solutions including express delivery, international freight, and specialized asset tracking."
+                />
+                <FAQItem
+                  question="IS MY DATA SECURE?"
+                  answer="Yes, Les Track uses industry-standard encryption to ensure all your shipping and personal data remains private and secure."
+                />
             </motion.div>
           </div>
         </div>

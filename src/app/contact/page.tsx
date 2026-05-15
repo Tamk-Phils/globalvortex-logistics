@@ -27,7 +27,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.1 }}
                         className="text-6xl md:text-8xl font-black text-slate-900 mb-8 uppercase tracking-tighter leading-[0.85]"
                     >
-                        ESTABLISH <br/><span className="text-primary italic">COMMUNICATION.</span>
+                        CONTACT <br/><span className="text-primary italic">SUPPORT.</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.2 }}
                         className="text-xl text-slate-500 font-bold max-w-3xl mx-auto uppercase tracking-tight leading-relaxed"
                     >
-                        Synchronize with the Vortex Global response unit. Whether you require telemetry integration or protocol escalation, our engineers are operational 24/7.
+                        Have a question about your shipment or our services? Our team is available 24/7 to assist you with your logistics needs.
                     </motion.p>
                 </div>
 
@@ -43,23 +43,16 @@ export default function ContactPage() {
                     {[
                         { 
                             icon: MessageSquare, 
-                            title: "CLOUD CHAT", 
-                            desc: "Immediate data exchange via our decentralized support node.", 
-                            action: "ACTIVATE WIDGET", 
+                            title: "LIVE CHAT", 
+                            desc: "Instant help from our support team via our live chat widget.", 
+                            action: "START CHAT", 
                             color: "text-primary" 
                         },
                         { 
                             icon: Mail, 
-                            title: "SECURE ENVELOPE", 
-                            desc: "Transmit detailed technical documentation or institutional inquiries.", 
-                            action: "UPLINK@VORTEX.IO", 
-                            color: "text-primary" 
-                        },
-                        { 
-                            icon: Phone, 
-                            title: "HOTLINE PRIORITY", 
-                            desc: "Direct voice interface for emergency protocol management.", 
-                            action: "+1 (800) VORTEX-LOG", 
+                            title: "EMAIL SUPPORT", 
+                            desc: "Send us an email for detailed inquiries or documentation.", 
+                            action: "SUPPORT@GLOBALVORTEXLOGISTICS.COM", 
                             color: "text-primary" 
                         }
                     ].map((item, i) => (
@@ -101,15 +94,15 @@ export default function ContactPage() {
                         </div>
                         
                         <div className="relative z-10">
-                            <h3 className="text-4xl font-black mb-6 uppercase tracking-tighter leading-tight">TRANSMIT <br/><span className="text-primary">DATA.</span></h3>
-                            <p className="text-white/40 font-bold leading-relaxed mb-16 uppercase tracking-tight text-sm">Submit your credentials and message to the Vortex Global routing engine.</p>
+                            <h3 className="text-4xl font-black mb-6 uppercase tracking-tighter leading-tight">GET IN <br/><span className="text-primary">TOUCH.</span></h3>
+                            <p className="text-white/40 font-bold leading-relaxed mb-16 uppercase tracking-tight text-sm">Send us a message and our support team will get back to you shortly.</p>
                             <div className="space-y-10">
                                 <div className="flex items-start gap-6">
                                     <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary shrink-0">
                                         <MapPin size={20} />
                                     </div>
                                     <div>
-                                        <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">COMMAND CENTER</p>
+                                        <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">HEADQUARTERS</p>
                                         <p className="text-white/40 text-xs font-bold uppercase tracking-tight">USA</p>
                                     </div>
                                 </div>
@@ -119,7 +112,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">GLOBAL REACH</p>
-                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">Synchronized nodes in NY, London, Tokyo</p>
+                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">Support nodes in NY, London, Tokyo</p>
                                     </div>
                                 </div>
                             </div>
@@ -138,16 +131,16 @@ export default function ContactPage() {
                                 </div>
                             </div>
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Uplink Email</label>
-                                <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-200 outline-none" placeholder="IDENTITY@VORTEX.IO" />
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Email Address</label>
+                                <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-200 outline-none" placeholder="YOUR@EMAIL.COM" />
                             </div>
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Protocol Message</label>
-                                <textarea rows={5} className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all resize-none placeholder:text-slate-200 outline-none" placeholder="TRANSMIT REQUEST..." />
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Your Message</label>
+                                <textarea rows={5} className="w-full bg-slate-50 border border-slate-200 rounded-sm px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all resize-none placeholder:text-slate-200 outline-none" placeholder="HOW CAN WE HELP?" />
                             </div>
                             <button className="w-full bg-slate-900 hover:bg-primary text-white font-black text-[10px] uppercase tracking-[0.4em] py-6 rounded-sm transition-all shadow-xl flex items-center justify-center gap-3 group">
                                 <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                TRANSMIT UPLINK
+                                SEND MESSAGE
                             </button>
                         </form>
                     </div>

@@ -28,22 +28,22 @@ export default function AdminLogin() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-6 bg-white relative overflow-hidden">
+        <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 bg-white relative overflow-hidden">
             {/* Background glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-lg bg-white p-12 md:p-16 rounded-sm shadow-3xl border border-slate-200 relative z-10"
+                className="w-full max-w-lg bg-white p-8 sm:p-12 md:p-16 rounded-sm shadow-3xl border border-slate-200 relative z-10"
             >
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
+                <div className="text-center mb-12 sm:mb-16">
+                    <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-8 sm:mb-10 shadow-sm">
                         <Radar size={14} className="animate-spin-slow" />
-                        <span className="text-slate-500">Command Center Uplink</span>
+                        <span className="text-slate-500">Admin Portal</span>
                     </div>
-                    <h2 className="text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase leading-[0.9]">VORTEX <br/><span className="text-primary italic">COMMAND.</span></h2>
-                    <p className="text-slate-400 font-bold uppercase tracking-tight text-xs mt-4">Authorized Personnel Only</p>
+                    <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase leading-[0.9]">LES TRACK <br/><span className="text-primary italic">ADMIN.</span></h2>
+                    <p className="text-slate-400 font-bold uppercase tracking-tight text-[10px] sm:text-xs mt-4">Authorized Personnel Only</p>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-10">
