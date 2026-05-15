@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://globalvortexlogistics.com"),
   alternates: {
+
     canonical: "/",
   },
   openGraph: {
@@ -64,9 +64,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
-  },
-  other: {
-    "Content-Security-Policy": "upgrade-insecure-requests",
   },
 };
 
