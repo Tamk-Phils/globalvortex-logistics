@@ -84,7 +84,7 @@ export default function Footer() {
                                 <div className="w-8 h-8 rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
                                     <Mail size={16} />
                                 </div>
-                                <p className="text-slate-900 text-xs font-black uppercase tracking-widest break-all">support@vortexglobal.io</p>
+                                <p className="text-slate-900 text-xs font-black uppercase tracking-widest break-all">support@globalvortexlogistics.com</p>
                             </div>
                         </div>
                     </div>

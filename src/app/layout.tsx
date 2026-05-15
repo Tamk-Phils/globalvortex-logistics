@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://vortexglobal.io"),
+  metadataBase: new URL("https://globalvortexlogistics.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Vortex Global | Smart Logistics & Real-Time Tracking",
     description: "Your trusted partner in global shipping. Providing reliable, fast, and transparent logistics solutions worldwide.",
-    url: "https://vortexglobal.io",
+    url: "https://globalvortexlogistics.com",
     siteName: "Vortex Global",
     images: [
       {

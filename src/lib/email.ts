@@ -36,7 +36,7 @@ interface UpdateShipmentParams extends BaseEmailParams {
     description: string;
 }
 
-const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://vortexglobal.io"}/tracking`;
+const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://globalvortexlogistics.com"}/tracking`;
 
 export async function sendShipmentCreatedEmail({
     to,
