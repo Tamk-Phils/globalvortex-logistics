@@ -27,7 +27,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 items-stretch">
                 <div className="relative rounded-sm overflow-hidden border border-slate-200 shadow-2xl min-h-[400px]">
                     <Image 
-                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1500" 
+                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" 
                         alt="Vortex Infrastructure" 
                         fill 
                         className="object-cover transition-all duration-1000"
@@ -91,7 +91,7 @@ export default function AboutPage() {
                         </div>
                         <div className="col-span-2 p-10 bg-slate-50 border border-slate-100 rounded-sm relative overflow-hidden h-40">
                              <Image 
-                                src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1500" 
+                                src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200" 
                                 alt="Warehouse Hub" 
                                 fill 
                                 className="object-cover opacity-20 grayscale"

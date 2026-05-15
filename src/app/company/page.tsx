@@ -87,7 +87,7 @@ export default function CompanyPage() {
                             </div>
                         </div>
                         <div className="relative aspect-square rounded-sm overflow-hidden shadow-3xl grayscale hover:grayscale-0 transition-all duration-1000 group">
-                            <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" alt="Vortex Logistics" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
+                            <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200" alt="Vortex Logistics" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
                             <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000" />
                             <div className="absolute bottom-10 left-10 p-6 bg-slate-900/90 backdrop-blur-md text-white rounded-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                 <p className="text-[10px] font-black uppercase tracking-[0.4em]">NODE VTX-942 / NAIROBI</p>

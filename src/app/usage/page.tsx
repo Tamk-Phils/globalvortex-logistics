@@ -64,7 +64,7 @@ export default function UsagePage() {
                 <div className="bg-slate-900 text-white p-20 rounded-sm relative overflow-hidden shadow-3xl">
                     {/* Background image overlay */}
                     <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none grayscale">
-                        <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" alt="Data Ethics" fill className="object-cover" />
+                        <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200" alt="Data Ethics" fill className="object-cover" />
                     </div>
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full blur-[120px] pointer-events-none" />
                     <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">

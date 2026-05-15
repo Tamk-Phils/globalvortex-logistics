@@ -81,7 +81,7 @@ export default function ResourcesPage() {
                         <div className="bg-slate-900 rounded-sm p-16 text-white flex flex-col justify-between overflow-hidden relative shadow-3xl min-h-[400px]">
                             <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none grayscale">
                                 <Image 
-                                    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000" 
+                                    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200" 
                                     alt="Direct Uplink" 
                                     fill 
                                     className="object-cover"
@@ -111,7 +111,7 @@ export default function ResourcesPage() {
                         <div className="bg-white border border-slate-200 rounded-sm p-16 text-slate-900 flex flex-col justify-between overflow-hidden relative shadow-3xl min-h-[400px]">
                             <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none grayscale">
                                 <Image 
-                                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
+                                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200" 
                                     alt="Press Ledger" 
                                     fill 
                                     className="object-cover"

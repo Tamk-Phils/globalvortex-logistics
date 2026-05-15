@@ -13,7 +13,7 @@ export default function TrackingPage() {
                 {/* Background decorative image */}
                 <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.04] z-0 pointer-events-none grayscale">
                     <Image 
-                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=2000" 
+                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=1200" 
                         alt="Global Network" 
                         fill 
                         className="object-cover"

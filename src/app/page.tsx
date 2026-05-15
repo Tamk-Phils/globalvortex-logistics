@@ -53,11 +53,12 @@ export default function Home() {
         {/* Clear Background Image */}
         <div className="absolute inset-0 z-0">
             <Image 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
+                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200" 
                 alt="Vortex Global Logistics" 
                 fill 
                 className="object-cover object-[75%_50%]" 
                 priority
+                sizes="100vw"
             />
             {/* Clear Image Overlay */}
             <div className="absolute inset-0 bg-black/10 z-10" />
@@ -149,6 +150,7 @@ export default function Home() {
                 alt="Global Network" 
                 fill 
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
             />
         </div>
 
@@ -168,7 +170,7 @@ export default function Home() {
                 className="bg-slate-50 border border-slate-200 p-10 rounded-sm hover:bg-white hover:shadow-2xl transition-all group cursor-pointer"
               >
                  <div className="relative w-full h-72 rounded-sm overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image src="/smart_hubs.png" alt="Autonomous Storage" fill className="object-cover" />
+                    <Image src="/smart_hubs.png" alt="Autonomous Storage" fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                  </div>
                  <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-primary">01. Smart Hubs</h3>
                  <p className="text-slate-500 font-bold uppercase tracking-tight text-sm">Automated logistics terminals with real-time inventory synchronization.</p>
@@ -179,7 +181,7 @@ export default function Home() {
                 className="bg-slate-50 border border-slate-200 p-10 rounded-sm hover:bg-white hover:shadow-2xl transition-all group cursor-pointer"
               >
                  <div className="relative w-full h-72 rounded-sm overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image src="/network_analysis.png" alt="Network Analysis" fill className="object-cover" />
+                    <Image src="/network_analysis.png" alt="Network Analysis" fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                  </div>
                  <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-primary">02. Predictive AI</h3>
                  <p className="text-slate-500 font-bold uppercase tracking-tight text-sm">Deep learning models analyzing global trade flows for optimal routing.</p>
@@ -190,7 +192,7 @@ export default function Home() {
                 className="bg-slate-50 border border-slate-200 p-10 rounded-sm hover:bg-white hover:shadow-2xl transition-all group cursor-pointer"
               >
                  <div className="relative w-full h-72 rounded-sm overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image src="/high_speed_transit.png" alt="High-Speed Transit" fill className="object-cover" />
+                    <Image src="/high_speed_transit.png" alt="High-Speed Transit" fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                  </div>
                  <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-4 text-primary">03. High-Speed Transit</h3>
                  <p className="text-slate-500 font-bold uppercase tracking-tight text-sm">Direct-line delivery protocols designed for the modern era of commerce.</p>
