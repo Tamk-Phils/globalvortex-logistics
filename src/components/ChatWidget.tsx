@@ -42,7 +42,7 @@ export default function ChatWidget() {
     // Load or create room on first open
     useEffect(() => {
         if (isOpen && !roomId && user) {
-            const savedRoomId = localStorage.getItem(`lestrack_chat_room_${user.id}`);
+            const savedRoomId = localStorage.getItem(`vortex_chat_room_${user.id}`);
             if (savedRoomId) {
                 setRoomId(savedRoomId);
                 loadMessages(savedRoomId);
@@ -102,9 +102,9 @@ export default function ChatWidget() {
             if (error) throw error;
             if (data) {
                 setRoomId(data.id);
-                localStorage.setItem(`lestrack_chat_room_${user.id}`, data.id);
+                localStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
                 // Send initial greeting
-                await sendMessage(data.id, "Welcome to Les Track Support. How can we help you today?", 'admin');
+                await sendMessage(data.id, "Welcome to Vortex Global Support. How can we help you today?", 'admin');
             }
         } catch (err) {
             console.error("Error creating chat room:", err);
@@ -215,7 +215,7 @@ export default function ChatWidget() {
                         >
                             <input
                                 type="text"
-                                placeholder="TRANSMIT MESSAGE..."
+                                placeholder="TYPE MESSAGE..."
                                 className="flex-1 bg-slate-50 border border-slate-200 rounded-sm py-3 px-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}

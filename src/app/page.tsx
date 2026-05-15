@@ -54,7 +54,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
             <Image 
                 src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
-                alt="Les Track Logistics" 
+                alt="Vortex Global Logistics" 
                 fill 
                 className="object-cover object-[75%_50%]" 
                 priority
@@ -207,7 +207,7 @@ export default function Home() {
                 OUR <span className="text-primary italic">PROMISE.</span>
             </h2>
             <p className="text-slate-500 text-xl font-bold uppercase tracking-tight leading-relaxed">
-              Les Track is built on trust and efficiency, setting the new standard for global shipping and asset tracking.
+              Vortex Global is built on trust and efficiency, setting the standard for global shipping and tracking.
             </p>
           </div>
 
@@ -260,19 +260,19 @@ export default function Home() {
                 name: "Sarah Vance",
                 role: "Operations Manager",
                 company: "Nova Logistics",
-                quote: "Les Track has transformed our shipping cycles. The tracking is flawless, and the speed is amazing."
+                quote: "Vortex Global has transformed our shipping cycles. The tracking is flawless, and the speed is amazing."
               },
               {
                 name: "Marcus Thorne",
                 role: "Business Owner",
                 company: "Tech Corp",
-                quote: "Switching to Les Track was the best decision for our business. Security and visibility are now top-notch."
+                quote: "Switching to Vortex Global was the best decision for our business. Security and visibility are now top-notch."
               },
               {
                 name: "Elena Rodriguez",
                 role: "Lead Engineer",
                 company: "Horizon",
-                quote: "The interface is so simple. We've integrated Les Track into our daily operations and haven't looked back."
+                quote: "The interface is so simple. We've integrated Vortex Global into our daily operations and haven't looked back."
               }
             ].map((t, i) => (
               <motion.div
@@ -343,7 +343,7 @@ export default function Home() {
                 />
                 <FAQItem
                   question="IS MY DATA SECURE?"
-                  answer="Yes, Les Track uses industry-standard encryption to ensure all your shipping and personal data remains private and secure."
+                  answer="Yes, Vortex Global uses strong encryption to ensure all your shipping and personal data remains private and secure."
                 />
             </motion.div>
           </div>
