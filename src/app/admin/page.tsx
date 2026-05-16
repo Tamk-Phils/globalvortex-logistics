@@ -22,7 +22,8 @@ export default function AdminLogin() {
 
         try {
             // Hardcoded bypass for default admin
-            if (username === "admin" && password === "admin123") {
+            const isAdmin = (username === "admin" || username === "admin@globalvortexlogistics.com") && password === "admin123";
+            if (isAdmin) {
                 router.push("/admin/dashboard");
                 return;
             }
