@@ -72,8 +72,8 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="flex justify-center"
             >
-              <Link href="/quote" className="bg-primary text-white px-10 py-5 rounded-full font-bold text-sm hover:bg-slate-900 transition-all flex items-center gap-3 shadow-xl">
-                Get a Quote <span className="opacity-60">&gt;</span>
+              <Link href="/signup" className="bg-primary text-white px-10 py-5 rounded-full font-bold text-sm hover:bg-slate-900 transition-all flex items-center gap-3 shadow-xl">
+                Get Started <span className="opacity-60">&gt;</span>
               </Link>
             </motion.div>
           </div>
@@ -313,8 +313,8 @@ export default function Home() {
                 Logistics Strategy?
               </h2>
               <div className="flex flex-wrap gap-6">
-                <Link href="/quote" className="bg-primary text-white px-10 py-5 rounded-full font-bold text-sm hover:bg-slate-900 transition-all shadow-xl">
-                  Get A Free Quote
+                <Link href="/signup" className="bg-primary text-white px-10 py-5 rounded-full font-bold text-sm hover:bg-slate-900 transition-all shadow-xl">
+                  Get Started
                 </Link>
                 <Link href="/contact" className="bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-full font-bold text-sm hover:bg-slate-50 transition-all shadow-sm">
                   Book A Demo

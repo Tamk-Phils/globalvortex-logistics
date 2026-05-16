@@ -21,7 +21,7 @@ const AboutClient = () => {
                             Network.
                         </h1>
                         <p className="text-xl text-slate-500 leading-relaxed font-bold uppercase tracking-tight max-w-2xl mx-auto">
-                            Established in 2026, Vortex Global was built to make international shipping easier. We don&apos;t just track packages; we connect the world&apos;s shipping routes with modern technology.
+                            Established in 2013, Vortex Global was built to make international shipping easier. We don&apos;t just track packages; we connect the world&apos;s shipping routes with modern technology.
                         </p>
                     </motion.div>
                 </div>

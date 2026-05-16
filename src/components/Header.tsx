@@ -52,8 +52,8 @@ export default function Header() {
 
                     {/* Actions & Mobile Toggle */}
                     <div className="flex items-center gap-4">
-                        <Link href="/quote" className="hidden lg:flex bg-primary text-white px-6 py-2.5 rounded-full text-[11px] font-bold hover:bg-slate-900 transition-all shadow-sm items-center gap-2">
-                            Get a Quote <span className="opacity-60">&gt;</span>
+                        <Link href="/login" className="hidden lg:flex border border-slate-200 text-slate-900 px-6 py-2.5 rounded-full text-[11px] font-bold hover:bg-slate-50 transition-all shadow-sm items-center gap-2">
+                            Login <User size={14} />
                         </Link>
                         
                         <button 
