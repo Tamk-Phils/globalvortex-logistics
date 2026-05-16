@@ -9,11 +9,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #0070f3;
-  --accent: #7c3aed;
+  --foreground: #020617;
+  --primary: #2563eb;
+  --accent: #f97316;
   --surface: #f8fafc;
   --border: #e2e8f0;
+  --sky: #f0f9ff;
 }
 
 body {
