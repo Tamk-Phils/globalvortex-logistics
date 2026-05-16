@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MoveRight, Play, Star, ArrowUpRight, ShieldCheck, Globe, Zap, BarChart3, Clock, Users, Package } from "lucide-react";
+import { MoveRight, Play, Star, ArrowUpRight, ShieldCheck, Globe, Zap, BarChart3, Clock, Users, Package, Radar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -158,6 +158,75 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="text-center mb-24">
+            <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Process</p>
+            <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
+              How it <span className="text-primary italic">Works.</span>
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            {[
+              { icon: Package, title: "Book Your Shipment", desc: "Select your destination and package type through our easy-to-use portal." },
+              { icon: Radar, title: "Real-time Tracking", desc: "Monitor your assets as they move through our global logistics network." },
+              { icon: ShieldCheck, title: "Secure Delivery", desc: "Your package is delivered safely and on time, guaranteed." }
+            ].map((step, i) => (
+              <div key={i} className="text-center group">
+                <div className="w-20 h-20 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-primary mx-auto mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                  <step.icon size={32} />
+                </div>
+                <h3 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight">{step.title}</h3>
+                <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed max-w-xs mx-auto">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-32 bg-slate-50">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div className="relative h-[600px] rounded-[40px] overflow-hidden shadow-3xl">
+              <Image 
+                src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200" 
+                alt="Global Logistics Hub" 
+                fill 
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Why Choose Vortex</p>
+              <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] mb-12">
+                Unmatched <br />
+                <span className="text-primary italic">Precision & Speed.</span>
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {[
+                  { icon: Clock, title: "24/7 Monitoring", desc: "Continuous oversight of your valuable cargo." },
+                  { icon: Globe, title: "Global Network", desc: "Presence in over 180 countries worldwide." },
+                  { icon: ShieldCheck, title: "Enhanced Security", desc: "Military-grade encryption for all tracking data." },
+                  { icon: Zap, title: "Instant Updates", desc: "Live status changes sent directly to your device." }
+                ].map((feature, i) => (
+                  <div key={i} className="space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-primary shadow-sm">
+                      <feature.icon size={24} />
+                    </div>
+                    <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">{feature.title}</h3>
+                    <p className="text-slate-500 font-bold text-xs uppercase tracking-tight leading-relaxed">{feature.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section (Dark) */}
       <section className="py-32 bg-slate-900 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 blur-[150px] -translate-y-1/2 translate-x-1/3" />
@@ -165,10 +234,10 @@ export default function Home() {
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
             <div className="max-w-2xl">
-              <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Testimonials</p>
+              <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Real Reviews</p>
               <h2 className="text-6xl font-black text-white tracking-tighter leading-[0.9] uppercase">
-                See What Our <br />
-                <span className="text-primary">Happy Clients</span> <br />
+                What Our <br />
+                <span className="text-primary">Global Partners</span> <br />
                 Are Saying
               </h2>
             </div>
@@ -182,27 +251,54 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-3xl grayscale hover:grayscale-0 transition-all duration-700">
-               <Image 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000" 
-                alt="Client" 
-                fill 
-                className="object-cover"
-              />
-            </div>
-            <div className="space-y-12">
-              <div className="flex gap-1 text-accent">
-                {[1, 2, 3, 4, 5].map(s => <Star key={s} size={20} fill="currentColor" />)}
-              </div>
-              <p className="text-4xl font-black text-white leading-tight tracking-tight uppercase">
-                &quot;I found my experience with the Vortex Global firm to be very professional and courteous. The owner was very responsive and guided me through all my needs while maintaining perfect transparency.&quot;
-              </p>
-              <div>
-                <h4 className="text-2xl font-black text-white uppercase tracking-tight">Darlene Robertson</h4>
-                <p className="text-primary font-black text-[10px] uppercase tracking-[0.4em] mt-2">Nursing Assistant</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Darlene Robertson",
+                role: "Operations Director",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400",
+                quote: "The transparency provided by Vortex Global is unmatched. We've seen a 30% increase in delivery efficiency since switching."
+              },
+              {
+                name: "Albert Flores",
+                role: "Supply Chain Manager",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400",
+                quote: "Real-time telemetry has saved us countless hours of manual tracking. It's the most reliable platform we've ever used."
+              },
+              {
+                name: "Marvin McKinney",
+                role: "Logistics Lead",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400",
+                quote: "Their global reach is impressive. No matter where our cargo is, we have perfect visibility through the Vortex portal."
+              }
+            ].map((review, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm p-12 rounded-[40px] border border-white/10 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-1 text-accent mb-8">
+                    {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} fill="currentColor" />)}
+                  </div>
+                  <p className="text-xl font-bold text-white leading-relaxed uppercase tracking-tight mb-12">
+                    &quot;{review.quote}&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden grayscale">
+                    <Image src={review.image} alt={review.name} fill className="object-cover" loading="lazy" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-black text-white uppercase tracking-tight">{review.name}</h4>
+                    <p className="text-primary font-black text-[9px] uppercase tracking-[0.4em] mt-1">{review.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -226,12 +322,11 @@ export default function Home() {
               </div>
             </div>
             <div className="relative h-[400px]">
-               {/* Simplified collage for brevity, can be expanded */}
                <div className="absolute top-0 right-0 w-64 h-64 rounded-2xl overflow-hidden shadow-2xl rotate-3 z-10">
-                  <Image src="/ocean_card.png" alt="Logistics 1" fill className="object-cover" />
+                  <Image src="/ocean_card.png" alt="Logistics 1" fill className="object-cover" loading="lazy" />
                </div>
                <div className="absolute bottom-0 left-0 w-80 h-80 rounded-2xl overflow-hidden shadow-2xl -rotate-6">
-                  <Image src="/freight_card.png" alt="Logistics 2" fill className="object-cover" />
+                  <Image src="/freight_card.png" alt="Logistics 2" fill className="object-cover" loading="lazy" />
                </div>
             </div>
           </div>

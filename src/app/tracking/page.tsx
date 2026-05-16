@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Package, ShieldCheck, Clock, MapPin, Radar, Activity } from "lucide-react";
+import { Package, ShieldCheck, Clock, MapPin, Radar, Activity, Globe } from "lucide-react";
 import Image from "next/image";
 import TrackingSearch from "@/components/TrackingSearch";
 
@@ -44,6 +44,73 @@ export default function TrackingPage() {
                         >
                             <TrackingSearch />
                         </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-32 bg-slate-50 overflow-hidden">
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                        <div>
+                            <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Infrastructure</p>
+                            <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] mb-8">
+                                Global <span className="text-primary italic">Presence.</span>
+                            </h2>
+                            <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed mb-12 max-w-md">
+                                With over 14,000 tracking nodes across every continent, we ensure your cargo is never out of sight. Our network is mirrored across secure global data centers for maximum reliability.
+                            </p>
+                            <div className="space-y-6">
+                                {[
+                                    { title: "Strategic Hubs", value: "NY, London, Tokyo, Singapore" },
+                                    { title: "Real-time Nodes", value: "14,200+ Active" },
+                                    { title: "Satellite Link", value: "Dedicated Orbital Array" }
+                                ].map((stat, i) => (
+                                    <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                                        <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                                            <Globe size={18} />
+                                        </div>
+                                        <div>
+                                            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{stat.title}</p>
+                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">{stat.value}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="relative h-[600px] rounded-[40px] overflow-hidden shadow-3xl">
+                            <Image 
+                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=1200" 
+                                alt="Global Network Infrastructure" 
+                                fill 
+                                className="object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-32 bg-white">
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="text-center mb-24">
+                        <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Data Integrity</p>
+                        <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
+                            Security & <span className="text-primary italic">Compliance.</span>
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {[
+                            { title: "End-to-End Encryption", desc: "All tracking data is encrypted using AES-256 standards from departure to delivery.", icon: ShieldCheck },
+                            { title: "Regulatory Compliance", desc: "Fully compliant with international shipping regulations and data protection laws.", icon: ShieldCheck }
+                        ].map((item, i) => (
+                            <div key={i} className="p-12 bg-slate-900 rounded-[40px] text-white">
+                                <div className="w-12 h-12 rounded-2xl bg-primary/20 text-primary flex items-center justify-center mb-8 border border-primary/30">
+                                    <item.icon size={24} />
+                                </div>
+                                <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">{item.title}</h3>
+                                <p className="text-white/40 font-bold text-sm uppercase tracking-tight leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
