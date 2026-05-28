@@ -20,7 +20,8 @@ export default function LoginPage() {
         setError(null);
 
         // Hardcoded bypass for emergency admin access
-        if (email === "admin" && password === "admin123") {
+        const isAdmin = (email === "admin" || email === "admin@globalvortexlogistics.com") && password === "admin123";
+        if (isAdmin) {
             router.push("/admin/dashboard");
             return;
         }
