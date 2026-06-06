@@ -104,7 +104,7 @@ const AboutClient = () => {
                             { name: "Elena Rossi", role: "Head of Logistics", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400" }
                         ].map((member) => (
                             <div key={member.name} className="text-center">
-                                <div className="relative aspect-[4/5] rounded-[30px] overflow-hidden mb-6 shadow-xl grayscale hover:grayscale-0 transition-all duration-700">
+                                <div className="relative aspect-[4/5] rounded-[30px] overflow-hidden mb-6 shadow-xl transition-all duration-700">
                                     <Image src={member.image} alt={`Vortex Global Leader - ${member.name} (${member.role})`} fill className="object-cover" loading="lazy" />
                                 </div>
                                 <h4 className="text-lg font-black text-slate-900 uppercase tracking-tight">{member.name}</h4>

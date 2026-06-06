@@ -180,7 +180,7 @@ export default function TrackingSearch() {
                                         <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.5)]" />
                                         <span className="text-[10px] font-black uppercase tracking-[0.3em]">LIVE LOCATION VERIFIED</span>
                                     </div>
-                                    <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-80 group-hover:opacity-100">
+                                    <div className="absolute inset-0 transition-all duration-1000 opacity-80 group-hover:opacity-100">
                                         <LiveMap lat={result.latitude} lng={result.longitude} zoom={13} />
                                     </div>
                                 </div>
