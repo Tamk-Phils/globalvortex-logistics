@@ -129,14 +129,14 @@ export default function AdminLayout({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsSidebarOpen(false)}
-                            className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden"
+                            className="fixed inset-0 z-[150] bg-slate-900/60 backdrop-blur-sm lg:hidden"
                         />
                         <motion.aside
                             initial={{ x: "-100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-2xl lg:hidden"
+                            className="fixed inset-y-0 left-0 z-[200] w-80 bg-white shadow-2xl lg:hidden flex flex-col"
                         >
                             <SidebarContent
                                 pathname={pathname}
@@ -151,7 +151,7 @@ export default function AdminLayout({
 
             <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
                 {/* Mobile Admin Terminal Header — sits flush below the public header (fixed ~72px) */}
-                <header className="lg:hidden bg-slate-900 border-b border-slate-800 px-5 py-3 flex items-center justify-between sticky top-[72px] z-30 shadow-lg">
+                <header className="lg:hidden bg-slate-900 border-b border-slate-800 px-5 py-3 flex items-center justify-between sticky top-[72px] z-[110] shadow-lg">
                     <div className="flex items-center gap-3">
                         <div className="w-7 h-7 rounded-sm bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shrink-0">
                             <Radar size={14} className="animate-pulse" />
