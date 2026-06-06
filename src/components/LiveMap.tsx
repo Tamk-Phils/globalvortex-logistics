@@ -8,19 +8,22 @@ import 'leaflet/dist/leaflet.css';
 // Custom SVG marker for a premium feel
 const customIcon = L.divIcon({
     html: `
-        <div class="relative flex items-center justify-center translate-x-2 -translate-y-2">
+        <style>
+        @keyframes driftForward {
+            0% { transform: translate(-4px, 4px); }
+            100% { transform: translate(4px, -4px); }
+        }
+        </style>
+        <div class="relative flex items-center justify-center" style="animation: driftForward 1.5s infinite alternate ease-in-out;">
             <!-- Trail effect -->
-            <div class="absolute -bottom-8 -left-8 w-12 h-12 bg-gradient-to-tr from-transparent to-primary/40 rounded-full blur-md origin-top-right rotate-45 animate-pulse"></div>
+            <div class="absolute -bottom-6 -left-6 w-10 h-10 bg-gradient-to-tr from-transparent to-primary/40 rounded-full blur-md origin-top-right rotate-45 animate-pulse"></div>
             <div class="absolute w-8 h-8 bg-primary/20 rounded-full animate-ping"></div>
             <div class="relative w-10 h-10 bg-white border-2 border-primary rounded-full flex items-center justify-center shadow-xl z-10">
                 <div class="w-4 h-4 bg-primary rounded-full"></div>
                 <!-- Directional Arrow -->
-                <div class="absolute -top-2 -right-2 w-5 h-5 text-primary bg-white rounded-full border border-primary/20 flex items-center justify-center shadow-md animate-bounce">
+                <div class="absolute -top-2 -right-2 w-5 h-5 text-primary bg-white rounded-full border border-primary/20 flex items-center justify-center shadow-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="rotate-45"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </div>
-            </div>
-            <div class="absolute -top-12 bg-slate-900 text-white text-[9px] font-black px-2 py-1 rounded-sm whitespace-nowrap shadow-xl uppercase tracking-widest z-20">
-                IN TRANSIT (MOVING)
             </div>
         </div>
     `,

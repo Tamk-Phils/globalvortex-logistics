@@ -16,7 +16,7 @@ export default function TermsPage() {
                         <Radar size={14} className="animate-spin-slow" />
                         <span className="text-slate-500">Legal Framework & Compliance</span>
                     </div>
-                    <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 uppercase leading-[0.9]">
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 uppercase leading-[0.9]">
                         USAGE <br/> <span className="text-primary italic">CHARTER.</span>
                     </h1>
                     <p className="text-xl text-slate-500 font-bold leading-relaxed uppercase tracking-tight">

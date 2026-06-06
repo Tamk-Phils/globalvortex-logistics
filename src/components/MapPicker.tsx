@@ -37,6 +37,15 @@ function LocationMarker({ position, onMapClick }: { position: L.LatLng, onMapCli
     );
 }
 
+function MapInvalidator() {
+    const map = useMapEvents({});
+    useEffect(() => {
+        setTimeout(() => map.invalidateSize(), 100);
+        setTimeout(() => map.invalidateSize(), 400); // after modal animation
+    }, [map]);
+    return null;
+}
+
 export default function MapPicker({ onChange, initialLat, initialLng, initialAddress = "" }: MapPickerProps) {
     const [isMounted, setIsMounted] = useState(false);
     const [position, setPosition] = useState<L.LatLng>(new L.LatLng(initialLat || 52.5200, initialLng || 13.4050));
@@ -136,6 +145,7 @@ export default function MapPicker({ onChange, initialLat, initialLng, initialAdd
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
                         <LocationMarker position={position} onMapClick={handleMapClick} />
+                        <MapInvalidator />
                     </MapContainer>
                 </div>
             </div>

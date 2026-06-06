@@ -109,9 +109,9 @@ export default function AdminLayout({
     ];
 
     return (
-        <div className="flex min-h-screen bg-white">
+        <div className="flex min-h-screen bg-white overflow-x-hidden">
             {/* Desktop Sidebar */}
-            <aside className="hidden lg:flex w-80 bg-white border-r border-slate-200 flex-col shadow-sm sticky top-0 h-screen shrink-0">
+            <aside className="hidden lg:flex w-72 xl:w-80 bg-white border-r border-slate-200 flex-col shadow-sm sticky top-0 h-screen shrink-0">
                 <SidebarContent
                     pathname={pathname}
                     router={router}
@@ -149,26 +149,30 @@ export default function AdminLayout({
                 )}
             </AnimatePresence>
 
-            <div className="flex-1 flex flex-col min-w-0">
-                {/* Mobile Top Header */}
-                <header className="lg:hidden h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-30">
-                    <div className="flex items-center gap-4">
-                        <div className="w-8 h-8 rounded-sm bg-slate-900 flex items-center justify-center text-primary font-black text-sm">
-                            <Radar size={16} />
+            <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
+                {/* Mobile Admin Terminal Header — sits flush below the public header (fixed ~72px) */}
+                <header className="lg:hidden bg-slate-900 border-b border-slate-800 px-5 py-3 flex items-center justify-between sticky top-[72px] z-30 shadow-lg">
+                    <div className="flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-sm bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+                            <Radar size={14} className="animate-pulse" />
                         </div>
-                        <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Admin Terminal</span>
+                        <div className="flex flex-col">
+                            <span className="text-[10px] font-black text-white uppercase tracking-[0.25em]">Admin Terminal</span>
+                            <span className="text-[8px] font-black text-primary/50 uppercase tracking-widest">Operational Hub</span>
+                        </div>
                     </div>
                     <button
                         onClick={() => setIsSidebarOpen(true)}
-                        className="p-2 text-slate-400 hover:text-slate-900 focus:outline-none"
+                        className="p-2 text-slate-400 hover:text-white focus:outline-none transition-colors"
+                        aria-label="Open navigation menu"
                     >
-                        <Menu size={24} />
+                        <Menu size={22} />
                     </button>
                 </header>
 
                 {/* Main Content */}
-                <main className="flex-1 p-6 md:p-12 overflow-x-hidden">
-                    <div className="max-w-7xl mx-auto">
+                <main className="flex-1 p-4 sm:p-6 lg:p-10 xl:p-12 overflow-x-hidden">
+                    <div className="max-w-7xl mx-auto w-full">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}

@@ -215,7 +215,7 @@ export default function ShipmentsList() {
                         <Radar size={20} className="text-primary animate-pulse" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Shipment Management</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">ALL <br/><span className="text-primary italic">SHIPMENTS.</span></h1>
+                    <h1 className="text-3xl sm:text-4xl md:text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">ALL <br/><span className="text-primary italic">SHIPMENTS.</span></h1>
                 </div>
                 <div className="flex gap-4">
                     <button
@@ -262,7 +262,7 @@ export default function ShipmentsList() {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto relative z-10">
+                <div className="overflow-x-auto relative z-10 -mx-0">
                     {isLoading && shipments.length === 0 ? (
                         <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO DATABASE...</div>
                     ) : (
@@ -365,8 +365,8 @@ export default function ShipmentsList() {
 
             {/* Status Update Modal */}
             {isModalOpen && editingShipment && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-xl max-h-[90vh] flex flex-col rounded-sm shadow-3xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-300">
+                <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center sm:p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
+                    <div className="bg-white w-full sm:max-w-xl max-h-[95vh] sm:max-h-[90vh] flex flex-col rounded-t-2xl sm:rounded-sm shadow-3xl overflow-hidden border-t sm:border border-slate-200 animate-in slide-in-from-bottom sm:zoom-in-95 duration-300">
                         <div className="p-12 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 shrink-0">
                             <div>
                                 <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">UPDATE SHIPMENT</h3>

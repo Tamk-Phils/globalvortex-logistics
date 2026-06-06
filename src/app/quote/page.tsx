@@ -18,7 +18,7 @@ export default function QuotePage() {
 
     if (isSubmitted) {
         return (
-            <main className="min-h-screen bg-white pt-48 pb-20">
+            <main className="min-h-screen bg-white pt-28 sm:pt-36 md:pt-48 pb-20">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -54,7 +54,7 @@ export default function QuotePage() {
                                 <Radar size={14} className="animate-spin-slow" />
                                 <span className="text-slate-500">Precision Quote Engine</span>
                             </div>
-                            <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] mb-10 uppercase">
+                            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] mb-10 uppercase">
                                 INSTANT <br/>
                                 <span className="text-primary italic">ANALYTICS.</span>
                             </h1>

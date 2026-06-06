@@ -284,7 +284,7 @@ export default function AdminChat() {
                         </form>
                     </>
                 ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center p-20 text-center space-y-10 relative overflow-hidden">
+                    <div className="flex-1 flex flex-col items-center justify-center p-8 sm:p-16 md:p-20 text-center space-y-10 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
                         <div className="w-32 h-32 bg-slate-50 border border-slate-100 rounded-sm flex items-center justify-center text-slate-100 shadow-inner group">
                             <MessageCircle size={64} className="group-hover:scale-110 group-hover:text-primary transition-all duration-700" />

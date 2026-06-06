@@ -12,7 +12,7 @@ export default function SettingsPage() {
                         <Radar size={20} className="text-primary animate-pulse" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Core Configuration</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">HUB <br/><span className="text-primary italic">PARAMETERS.</span></h1>
+                    <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">HUB <br/><span className="text-primary italic">PARAMETERS.</span></h1>
                 </div>
                 <button className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-4 shadow-xl transition-all group">
                     <Save size={20} /> SYNC CHANGES

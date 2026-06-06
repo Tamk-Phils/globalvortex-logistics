@@ -20,7 +20,7 @@ export default function UserManagement() {
                         <Radar size={20} className="text-primary animate-pulse" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Node Personnel</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">USER <br/><span className="text-primary italic">DIRECTORY.</span></h1>
+                    <h1 className="text-3xl sm:text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">USER <br/><span className="text-primary italic">DIRECTORY.</span></h1>
                 </div>
                 <button className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-4 shadow-xl transition-all">
                     <UserPlus size={20} /> AUTHORIZE NEW NODE
@@ -69,40 +69,40 @@ export default function UserManagement() {
                     <table className="w-full text-left">
                         <thead>
                             <tr className="bg-slate-900 text-white">
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">NODE IDENTITY</th>
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">PROTOCOL ROLE</th>
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SYNC STATUS</th>
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">LAST UPLINK</th>
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]"></th>
+                                <th className="px-5 sm:px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">NODE IDENTITY</th>
+                                <th className="px-5 sm:px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden sm:table-cell">PROTOCOL ROLE</th>
+                                <th className="px-5 sm:px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SYNC STATUS</th>
+                                <th className="px-5 sm:px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">LAST UPLINK</th>
+                                <th className="px-5 sm:px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]"></th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {users.map((user) => (
                                 <tr key={user.id} className="hover:bg-slate-50 transition-all group">
-                                    <td className="px-10 py-8">
-                                        <div className="flex items-center gap-5">
-                                            <div className="w-12 h-12 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary font-black group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all">
+                                    <td className="px-5 sm:px-10 py-8">
+                                        <div className="flex items-center gap-3 sm:gap-5">
+                                            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary font-black group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all shrink-0">
                                                 {user.name[0]}
                                             </div>
-                                            <div>
-                                                <p className="font-black text-slate-900 text-sm uppercase tracking-tight">{user.name}</p>
-                                                <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mt-1">{user.email}</p>
+                                            <div className="min-w-0">
+                                                <p className="font-black text-slate-900 text-xs sm:text-sm uppercase tracking-tight truncate">{user.name}</p>
+                                                <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mt-1 truncate hidden sm:block">{user.email}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-10 py-8">
+                                    <td className="px-5 sm:px-10 py-8 hidden sm:table-cell">
                                         <span className="bg-slate-100 border border-slate-200 px-4 py-1.5 rounded-sm text-[9px] font-black text-slate-600 uppercase tracking-widest">{user.role}</span>
                                     </td>
-                                    <td className="px-10 py-8">
-                                        <div className="flex items-center gap-3">
-                                            <div className={`w-2 h-2 rounded-full ${user.status === 'ACTIVE' ? 'bg-primary animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.5)]' : 'bg-slate-300'}`} />
+                                    <td className="px-5 sm:px-10 py-8">
+                                        <div className="flex items-center gap-2">
+                                            <div className={`w-2 h-2 rounded-full shrink-0 ${user.status === 'ACTIVE' ? 'bg-primary animate-pulse shadow-[0_0_8px_rgba(0,112,243,0.5)]' : 'bg-slate-300'}`} />
                                             <span className={`text-[10px] font-black uppercase tracking-widest ${user.status === 'ACTIVE' ? 'text-primary' : 'text-slate-400'}`}>{user.status}</span>
                                         </div>
                                     </td>
-                                    <td className="px-10 py-8">
+                                    <td className="px-5 sm:px-10 py-8 hidden md:table-cell">
                                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{user.lastLogin}</p>
                                     </td>
-                                    <td className="px-10 py-8 text-right">
+                                    <td className="px-5 sm:px-10 py-8 text-right">
                                         <button className="p-3 text-slate-200 hover:text-slate-900 transition-all">
                                             <MoreVertical size={20} />
                                         </button>

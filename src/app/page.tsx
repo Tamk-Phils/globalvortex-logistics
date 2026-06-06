@@ -30,7 +30,7 @@ const SolutionCard = ({ title, status, image, delay }: { title: string, status: 
     transition={{ delay }}
     className="group relative cursor-pointer"
   >
-    <div className="relative h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.02]">
+    <div className="relative h-[280px] sm:h-[380px] lg:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.02]">
       <Image src={image} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60" />
       <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -53,14 +53,14 @@ export default function Home() {
     <main className="bg-white min-h-screen overflow-hidden">
       
       {/* Hero Section */}
-      <section className="relative pt-32 lg:pt-48 pb-0 bg-[#f0f9ff] overflow-hidden">
+      <section className="relative pt-24 sm:pt-28 sm:pt-36 lg:pt-28 pb-0 bg-[#f0f9ff] overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] mb-12"
+              className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] mb-12"
             >
               Delivering Efficiency. <br />
               <span className="text-primary">Driving Growth.</span>
@@ -127,7 +127,7 @@ export default function Home() {
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start mb-24">
             <div className="lg:col-span-1">
-              <h2 className="text-5xl font-black text-slate-900 leading-[0.95] tracking-tighter uppercase mb-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[0.95] tracking-tighter uppercase mb-8">
                 Comprehensive <br />
                 <span className="text-primary italic">Live Logistics</span> <br />
                 Solutions
@@ -163,7 +163,7 @@ export default function Home() {
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center mb-24">
             <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Process</p>
-            <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
               How it <span className="text-primary italic">Works.</span>
             </h2>
           </div>
@@ -190,7 +190,7 @@ export default function Home() {
       <section className="py-32 bg-slate-50">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <div className="relative h-[600px] rounded-[40px] overflow-hidden shadow-3xl">
+            <div className="relative h-[350px] sm:h-[500px] lg:h-[600px] rounded-[40px] overflow-hidden shadow-3xl">
               <Image 
                 src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200" 
                 alt="Global Logistics Hub" 
@@ -201,7 +201,7 @@ export default function Home() {
             </div>
             <div>
               <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Why Choose Vortex</p>
-              <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] mb-12">
+              <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] mb-12">
                 Unmatched <br />
                 <span className="text-primary italic">Precision & Speed.</span>
               </h2>
@@ -235,7 +235,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
             <div className="max-w-2xl">
               <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Real Reviews</p>
-              <h2 className="text-6xl font-black text-white tracking-tighter leading-[0.9] uppercase">
+              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tighter leading-[0.9] uppercase">
                 What Our <br />
                 <span className="text-primary">Global Partners</span> <br />
                 Are Saying
@@ -304,11 +304,11 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-40 bg-[#f0f9ff]">
+      <section className="py-16 sm:py-24 lg:py-40 bg-[#f0f9ff]">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
-              <h2 className="text-6xl font-black text-slate-900 tracking-tighter leading-[0.9] uppercase mb-10">
+              <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter leading-[0.9] uppercase mb-10">
                 Ready To <span className="text-primary">Redefine</span> Your <br />
                 Logistics Strategy?
               </h2>

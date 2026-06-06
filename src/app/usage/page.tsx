@@ -17,7 +17,7 @@ export default function UsagePage() {
                         <Radar size={14} className="animate-spin-slow" />
                         <span className="text-slate-500">Operational Guidelines</span>
                     </div>
-                    <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 uppercase leading-[0.9]">
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 uppercase leading-[0.9]">
                         PLATFORM <br/> <span className="text-primary italic">PROTOCOLS.</span>
                     </h1>
                     <p className="text-xl text-slate-500 font-bold leading-relaxed max-w-3xl mx-auto uppercase tracking-tight">
@@ -61,13 +61,13 @@ export default function UsagePage() {
                     </div>
                 </div>
 
-                <div className="bg-slate-900 text-white p-20 rounded-sm relative overflow-hidden shadow-3xl">
+                <div className="bg-slate-900 text-white p-8 sm:p-16 md:p-20 rounded-sm relative overflow-hidden shadow-3xl">
                     {/* Background image overlay */}
                     <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none grayscale">
                         <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200" alt="Data Ethics" fill className="object-cover" />
                     </div>
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full blur-[120px] pointer-events-none" />
-                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
                         <div>
                             <h2 className="text-5xl font-black tracking-tighter mb-10 uppercase leading-tight">DATA <br/><span className="text-primary italic">ETHICS.</span></h2>
                             <div className="space-y-8">

@@ -44,7 +44,7 @@ export default function PrivacyPage() {
                             <Radar size={14} className="animate-spin-slow" />
                             <span className="text-slate-500">Security & Privacy Protocol</span>
                         </div>
-                        <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-6 uppercase leading-[0.9]">PRIVACY <br/><span className="text-primary italic">LEDGER.</span></h1>
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-6 uppercase leading-[0.9]">PRIVACY <br/><span className="text-primary italic">LEDGER.</span></h1>
                         <p className="text-slate-400 font-black text-[10px] uppercase tracking-widest">PROTOCOL REVISION: MAY 2026</p>
                     </div>
 

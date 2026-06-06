@@ -63,16 +63,16 @@ export default function DashboardOverview() {
                         <Radar size={20} className="text-primary animate-pulse" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Dashboard</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">VORTEX GLOBAL <br/><span className="text-primary italic">DASHBOARD.</span></h1>
+                    <h1 className="text-3xl sm:text-4xl md:text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">VORTEX GLOBAL <br/><span className="text-primary italic">DASHBOARD.</span></h1>
                 </div>
                 <Link href="/admin/dashboard/shipments" className="bg-slate-900 text-white px-8 py-4 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-3 hover:bg-primary transition-all shadow-xl">
                     VIEW ALL SHIPMENTS <ArrowUpRight size={16} />
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
                 {stats.map((stat) => (
-                    <div key={stat.label} className="bg-white p-10 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden">
+                    <div key={stat.label} className="bg-white p-6 sm:p-10 rounded-sm border border-slate-200 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
                         <div className={`w-14 h-14 rounded-sm ${stat.bg} ${stat.color} flex items-center justify-center mb-8 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500`}>
                             <stat.icon size={28} />
@@ -101,8 +101,8 @@ export default function DashboardOverview() {
                                     <Package size={22} />
                                 </div>
                                 <div className="flex-1">
-                                    <p className="font-black text-slate-900 text-sm uppercase tracking-tight">SHIPMENT <span className="text-primary">#{shipment.tracking_number}</span> UPDATE</p>
-                                    <p className="text-slate-400 font-bold text-[10px] mt-1 uppercase tracking-widest">STATUS: {shipment.current_status} • UPDATED: {new Date(shipment.created_at).toLocaleDateString()}</p>
+                                    <p className="font-black text-slate-900 text-xs sm:text-sm uppercase tracking-tight">SHIPMENT <span className="text-primary">#{shipment.tracking_number}</span> UPDATE</p>
+                                    <p className="text-slate-400 font-bold text-[10px] mt-1 uppercase tracking-wider truncate">STATUS: {shipment.current_status} • {new Date(shipment.created_at).toLocaleDateString()}</p>
                                 </div>
                                 <div className="text-[9px] font-black text-slate-300 uppercase tracking-widest px-3 py-1 bg-slate-100 rounded-sm">LOGS</div>
                             </div>

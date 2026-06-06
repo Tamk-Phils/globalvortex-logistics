@@ -15,7 +15,7 @@ const services = [
 const ServicesClient = () => {
     return (
         <>
-            <section className="pt-48 pb-32 bg-[#f0f9ff]">
+            <section className="pt-28 sm:pt-36 md:pt-48 pb-32 bg-[#f0f9ff]">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -23,7 +23,7 @@ const ServicesClient = () => {
                         className="text-center max-w-4xl mx-auto"
                     >
                         <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Solutions</p>
-                        <h1 className="text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">
                             Logistics <br />
                             <span className="text-primary italic">Excellence.</span>
                         </h1>

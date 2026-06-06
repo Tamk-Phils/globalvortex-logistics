@@ -6,7 +6,7 @@ import { MessageSquare, Mail, Send } from "lucide-react";
 const ContactClient = () => {
     return (
         <>
-            <section className="pt-48 pb-32 bg-[#f0f9ff]">
+            <section className="pt-28 sm:pt-36 md:pt-48 pb-32 bg-[#f0f9ff]">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center max-w-4xl mx-auto">
                         <motion.div
@@ -15,7 +15,7 @@ const ContactClient = () => {
                             className="mb-10"
                         >
                             <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Support Operations</p>
-                            <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.85]">
+                            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.85]">
                                 Get in <br />
                                 <span className="text-primary italic">Touch.</span>
                             </h1>

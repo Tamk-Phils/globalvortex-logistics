@@ -105,7 +105,7 @@ export default function ShipmentForm({ onSuccess }: { onSuccess?: () => void }) 
           <p className="font-black text-[10px] uppercase tracking-widest leading-relaxed">ERROR: {error}</p>
         </div>
       )}
-      <div className="bg-white p-12 md:p-20 rounded-sm border border-slate-200 shadow-3xl relative overflow-hidden">
+      <div className="bg-white p-6 sm:p-12 md:p-16 rounded-sm border border-slate-200 shadow-3xl relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.01] grayscale pointer-events-none">
           <Image src="/images/vortex_tech.png" alt="Tech" fill className="object-cover" />
         </div>
@@ -115,7 +115,7 @@ export default function ShipmentForm({ onSuccess }: { onSuccess?: () => void }) 
           <div className="space-y-4">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">GENERATED TRACKING ID</p>
             <div className="flex items-center gap-6">
-              <h2 className="text-6xl font-black text-slate-900 tracking-tighter uppercase italic">
+              <h2 className="text-3xl sm:text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase italic break-all sm:break-normal">
                 {formData.tracking_number}
               </h2>
               <button type="button" onClick={handleCopy}
@@ -125,7 +125,7 @@ export default function ShipmentForm({ onSuccess }: { onSuccess?: () => void }) 
               </button>
             </div>
           </div>
-          <div className="bg-slate-900 p-10 rounded-sm border border-slate-800 flex items-center gap-8 text-white shadow-3xl">
+          <div className="bg-slate-900 p-6 rounded-sm border border-slate-800 flex items-center gap-4 text-white shadow-3xl">
             <div className="text-right">
               <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">SYSTEM STATUS</p>
               <p className="text-2xl font-black text-primary uppercase italic tracking-tighter">ACTIVE</p>
@@ -158,7 +158,7 @@ export default function ShipmentForm({ onSuccess }: { onSuccess?: () => void }) 
         {/* Additional sections omitted for brevity – you can extend using the same pattern */}
         <div className="pt-16 border-t border-slate-100 flex flex-wrap justify-end gap-10 items-center mt-12">
           <button type="submit" disabled={isSaving}
-            className={`bg-slate-900 hover:bg-primary text-white px-16 py-6 rounded-sm font-black text-[10px] uppercase tracking-[0.4em] transition-all shadow-3xl flex items-center gap-6 disabled:opacity-50`}
+            className={`bg-slate-900 hover:bg-primary text-white px-8 sm:px-16 py-5 sm:py-6 rounded-sm font-black text-[10px] uppercase tracking-[0.4em] transition-all shadow-3xl flex items-center gap-6 disabled:opacity-50`}
           >
             {isSaving ? <Clock className="animate-spin" size={20} /> : <Save size={20} />}
             {isSaving ? "SAVING..." : "CREATE SHIPMENT"}

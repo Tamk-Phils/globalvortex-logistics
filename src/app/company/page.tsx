@@ -108,7 +108,7 @@ export default function CompanyPage() {
                             <Zap className="text-primary" size={24} />
                             <span className="text-[10px] font-black text-primary uppercase tracking-[0.6em]">DNA SEQUENCE</span>
                         </div>
-                        <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-10 uppercase italic">THE VORTEX CODE.</h2>
+                        <h2 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-10 uppercase italic">THE VORTEX CODE.</h2>
                         <p className="text-2xl text-white/40 font-black uppercase tracking-tight max-w-2xl leading-tight">WE DON'T JUST BUILD SOFTWARE. WE ENGINEER THE PLANETARY INFRASTRUCTURE OF TOMORROW'S VELOCITY.</p>
                     </div>
 

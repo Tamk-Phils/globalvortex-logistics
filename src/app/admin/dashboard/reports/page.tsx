@@ -19,7 +19,7 @@ export default function ReportsPage() {
                         <Radar size={20} className="text-primary animate-pulse" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Institutional Analytics</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">GLOBAL <br/><span className="text-primary italic">INTELLIGENCE.</span></h1>
+                    <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">GLOBAL <br/><span className="text-primary italic">INTELLIGENCE.</span></h1>
                 </div>
                 <div className="flex gap-4">
                     <button className="bg-white border border-slate-200 px-8 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-4 hover:bg-slate-50 transition-all shadow-sm">

@@ -50,7 +50,7 @@ export default function AlertsPage() {
                             <Radar size={14} className="animate-spin-slow" />
                             <span className="text-slate-500">Live Operational Intelligence</span>
                         </div>
-                        <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
                             SYSTEM <span className="text-primary italic">STATUS.</span>
                         </h1>
                         <p className="text-xl text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight">
@@ -87,7 +87,7 @@ export default function AlertsPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white p-12 rounded-sm border border-slate-200 shadow-sm flex flex-col md:flex-row gap-12 items-start group hover:shadow-2xl transition-all"
+                                className="bg-white p-6 sm:p-12 rounded-sm border border-slate-200 shadow-sm flex flex-col md:flex-row gap-6 sm:gap-12 items-start group hover:shadow-2xl transition-all"
                             >
                                 <div className={`w-20 h-20 rounded-sm flex items-center justify-center shrink-0 border ${
                                     alert.type === 'warning' ? 'bg-red-50 border-red-100 text-red-500' : 
@@ -97,7 +97,7 @@ export default function AlertsPage() {
                                 </div>
                                 <div className="flex-1">
                                     <div className="flex flex-wrap items-center justify-between gap-6 mb-6">
-                                        <h4 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">{alert.title}</h4>
+                                        <h4 className="text-xl sm:text-3xl font-black text-slate-900 tracking-tighter uppercase">{alert.title}</h4>
                                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 px-3 py-1 rounded-sm border border-slate-100">{alert.date}</span>
                                     </div>
                                     <p className="text-slate-500 font-bold mb-10 leading-relaxed uppercase tracking-tight text-lg">{alert.description}</p>
@@ -117,7 +117,7 @@ export default function AlertsPage() {
                         ))}
                     </div>
 
-                    <div className="bg-slate-900 rounded-sm p-20 text-white text-center relative overflow-hidden shadow-3xl">
+                    <div className="bg-slate-900 rounded-sm p-8 sm:p-16 md:p-20 text-white text-center relative overflow-hidden shadow-3xl">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
                         <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-[0.5em]">PROTOCOL ENFORCEMENT</p>
                         <h4 className="text-5xl font-black mb-8 tracking-tighter uppercase">STAY AHEAD OF <br/><span className="italic">THE VORTEX.</span></h4>

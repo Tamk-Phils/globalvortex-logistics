@@ -93,7 +93,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground shrink-0`}>
+      <body className={`${inter.className} bg-background text-foreground`}>
         <JsonLd />
         <div className="min-h-screen flex flex-col relative overflow-x-hidden">
           {/* Subtle Light Glow Effect */}

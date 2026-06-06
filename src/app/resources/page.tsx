@@ -36,7 +36,7 @@ export default function ResourcesPage() {
                             <Radar size={16} className="animate-pulse" />
                             <span>VORTEX GLOBAL KNOWLEDGE CLUSTER</span>
                         </div>
-                        <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-12 uppercase leading-[0.9]">
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-12 uppercase leading-[0.9]">
                             RESOURCES & <br/> <span className="text-primary italic">SUPPORT.</span>
                         </h1>
                         

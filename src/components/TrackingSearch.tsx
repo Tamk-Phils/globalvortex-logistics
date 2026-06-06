@@ -117,7 +117,7 @@ export default function TrackingSearch() {
                         className="mt-12 bg-white rounded-sm border border-slate-200 shadow-2xl overflow-hidden"
                     >
                         {/* Top Banner Status */}
-                        <div className="bg-slate-900 p-10 flex flex-wrap justify-between items-center gap-8 border-b border-slate-800">
+                        <div className="bg-slate-900 p-6 md:p-10 flex flex-wrap justify-between items-center gap-8 border-b border-slate-800">
                              <div className="space-y-2">
                                 <p className="text-primary text-[10px] font-black uppercase tracking-[0.4em]">SHIPMENT STATUS</p>
                                 <div className="flex items-center gap-4">
@@ -127,8 +127,8 @@ export default function TrackingSearch() {
                              </div>
                              <div className="flex flex-col items-end gap-2">
                                 <p className="text-white/40 text-[9px] font-black uppercase tracking-widest text-right">TRACKING ID</p>
-                                <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-sm group/copy">
-                                    <span className="text-white font-mono font-black text-lg">{result.tracking_number}</span>
+                                <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-sm group/copy overflow-hidden">
+                                    <span className="text-white font-mono font-black text-lg truncate max-w-[150px] sm:max-w-xs">{result.tracking_number}</span>
                                     <button
                                         onClick={() => handleCopy(result.tracking_number)}
                                         className={`p-1.5 transition-all ${isCopying ? 'text-primary' : 'text-white/20 hover:text-white'}`}
@@ -139,7 +139,7 @@ export default function TrackingSearch() {
                              </div>
                         </div>
 
-                        <div className="p-10 md:p-16">
+                        <div className="p-6 md:p-16">
                             {/* Interactive Journey Pulse */}
                             <div className="mb-20 relative px-4">
                                 <div className="flex flex-col md:flex-row items-center gap-12 justify-between relative z-10">
@@ -263,7 +263,7 @@ export default function TrackingSearch() {
                                         </div>
                                     </div>
 
-                                    <button className="w-full bg-white border border-slate-200 text-slate-400 py-5 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-slate-50 hover:text-slate-900 transition-all shadow-md">
+                                    <button onClick={() => window.print()} className="w-full bg-white border border-slate-200 text-slate-400 py-5 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-slate-50 hover:text-slate-900 transition-all shadow-md">
                                         DOWNLOAD RECEIPT
                                     </button>
                                 </div>
@@ -287,7 +287,7 @@ export default function TrackingSearch() {
                                                 <p className={`font-black text-xl uppercase tracking-tighter ${idx === 0 ? 'text-slate-900' : 'text-slate-300'}`}>{update.status}</p>
                                                 <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-3 py-1 border border-slate-100">{new Date(update.created_at).toLocaleString()}</span>
                                             </div>
-                                            <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed max-w-4xl">{update.description}</p>
+                                            <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed max-w-4xl break-words">{update.description}</p>
                                             <div className="flex items-center gap-2 text-primary font-black text-[9px] uppercase tracking-[0.3em] pt-2">
                                                 <MapPin size={12} />
                                                 {update.location}

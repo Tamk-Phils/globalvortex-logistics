@@ -7,7 +7,7 @@ import Image from "next/image";
 const AboutClient = () => {
     return (
         <>
-            <section className="pt-48 pb-32 bg-[#f0f9ff]">
+            <section className="pt-28 sm:pt-36 md:pt-48 pb-32 bg-[#f0f9ff]">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -15,7 +15,7 @@ const AboutClient = () => {
                         className="text-center max-w-4xl mx-auto"
                     >
                         <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Journey</p>
-                        <h1 className="text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 text-slate-900 tracking-tighter uppercase leading-[0.85]">
                             The World&apos;s <br />
                             <span className="text-primary italic">Smartest Logistics</span> <br />
                             Network.
@@ -66,7 +66,7 @@ const AboutClient = () => {
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center mb-24">
                         <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Foundation</p>
-                        <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
+                        <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
                             Core <span className="text-primary italic">Values.</span>
                         </h2>
                     </div>
@@ -92,7 +92,7 @@ const AboutClient = () => {
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center mb-24">
                         <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">The Team</p>
-                        <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
+                        <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
                             Our <span className="text-primary italic">Leadership.</span>
                         </h2>
                     </div>

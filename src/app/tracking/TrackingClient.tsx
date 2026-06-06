@@ -8,7 +8,7 @@ import TrackingSearch from "@/components/TrackingSearch";
 const TrackingClient = () => {
     return (
         <>
-            <section className="pt-48 pb-64 bg-[#f0f9ff] relative overflow-hidden">
+            <section className="pt-28 sm:pt-36 md:pt-48 pb-16 sm:pb-32 md:pb-64 bg-[#f0f9ff] relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.05] pointer-events-none grayscale">
                     <Image 
                         src="https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=1200" 
@@ -26,11 +26,11 @@ const TrackingClient = () => {
                             className="mb-16"
                         >
                             <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Real-time Telemetry</p>
-                            <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
+                            <h1 className="text-4xl sm:text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
                                 Track Your <br />
                                 <span className="text-primary italic">Shipment.</span>
                             </h1>
-                            <p className="text-xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed uppercase tracking-tight">
+                            <p className="text-base sm:text-xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed uppercase tracking-tight">
                                 Enter your tracking number to see where your package is. 
                                 We track shipments anywhere in the world.
                             </p>
@@ -53,7 +53,7 @@ const TrackingClient = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                         <div>
                             <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Our Infrastructure</p>
-                            <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] mb-8">
+                            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95] mb-8">
                                 Global <span className="text-primary italic">Presence.</span>
                             </h2>
                             <p className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed mb-12 max-w-md">
@@ -94,7 +94,7 @@ const TrackingClient = () => {
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center mb-24">
                         <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">Data Integrity</p>
-                        <h2 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
+                        <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.95]">
                             Security & <span className="text-primary italic">Compliance.</span>
                         </h2>
                     </div>
