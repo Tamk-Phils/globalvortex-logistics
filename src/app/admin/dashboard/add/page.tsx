@@ -5,8 +5,9 @@ import { ArrowLeft, Save, Package, User, MapPin, Scale, AlertCircle, Clock, Cred
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { supabase } from "@/lib/supabase";
 import { notifyShipmentCreated } from "@/app/actions/email";
+import { safeStorage } from "@/lib/storage";
+import { supabase } from "@/lib/supabase";
 
 export default function AddShipment() {
     const router = useRouter();
@@ -70,17 +71,14 @@ export default function AddShipment() {
         };
 
         try {
-            const { error: sbError } = await supabase
-                .from('shipments')
-                .insert([newShipment]);
-
+            const { error: sbError } = await supabase.from('shipments').insert([newShipment]);
             if (sbError) throw sbError;
 
-            // Cache fallback
-            const existingRaw = localStorage.getItem("vortex_shipments");
+            // Optimistic cache for demo
+            const existingRaw = safeStorage.getItem("vortex_shipments");
             const existing: any[] = existingRaw ? JSON.parse(existingRaw) : [];
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
-            localStorage.setItem("vortex_shipments", JSON.stringify(existing));
+            safeStorage.setItem("vortex_shipments", JSON.stringify(existing));
 
             if (formData.recipient_email) {
                 await notifyShipmentCreated({

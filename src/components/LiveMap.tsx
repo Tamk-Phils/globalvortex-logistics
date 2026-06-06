@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 // Custom SVG marker for a premium feel
 const customIcon = L.divIcon({

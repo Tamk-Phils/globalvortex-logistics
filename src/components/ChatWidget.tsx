@@ -5,6 +5,7 @@ import { MessageCircle, X, Send, User, Headset, Loader2, Zap } from "lucide-reac
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { ChatMessage, ChatRoom } from "@/types";
+import { safeStorage } from "@/lib/storage";
 
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
@@ -41,15 +42,18 @@ export default function ChatWidget() {
 
     // Load or create room on first open
     useEffect(() => {
-        if (isOpen && !roomId && user) {
-            const savedRoomId = localStorage.getItem(`vortex_chat_room_${user.id}`);
-            if (savedRoomId) {
-                setRoomId(savedRoomId);
-                loadMessages(savedRoomId);
-            } else {
-                createRoom();
+        const initializeChat = async () => {
+            if (isOpen && !roomId && user) {
+                const savedRoomId = safeStorage.getItem(`vortex_chat_room_${user.id}`);
+                if (savedRoomId) {
+                    setRoomId(savedRoomId);
+                    loadMessages(savedRoomId);
+                } else {
+                    createRoom();
+                }
             }
-        }
+        };
+        initializeChat();
     }, [isOpen, user]);
 
     // Scroll to bottom when messages change
@@ -102,7 +106,7 @@ export default function ChatWidget() {
             if (error) throw error;
             if (data) {
                 setRoomId(data.id);
-                localStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
+                safeStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
                 // Send initial greeting
                 await sendMessage(data.id, "Welcome to Vortex Global Support. How can we help you today?", 'admin');
             }

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { Shipment, ShipmentUpdate } from "@/types";
 import dynamic from "next/dynamic";
+import { safeStorage } from "@/lib/storage";
 
 const LiveMap = dynamic(() => import("@/components/LiveMap"), { ssr: false });
 
@@ -41,7 +42,7 @@ export default function TrackingSearch() {
             if (sbError) {
                 if (sbError.code === 'PGRST116') {
                     // Not found, try fallback for demo
-                    const saved = localStorage.getItem("vortex_shipments");
+                    const saved = safeStorage.getItem("vortex_shipments");
                     const localShipments: Shipment[] = saved ? JSON.parse(saved) : [];
                     const found = localShipments.find(s =>
                         s.tracking_number.toLowerCase() === trackingNumber.trim().toLowerCase() && !s.is_deleted

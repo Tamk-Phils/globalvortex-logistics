@@ -6,6 +6,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
+import { safeStorage } from "@/lib/storage";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker"), { ssr: false });
 import { notifyShipmentUpdate } from "@/app/actions/email";
@@ -37,7 +38,7 @@ export default function ShipmentsList() {
 
     const loadShipments = async () => {
         // Optimistic Load
-        const cached = localStorage.getItem("vortex_shipments");
+        const cached = safeStorage.getItem("vortex_shipments");
         if (cached) {
             setShipments(JSON.parse(cached) as Shipment[]);
         }
@@ -58,7 +59,7 @@ export default function ShipmentsList() {
 
             if (data) {
                 setShipments(data as Shipment[]);
-                localStorage.setItem("vortex_shipments", JSON.stringify(data));
+                safeStorage.setItem("vortex_shipments", JSON.stringify(data));
             }
         } catch (err: any) {
             clearTimeout(timeoutId);
@@ -88,7 +89,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("vortex_shipments", JSON.stringify(updated));
+            safeStorage.setItem("vortex_shipments", JSON.stringify(updated));
         } catch (err) {
             console.error(err);
             alert("Failed to archive transit.");
@@ -109,7 +110,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("vortex_shipments", JSON.stringify(updated));
+            safeStorage.setItem("vortex_shipments", JSON.stringify(updated));
             alert(`Transit ${id} restored successfully.`);
         } catch (err) {
             console.error(err);
@@ -173,7 +174,7 @@ export default function ShipmentsList() {
             });
 
             setShipments(updatedShipments);
-            localStorage.setItem("vortex_shipments", JSON.stringify(updatedShipments));
+            safeStorage.setItem("vortex_shipments", JSON.stringify(updatedShipments));
 
             if (editingShipment.recipient_email) {
                 await notifyShipmentUpdate({
