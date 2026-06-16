@@ -100,7 +100,7 @@ export default function RootLayout({
           <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,112,243,0.02)_0%,transparent_50%)] pointer-events-none z-0" />
           
           <Header />
-          <main className="flex-1 relative z-10">
+          <main className="flex-1">
             {children}
           </main>
           <Footer />
