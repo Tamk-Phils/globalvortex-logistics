@@ -225,12 +225,7 @@ export default function ShipmentsList() {
                     >
                         <RefreshCw size={24} className={isLoading ? "animate-spin" : ""} />
                     </button>
-                    <Link
-                        href="/admin/shipment/create"
-                        className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl flex items-center gap-4"
-                    >
-                        <Plus size={20} /> NEW SHIPMENT
-                    </Link>
+
                 </div>
             </div>
 

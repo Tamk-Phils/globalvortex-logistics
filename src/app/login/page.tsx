@@ -56,7 +56,7 @@ export default function LoginPage() {
                 <div className="md:w-1/3 bg-slate-900 p-10 flex flex-col justify-between text-white relative">
                     <div className="relative z-10">
                         <LogIn size={48} className="text-primary mb-8" />
-                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">CLIENT <br/><span className="text-primary">LOGIN</span></h2>
+                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">Sign In</h2>
                     </div>
                     <div className="relative z-10 pt-10 border-t border-white/10">
                         <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
@@ -87,6 +87,7 @@ export default function LoginPage() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-6 pl-14 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-black text-slate-900 uppercase text-xs tracking-widest outline-none"
                                     placeholder="EMAIL@EXAMPLE.COM"
+                                    aria-label="Email address"
                                 />
                                 <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                             </div>

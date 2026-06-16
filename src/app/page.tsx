@@ -91,7 +91,7 @@ export default function Home() {
                 alt="Vortex Global Hero" 
                 fill 
                 className="object-cover"
-                priority
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-20" />
             </div>
