@@ -5,11 +5,11 @@ import { ShoppingBag, Factory, Car, Pill, Laptop, ArrowRight } from "lucide-reac
 import Image from "next/image";
 
 const industries = [
-    { name: "E-commerce & Retail", desc: "Specialized logistics for the fast-paced world of online retail.", icon: ShoppingBag, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800" },
-    { name: "Manufacturing", desc: "Reliable supply chain solutions for heavy industry and manufacturing.", icon: Factory, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800" },
-    { name: "Automotive", desc: "Just-in-time delivery for automotive parts and vehicle logistics.", icon: Car, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800" },
-    { name: "Pharmaceuticals", desc: "Temperature-controlled shipping for sensitive medical supplies.", icon: Pill, image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=800" },
-    { name: "Technology", desc: "Secure and efficient logistics for high-value electronics and hardware.", icon: Laptop, image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" }
+    { name: "E-commerce & Retail", desc: "Specialized logistics for the fast-paced world of online retail.", icon: ShoppingBag, image: "/images/vortex_delivery.png" },
+    { name: "Manufacturing", desc: "Reliable supply chain solutions for heavy industry and manufacturing.", icon: Factory, image: "/images/hero-warehouse.png" },
+    { name: "Automotive", desc: "Just-in-time delivery for automotive parts and vehicle logistics.", icon: Car, image: "/images/delivery-van.png" },
+    { name: "Pharmaceuticals", desc: "Temperature-controlled shipping for sensitive medical supplies.", icon: Pill, image: "/images/vortex_tech.png" },
+    { name: "Technology", desc: "Secure and efficient logistics for high-value electronics and hardware.", icon: Laptop, image: "/images/hero-tech.png" }
 ];
 
 const IndustriesClient = () => {

@@ -78,13 +78,13 @@ const TrackingClient = () => {
                             </div>
                         </div>
                         <div className="relative h-[600px] rounded-[40px] overflow-hidden shadow-3xl">
-                            <Image 
-                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=1200" 
-                                alt="Global Network Connectivity Map and Nodes" 
-                                fill 
-                                className="object-cover"
-                                loading="lazy"
-                            />
+                        <Image 
+                            src="/images/vortex_hero.png" 
+                            alt="Global Network Connectivity Map and Nodes" 
+                            fill 
+                            className="object-cover"
+                            loading="lazy"
+                        />
                         </div>
                     </div>
                 </div>

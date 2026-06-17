@@ -5,11 +5,11 @@ import { Plane, Ship, Truck, Warehouse, BarChart3, ArrowRight } from "lucide-rea
 import Image from "next/image";
 
 const services = [
-    { title: "Air Freight", desc: "Fast and reliable global air transport for time-sensitive cargo.", icon: Plane, image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=800" },
-    { title: "Ocean Freight", desc: "Cost-effective international shipping for large-volume ocean cargo.", icon: Ship, image: "https://images.unsplash.com/photo-1494412574743-0112f0424888?q=80&w=800" },
-    { title: "Road Transport", desc: "Comprehensive trucking and inland delivery solutions across continents.", icon: Truck, image: "https://images.unsplash.com/photo-1519003722824-192d992a605b?q=80&w=800" },
-    { title: "Warehousing", desc: "Secure and optimized storage and distribution network.", icon: Warehouse, image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800" },
-    { title: "Supply Chain", desc: "End-to-end consulting and optimization for global supply chains.", icon: BarChart3, image: "https://images.unsplash.com/photo-1454165833767-027ff33027b6?q=80&w=800" }
+    { title: "Air Freight", desc: "Fast and reliable global air transport for time-sensitive cargo.", icon: Plane, image: "/images/hero-plane.png" },
+    { title: "Ocean Freight", desc: "Cost-effective international shipping for large-volume ocean cargo.", icon: Ship, image: "/images/hero-ship.png" },
+    { title: "Road Transport", desc: "Comprehensive trucking and inland delivery solutions across continents.", icon: Truck, image: "/images/delivery-van.png" },
+    { title: "Warehousing", desc: "Secure and optimized storage and distribution network.", icon: Warehouse, image: "/images/vortex_warehouse.png" },
+    { title: "Supply Chain", desc: "End-to-end consulting and optimization for global supply chains.", icon: BarChart3, image: "/images/tech-control.png" }
 ];
 
 const ServicesClient = () => {
