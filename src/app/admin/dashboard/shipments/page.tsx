@@ -402,7 +402,8 @@ export default function ShipmentsList() {
                                     <MapPicker 
                                         initialLat={newUpdate.lat} 
                                         initialLng={newUpdate.lng} 
-                                        onChange={(lat, lng) => setNewUpdate({ ...newUpdate, lat, lng })} 
+                                        initialAddress={newUpdate.location}
+                                        onChange={(lat, lng, address) => setNewUpdate({ ...newUpdate, lat, lng, location: address })} 
                                     />
                                 </div>
                             </div>
