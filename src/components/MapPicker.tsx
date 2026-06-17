@@ -1,5 +1,6 @@
 "use client";
 
+import 'leaflet/dist/leaflet.css';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
@@ -222,7 +223,7 @@ export default function MapPicker({ onChange, initialLat, initialLng, initialAdd
             {/* ── Fullscreen overlay ── */}
             {isFullscreen && (
                 <div
-                    className="fixed inset-0 z-[9999] bg-slate-900 flex flex-col"
+                    className="fixed inset-0 z-[9999] bg-slate-900 flex flex-col h-[100dvh] w-screen"
                     style={{ touchAction: "none" }}
                 >
                     {/* Fullscreen top bar */}
@@ -260,13 +261,13 @@ export default function MapPicker({ onChange, initialLat, initialLng, initialAdd
                     </div>
 
                     {/* Fullscreen map */}
-                    <div className="flex-1 relative" style={{ touchAction: "none" }}>
+                    <div className="flex-1 relative w-full h-full min-h-[50vh]" style={{ touchAction: "none" }}>
                         <MapContainer
                             center={[position.lat, position.lng]}
                             zoom={12}
-                            className="w-full h-full"
+                            className="absolute inset-0 w-full h-full"
                             zoomControl={true}
-                            style={{ zIndex: 0, height: "100%", width: "100%" }}
+                            style={{ zIndex: 0 }}
                         >
                             <TileLayer
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
